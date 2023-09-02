@@ -1,0 +1,29 @@
+.participantPage {
+  padding-top: 85px;
+  display: flex;
+
+  .participantInfo {
+    width: 23%;
+    margin-left: 14%;
+    
+    .participantName {
+      font-size: 23px;
+    }
+
+    .participantBio  {
+      font-size: 11px;
+      margin-bottom: 60px;
+    }
+    .participantImage {
+      max-width: 100%;
+    }
+  }
+
+  .participantProjects {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    width: calc(63% - 20px);
+    gap: 30px;
+  }
+}

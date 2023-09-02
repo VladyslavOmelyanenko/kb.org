@@ -1,0 +1,46 @@
+.descriptionAndVenue {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+
+  .projectDetails {
+    width: 50%;
+
+    .projectTitle {
+      font-size: 24px;
+      font-weight: normal;
+    }
+
+    .projectParameters {
+      margin-top: 10px;
+      font-size: 8px;
+      list-style: none;
+    }
+
+    .projectDescription {
+      font-size: 12px;
+      margin-top: 10px;
+    }
+  }
+
+  .VenueTag {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 23vw;
+    margin-left: 20px;
+  }
+};
+
+.projectImages {
+  height: 450px;
+  overflow-x: scroll;
+  display: flex;
+  flex-wrap: nowrap;
+
+  img {
+    height: 100%;
+    width: auto;
+    margin-right: 5px;
+  }
+}

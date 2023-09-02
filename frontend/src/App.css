@@ -1,0 +1,37 @@
+@font-face {
+  font-family: KTF2101;
+  src: url(../public/KTF2101-Regular.otf);
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: KTF2101;
+  src: url(../public/KTF2101-Bold.otf);
+  font-weight: bold;
+}
+
+body {
+  font-family: KTF2101;
+  line-height: 1.22;
+}
+
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+h1, h2 {
+  margin: 0;
+}
