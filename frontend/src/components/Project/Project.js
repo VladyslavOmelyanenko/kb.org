@@ -36,7 +36,7 @@ const Project = (props) => {
           </div>
           <div className={styles.projectImages}>
             {projectMedia.map((media, i) => (
-              <img key={i} src={SERVER_URL + media.url} alt={media.alternativeText}></img>
+              <img key={i} src={media.url} alt={media.alternativeText}></img>
             ))}
           </div>
         </div>

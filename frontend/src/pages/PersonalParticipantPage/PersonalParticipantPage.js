@@ -32,7 +32,7 @@ const PersonalParticipantPage = () => {
           <p className={styles.participantBio}>
             {currentParticipant.bio}
           </p>
-          <img className={styles.participantImage} src={SERVER_URL + participantImage.url} alt={participantImage.alternativeText}></img>
+          <img className={styles.participantImage} src={participantImage.url} alt={participantImage.alternativeText}></img>
         </div>
         <div className={styles.participantProjects}>
           {currentParticipantProjects && currentParticipantProjects.map((project, i) => (

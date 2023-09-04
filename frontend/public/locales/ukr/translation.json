@@ -1,4 +1,10 @@
    {
-     "menu": "меню",
-     "participants": "учасники"
+      "menu": "меню",
+      "participants": "учасники",
+      "about": "про",
+      "program": "програма",
+      "locations": "локації",
+      "eng": "анг",
+      "ukr": "укр",
+      "de": "нім"
    }

@@ -1,4 +1,10 @@
    {
-     "menu": "menuuu",
-     "participants": "participants"
+      "menu": "menu",
+      "participants": "participants",
+      "about": "about",
+      "program": "program",
+      "locations": "locations",
+      "eng": "eng",
+      "ukr": "ukr",
+      "de": "de"
    }

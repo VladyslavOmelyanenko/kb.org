@@ -13,13 +13,26 @@ const Navbar = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
   const { t } = useTranslation();
   const { pathname } = useLocation();
-  const appLanguages = ['eng', 'ukr', 'de'];
+  const appLanguages = [
+    {
+      text: t('eng'),
+      link: 'eng',
+     }, 
+     {
+      text: t('ukr'),
+      link: 'ukr',
+     },
+     {
+      text: t('de'),
+      link: 'de',
+    }
+  ];
 
 
   const clickTheMenu = () => {
     const menu = document.getElementById('menu');
     if (isMenuActive === false) {
-      menu.style.display = 'block';
+      menu.style.display = 'flex';
       setIsMenuActive(true);
     } else {
       menu.style.display = 'none';
@@ -48,11 +61,11 @@ const Navbar = () => {
 
         <ul className={styles.languagesButtons}>
           {appLanguages.map(lang => (
-            <li key={lang}>
+            <li key={lang.text}>
               <NavLink
-                to={getMatchingRoute(lang)}
+                to={getMatchingRoute(lang.link)}
                 >
-                {lang}
+                {lang.text}
               </NavLink>
             </li>
           ))}
@@ -60,10 +73,10 @@ const Navbar = () => {
       </div>
       
       <ul className={styles.menu} id='menu'>
-        <li> <Link to='/'>About</Link> </li>
-        <li> <Link to='/participants'>Participants</Link></li>
-        <li><Link to='/program'>Program</Link></li>
-        <li><Link to='/locations'>Locations</Link></li>
+        <li> <Link to='/'>{t("about")}</Link> </li>
+        <li> <Link to='/participants'>{t("participants")}</Link></li>
+        <li><Link to='/program'>{t("program")}</Link></li>
+        <li><Link to='/locations'>{t("locations")}</Link></li>
       </ul>
 
     </nav>
