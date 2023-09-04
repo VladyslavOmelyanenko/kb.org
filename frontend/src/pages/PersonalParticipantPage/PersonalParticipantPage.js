@@ -1,5 +1,5 @@
 
-import {API_URL, SERVER_URL} from "../../config";
+import {API_URL} from "../../config";
 import useFetchData from "../../hooks/useFetchData";
 import Language from "../../hooks/Language";
 import { useParams } from "react-router-dom";

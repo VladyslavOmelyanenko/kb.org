@@ -1,7 +1,5 @@
 import React from 'react';
 
-import {SERVER_URL} from "../../config";
-
 import VenueTag from '../VenueTag/VenueTag';
 
 import styles from './Project.module.scss'
