@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:1337/api';
-const SERVER_URL = 'http://localhost:1337';
+const API_URL = 'https://kb-strapi.onrender.com/api';
+const SERVER_URL = 'https://kb-strapi.onrender.com';
 
 export  {API_URL, SERVER_URL};
