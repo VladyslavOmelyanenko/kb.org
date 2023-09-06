@@ -1,9 +1,10 @@
-  import React, { useState } from 'react';
-  import { Link, NavLink, useLocation } from 'react-router-dom'
-  import { useTranslation } from "react-i18next";
+import React, { useState } from 'react';
+import { Link, NavLink, useLocation } from 'react-router-dom'
+import { useTranslation } from "react-i18next";
 
+import styles from './Navbar.module.scss';
 
-  import styles from './Navbar.module.scss';
+import Language from '../../hooks/Language';
 
 
    
@@ -22,10 +23,10 @@ const Navbar = () => {
       text: t('ukr'),
       link: 'ukr',
      },
-     {
-      text: t('de'),
-      link: 'de',
-    }
+    //  {
+    //   text: t('de'),
+    //   link: 'de',
+    // }
   ];
 
 
@@ -48,8 +49,10 @@ const Navbar = () => {
     } else {
       pathWithoutLanguage = '';
     }
-    return language + pathWithoutLanguage;
+    return '/' + language + pathWithoutLanguage;
   }
+
+  const currentLanguage = Language();
 
   return (
     <nav className={styles.navbar}>
@@ -73,10 +76,10 @@ const Navbar = () => {
       </div>
       
       <ul className={styles.menu} id='menu'>
-        <li> <Link to='/'>{t("about")}</Link> </li>
-        <li> <Link to='/participants'>{t("participants")}</Link></li>
-        <li><Link to='/program'>{t("program")}</Link></li>
-        <li><Link to='/locations'>{t("locations")}</Link></li>
+        <li> <Link to={`/${currentLanguage}/about`}>{t("about")}</Link> </li>
+        <li> <Link to={`/${currentLanguage}/participants`}>{t("participants")}</Link></li>
+        <li><Link to={`/${currentLanguage}/program`}>{t("program")}</Link></li>
+        <li><Link to={`/${currentLanguage}/locations`}>{t("locations")}</Link></li>
       </ul>
 
     </nav>

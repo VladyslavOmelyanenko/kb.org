@@ -15,6 +15,7 @@ function useFetchData(url, language, filter="") {
     locale: language,
     populate: {
       participantImage: true,
+      partnersLogos: true,
       projects: {
         populate: '*',
       }
@@ -39,7 +40,7 @@ function useFetchData(url, language, filter="") {
 
   useEffect(() => {
 
-    console.log(`${url}?${query}`);
+    // console.log(`${url}?${query}`);
 
     axios.get(`${url}?${query}`)
     .then(response => setData(response.data))

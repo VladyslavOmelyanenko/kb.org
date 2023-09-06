@@ -86,6 +86,10 @@
     .navbarRow {
       .menuButton {
           width: 52vw;
+
+          button {
+            font-size: 20px;
+          }
       }
 
       .languagesButtons {
@@ -95,8 +99,8 @@
         font-size: 16px;
 
         li {
-        margin-right: 5vw;
-        width: 7.5vw;
+          margin-right: 5vw;
+          width: 7.5vw;
         }
       }
     }

@@ -14,7 +14,6 @@ const Language = () => {
 
     i18n.changeLanguage(params.language);
   }, [i18n, params.language])
-  
   return params.language;
 }
 

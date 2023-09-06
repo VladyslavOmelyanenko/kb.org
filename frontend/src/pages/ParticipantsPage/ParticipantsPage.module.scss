@@ -29,10 +29,11 @@
         margin-right: 130px;
         margin-bottom: 50px;
         
-        h2 {
+        h3 {
           font-size: 17px;
           font-weight: bold;
           margin-right: 25px;
+          width: 18px;
         }
 
         .namesInCategory {
@@ -42,6 +43,10 @@
         .namesInCategory a {
           display: block;
         }
+      }
+
+      a:hover {
+        font-weight: bold;
       }
     }
 
@@ -60,12 +65,23 @@
         .participantsTitle {
           font-size: 15px;
           text-transform: lowercase;
-          margin-bottom: 20px;
+          margin-top: 20px;
+          display: none;
         }
 
         .participantsNames {
           flex-wrap: nowrap;
-          font-size: 19px;
+          font-size: 20px;
+          margin-top: 15px;
+          
+          .namesCategory {
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            h3, .namesInCategory {
+            font-size: 20px;
+            }
+          }
         }
     }
   }
