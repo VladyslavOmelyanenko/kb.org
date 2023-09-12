@@ -12,6 +12,7 @@ const Project = (props) => {
 
   const project = props.projectObject;
   const projectMedia = project.projectMedia.data.map((projectMedia) => projectMedia.attributes);
+  
   return (
     <>
       {project && (
@@ -37,6 +38,7 @@ const Project = (props) => {
               <img key={i} src={media.url} alt={media.alternativeText}></img>
             ))}
           </div>
+          <p className={styles.imageSource}>{project.imageSource}</p>
         </div>
       )}
     </>

@@ -1,0 +1,40 @@
+.location {
+  width: calc((100vw - 140px) / 6);
+  transition: all 0.5s linear;
+}
+
+.locationInfo {
+  width: 70%;
+}
+
+.expandedLocation {
+  width: 56vw;
+  display: flex;
+  gap: 20px;
+}
+.locationName {
+  font-size: 20px;
+  font-weight: normal;
+  text-transform: capitalize;
+  margin-bottom: 10px;
+}
+
+.locationHoursTitle {
+  font-size: 11px;
+  margin-top: 10px;
+}
+
+.locationAddress, .locationHours {
+  font-size: 11px;
+  white-space: pre-wrap;
+}
+
+.locationImage {
+  width: 100%;
+  height: auto;
+  margin-top: 25px;
+}
+
+.locationSideInfo {
+  width: 30%;
+}

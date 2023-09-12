@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import qs from 'qs';
 
-function useFetchData(url, language, filter="") {
+function useFetchData(url, language, filter="", populations) {
   const [data, setData] = useState(null);
   if (language === 'ukr') {
     language = 'uk'
@@ -17,8 +17,14 @@ function useFetchData(url, language, filter="") {
       participantImage: true,
       partnersLogos: true,
       projects: {
-        populate: '*',
-      }
+        populate: {
+          projectMedia: true,
+          venue: {
+            populate: '*'
+          }
+        }
+      },
+      
     },
     filters: {
       // slug: {
@@ -26,6 +32,10 @@ function useFetchData(url, language, filter="") {
       // },
     },
   };
+
+// populations.forEach(population => {
+//     queryObject.populate[population] = true;
+// });
 
   if (filter !== "") {
     queryObject.filters["slug"] = {
@@ -39,8 +49,6 @@ function useFetchData(url, language, filter="") {
 
 
   useEffect(() => {
-
-    // console.log(`${url}?${query}`);
 
     axios.get(`${url}?${query}`)
     .then(response => setData(response.data))

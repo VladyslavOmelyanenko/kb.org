@@ -1,29 +1,45 @@
 .participantPage {
-  padding-top: 85px;
+  position: absolute;
+  top: 70px;
   display: flex;
+  padding: 0 20px;
+  margin-right: 20px;
 
   .participantInfo {
-    width: 23%;
-    margin-left: 14%;
-    
+    width: 24vw;
+    overflow-y: scroll;
+    height: calc(100vh - 70px - 30px);
+    padding-bottom: 30px;
+
     .participantName {
-      font-size: 23px;
+      font-size: 20px;
+      margin-bottom: 5px;
     }
 
     .participantBio  {
-      font-size: 11px;
-      margin-bottom: 60px;
+      font-size: 16px;
+      white-space: pre-wrap;
+      margin-bottom: 20px;
     }
     .participantImage {
       max-width: 100%;
     }
+    .participantLinks {
+      margin-top: 15px;
+      font-size: 12px;
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   .participantProjects {
+    height: calc(100vh - 70px - 50px);
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     margin-left: 20px;
-    width: calc(63% - 20px);
+    width: calc(100vw - 24vw - 60px);
     gap: 30px;
+    padding-bottom: 50px;
   }
 }

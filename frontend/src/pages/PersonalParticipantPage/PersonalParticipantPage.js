@@ -37,6 +37,10 @@ const PersonalParticipantPage = () => {
             {currentParticipant.bio}
           </p>
           <img className={styles.participantImage} src={participantImage.url} alt={participantImage.alternativeText}></img>
+          <div className={styles.participantLinks}>
+            <a href={currentParticipant.participantLink}>{currentParticipant.participantLink}</a>
+            <a href={currentParticipant.instagramLink}>Instagram</a>
+          </div>
         </div>
         <div className={styles.participantProjects}>
           {currentParticipantProjects && currentParticipantProjects.map((project, i) => (

@@ -4,29 +4,26 @@
   margin-bottom: 20px;
 
   .projectDetails {
-    width: 50%;
+    width: 65%;
 
     .projectTitle {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: normal;
     }
 
     .projectParameters {
-      margin-top: 10px;
-      font-size: 8px;
+      margin-top: 15px;
+      font-size: 11px;
       list-style: none;
     }
 
     .projectDescription {
-      font-size: 12px;
-      margin-top: 10px;
+      font-size: 16px;
+      margin-top: 15px;
     }
   }
 
   .VenueTag {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
     width: 23vw;
     margin-left: 20px;
   }
@@ -43,4 +40,9 @@
     width: auto;
     margin-right: 5px;
   }
+}
+
+.imageSource {
+  font-size: 10px;
+  margin-top: 20px;
 }

@@ -16,34 +16,6 @@
     }
   },
   "attributes": {
-    "thisYearTitle": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "required": true,
-      "default": "2023"
-    },
-    "kbTitle": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "default": "Kyiv Biennial"
-    },
-    "pressTitle": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "default": "inpress"
-    },
     "pressSources": {
       "pluginOptions": {
         "i18n": {
@@ -73,15 +45,6 @@
       },
       "type": "richtext"
     },
-    "contactsTitle": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string",
-      "default": "Contacts"
-    },
     "organisersText": {
       "pluginOptions": {
         "i18n": {
@@ -105,14 +68,6 @@
         }
       },
       "type": "richtext"
-    },
-    "partnersTitle": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
     }
   }
 }
