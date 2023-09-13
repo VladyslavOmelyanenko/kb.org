@@ -1,18 +1,29 @@
 const slugify = require("slugify");
 
 module.exports = {
-  beforeCreate({ params }) {
+  async beforeCreate({ params }) {
     const { data } = params;
 
     if (data.fullName) {
-      data.slug = slugify(data.fullName, { lower: true });
+
+      if (data.locale == 'en') {
+        data.slug = slugify(data.fullName, { lower: true });
+      }
     }
   },
-  beforeUpdate({ params }) {
+  async beforeUpdate({ params }) {
     const { data } = params;
+    // console.log(data);
 
     if (data.fullName) {
-      data.slug = slugify(data.fullName, { lower: true });
+      // Fetch the existing content from the database
+
+        const project = await strapi.service('api::participant.participant').findOne(data.id);
+        const locale = project.locale;
+
+        if (locale == 'en') {
+          data.slug = slugify(data.fullName, { lower: true });
+        }
     }
   },
 };

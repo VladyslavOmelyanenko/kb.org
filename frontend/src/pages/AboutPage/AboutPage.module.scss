@@ -2,6 +2,7 @@
   position: absolute;
   top: 85px;
   padding: 0 20px;
+  width: calc(100% - 40px);
 
   h2, h3 {
     font-size: 14px;
@@ -33,7 +34,7 @@
 
   .pressSection {
     margin-bottom: 100px;
-    width: 100%;
+
 
     .pressList {
       margin-top: 20px;
@@ -43,7 +44,7 @@
       .pressSource {
         display: flex;
         border-top: 1px solid black;
-        height: 25px;
+        padding: 5px 0;
         font-size: 14px;
         align-items: center;
         width: 100%;
@@ -53,6 +54,7 @@
           width: 50%;
         }
         a {
+          margin-left: 20px;
           width: 50%;
         }
 
@@ -94,6 +96,41 @@
           }
         }
       }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .aboutSection {
+    padding: 0 15px;
+    width: calc(100% - 30px);
+
+    .descriptions {
+      flex-direction: column;
+
+      .description {
+        width: 100%;
+      }
+    }
+
+    .contacts {
+      .contactsInfos {
+        flex-direction: column;
+        
+
+        .contactsText, .organisersText {
+          width: 100%;
+
+          p {
+            width: 100%;
+          }
+        }
+
+        .contactsText {
+          margin-bottom: 30px;
+        }
+      }
+
     }
   }
 }

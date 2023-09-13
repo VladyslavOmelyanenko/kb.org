@@ -4,7 +4,7 @@ import VenueTag from '../VenueTag/VenueTag';
 const Location = (props) => {
   const location = props.locationObject;
   const locationImage = location.locationImage.data.attributes;
-  const locationLogo = location.locationLogo.data && location.locationLogo.data.attributes;
+  const locationLogo = location.cityLogo.data && location.cityLogo.data.attributes;
   const locationVenue = !!location.venues.data.length && location.venues.data[0].attributes;
   locationVenue && console.log(locationVenue)
   // console.log(location);
@@ -21,11 +21,13 @@ const Location = (props) => {
           <p>{location.locationDescription}</p>
         )}
       </div>
-      <div className={styles.locationSideInfo}>
-          {locationLogo && <img src={locationLogo.url} alt={locationLogo.name}></img>}
-          <h4>Program</h4>
-          {locationVenue && <VenueTag venue={locationVenue}/>}
-      </div>
+      {location.expanded && (
+        <div className={styles.locationSideInfo}>
+            {locationLogo && <img src={locationLogo.url} alt={locationLogo.name}></img>}
+            <h4>Program</h4>
+            {locationVenue && <VenueTag venue={locationVenue}/>}
+        </div>
+      )}
     </div>
   )
 }

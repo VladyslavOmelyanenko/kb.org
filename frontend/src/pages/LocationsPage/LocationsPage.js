@@ -18,6 +18,7 @@ const LocationsPage = () => {
   const language = Language();
   const data = useFetchData(`${API_URL}/locations`, language, '', ['locationImage', 'locationLogo', 'venues']);
   const locations = data && data.data.map((location) => location.attributes);
+  data && console.log(data);
   
   const [locationsByCity, setLocationsByCity] = useState({});
 

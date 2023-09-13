@@ -43,3 +43,27 @@
     padding-bottom: 50px;
   }
 }
+
+@media (max-width: 768px) {
+  .participantPage {
+    flex-direction: column;
+    padding: 0 0;
+    margin-right: 0;
+    top: 45px;
+
+    .participantInfo {
+      width: 100vw;
+      height: auto;
+      padding-bottom: 0;
+      margin-bottom: 50px;
+
+      .participantName, .participantBio, .participantLinks{
+        padding: 0 15px;
+      }
+
+      .participantImage {
+        width: 50vw;
+      }
+    }
+  }
+}

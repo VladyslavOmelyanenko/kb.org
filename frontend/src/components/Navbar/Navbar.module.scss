@@ -106,15 +106,15 @@
     }
 
     .menu {
-
       width: calc(100% - 20px);
       gap: 0;
       flex-direction: column;
-      padding-left: 20px;
+      padding-left: 15px;
       padding-right: 0px;
 
       li {
-        width: 100%;
+        padding-left: 25px;
+        width: calc(100% - 20px);
         height: 34px;
         display: flex;
         align-items: center;
