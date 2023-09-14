@@ -24,7 +24,7 @@
     border-bottom: 1px solid black;
     padding-bottom: 4px;
     display: flex;
-    align-items: end;
+    align-items: flex-end;
 
     .cityButton {
       text-transform: capitalize;
@@ -53,7 +53,7 @@
       border-bottom: 1px solid black;
       padding-bottom: 4px;
       display: flex;
-      align-items: end;
+      align-items: flex-end;
       margin-bottom: 10px;
     }
 
