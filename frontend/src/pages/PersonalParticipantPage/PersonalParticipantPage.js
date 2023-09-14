@@ -22,9 +22,11 @@ const PersonalParticipantPage = () => {
 
   const currentParticipant = data && data.data[0].attributes;
   const currentParticipantProjects = currentParticipant && currentParticipant.projects.data;
-  // currentParticipant && console.log(currentParticipant);
+  currentParticipant && console.log(currentParticipant);
 
-  const participantImage = currentParticipant && currentParticipant.participantImage.data.attributes;
+
+  const participantImage = currentParticipant && currentParticipant.participantImage.data && currentParticipant.participantImage.data.attributes;
+  
 
   return (
     <>
@@ -36,7 +38,7 @@ const PersonalParticipantPage = () => {
           <p className={styles.participantBio}>
             {currentParticipant.bio}
           </p>
-          <img className={styles.participantImage} src={participantImage.url} alt={participantImage.alternativeText}></img>
+          { participantImage && <img className={styles.participantImage} src={participantImage.url} alt={participantImage.alternativeText}></img> }
           <div className={styles.participantLinks}>
             <a href={currentParticipant.participantLink}>{currentParticipant.participantLink}</a>
             <a href={currentParticipant.instagramLink}>Instagram</a>
