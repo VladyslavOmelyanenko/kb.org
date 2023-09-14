@@ -1,6 +1,7 @@
 .programSection {
   position: absolute;
   top: 34px;
+  width: 100%;
 }
 
 .citiesList {
@@ -27,11 +28,17 @@
     align-items: flex-end;
 
     .cityButton {
+      text-align: center;
+      word-break: break-word;
       text-transform: capitalize;
       
       &:hover {
         font-weight: bold;
       }
+    }
+
+    .activeCityButton {
+      font-weight: bold;
     }
   }
 }
@@ -39,10 +46,10 @@
 .venuesByMonths {
   top: 70px;
   display: flex;
-  gap: 20px;
+  gap: 0 20px;
 
   .month {
-    flex: 1;
+    width: 100%;
     
     
     .monthTitle {
@@ -61,6 +68,8 @@
       display: flex;
       flex-direction: column;
       gap: 30px;
+      height: calc(100vh - 115px);
+      overflow-y: scroll;
     }
 
     &:first-child {
@@ -72,7 +81,80 @@
         padding-left: 20px;
       }
     }
+  }
+}
 
-    
+@media (max-width: 978px) {
+  .venuesByMonths {
+    .month {
+      .monthVenues {
+        height: calc(100vh - 140px);
+      }
+    }
+  }
+}
+
+
+@media (max-width: 768px) {
+  .programSection {
+    padding-left: 15px;
+
+      .citiesList {
+        flex-wrap: wrap;
+        gap: 0 10px;
+        font-size: 16px;
+
+        .city {
+          width: calc((100vw - 50px) / 3);
+          border-top: 0;
+
+          .cityButton {
+            text-align: left;
+          }
+
+          &:first-child {
+            .cityButton {
+              margin-left: 0px;
+            }
+          }
+        }
+      }
+    }
+
+  .venuesByMonths {
+    overflow: scroll;
+    flex-wrap: nowrap;
+    .month {
+      width: 85vw;
+      flex-shrink: 0;
+
+      .monthTitle {
+        font-size: 16px;
+      }
+
+      .monthVenues {
+        height: calc(100vh - 134px);
+      }
+
+      &:first-child {
+          .monthTitle {
+            padding-left: 0px;
+          }
+      
+          .monthVenues {
+            padding-left: 0px;
+          }
+        }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .venuesByMonths {
+    .month {
+      .monthVenues {
+        height: calc(100vh - 153px) !important;
+      }
+    }
   }
 }

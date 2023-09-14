@@ -16,10 +16,12 @@ const ProgramPage = () => {
   const language = Language();
   const [activeVenues, setActiveVenues] = useState([]);
   const [venuesByCities, setVenuesByCities] = useState({});
+  const [activeCity, setActiveCity] = useState("");  // New state variable
+
 
   const data = useFetchData(`${API_URL}/venues`, language);
 
-
+  const months = ["october", "november", "december", "january"];
 
   useEffect(() => {
     const venues = data && data.data.map((venue) => venue.attributes);
@@ -67,9 +69,25 @@ const ProgramPage = () => {
       return result;
 
     }, {});
-    
+
+    for (const month in numberToTxtMonths) {
+      if (!distributedVenues[numberToTxtMonths[month]]) {
+        distributedVenues[numberToTxtMonths[month]] = [];
+      }
+    }
+
     return distributedVenues;
   } 
+
+  const handleCityButton = (city) => {
+    if (activeCity === city) {
+      setActiveVenues(Object.values(venuesByCities).flat());
+      setActiveCity('');
+    } else {
+      setActiveVenues(venuesByCities[city]);
+      setActiveCity(city);
+    }
+  }
 
 
   return (
@@ -79,19 +97,19 @@ const ProgramPage = () => {
       <ul className={styles.citiesList}>
         { venuesByCities && Object.keys(venuesByCities).map(city =>( 
           <li key={city} className={styles.city}>
-            <button className={styles.cityButton}>{city}</button>
+            <button className={(city === activeCity) ? `${styles.cityButton} ${styles.activeCityButton}` : `${styles.cityButton}`} onClick={() => handleCityButton(city)}>{city}</button>
           </li>
         ))}
       </ul>
       <div className={styles.venuesByMonths}>
-        {activeVenues && Object.entries(getDistributedVenuesByMonth(activeVenues)).map(([month, venues]) => (
-          <div className={styles.month} key={month}>
-            <h5 className={styles.monthTitle}>{t(month)}</h5>
-            <div className={styles.monthVenues}>
-              {venues.map((venue) => <VenueTag venue={venue} key={venue.title}/>)}
+          {!!activeVenues.length && months.map((month) => (
+            <div className={styles.month} key={month}>
+              <h5 className={styles.monthTitle}>{t(month)}</h5>
+              <div className={styles.monthVenues}>
+                {getDistributedVenuesByMonth(activeVenues)[month].map((venue) => <VenueTag venue={venue} key={venue.title}/>)}
             </div>
-          </div>
-        ))}
+            </div>
+          ))}
       </div>
       </section>
     </>
