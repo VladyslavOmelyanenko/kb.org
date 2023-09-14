@@ -20,6 +20,7 @@ function useFetchData(url, language, filter="", populations) {
       locationImage: true,
       cityLogo: true,
       venues: true,
+      location: true,
       projects: {
         populate: {
           projectMedia: true,

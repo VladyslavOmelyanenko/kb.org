@@ -7,11 +7,8 @@ import styles from './VenueTag.module.scss'
 
 const VenueTag = (props) => {
   const venue = props.venue;
-  console.log(venue);
-
-  //get the location properly
-  
   // console.log(venue);
+
   
   return (
     <div className={styles.venue}>

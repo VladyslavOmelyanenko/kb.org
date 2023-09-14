@@ -1,4 +1,3 @@
-// import React, { useEffect } from 'react';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -7,10 +6,10 @@ import {API_URL} from "../../config";
 import Language from "../../hooks/Language";
 import useFetchData from "../../hooks/useFetchData";
 
-import styles from './ParticipantsPage.module.scss'
-
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
+
+import styles from './ParticipantsPage.module.scss'
 
 
 const ParticipantsPage = () => {

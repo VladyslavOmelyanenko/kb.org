@@ -1,0 +1,78 @@
+.programSection {
+  position: absolute;
+  top: 34px;
+}
+
+.citiesList {
+  display: flex;
+  list-style: none;
+  text-transform: capitalize;
+  font-size: 20px;
+  width: 100%;
+  gap: 20px;
+
+  .city {
+    &:first-child {
+      .cityButton {
+        margin-left: 20px;
+      }
+    }
+
+    width: 100%;
+    padding-top: 6px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding-bottom: 4px;
+    display: flex;
+    align-items: end;
+
+    .cityButton {
+      text-transform: capitalize;
+      
+      &:hover {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.venuesByMonths {
+  top: 70px;
+  display: flex;
+  gap: 20px;
+
+  .month {
+    flex: 1;
+    
+    
+    .monthTitle {
+      padding-top: 6px;
+      font-size: 20px;
+      text-transform: capitalize;
+      font-weight: normal;
+      border-bottom: 1px solid black;
+      padding-bottom: 4px;
+      display: flex;
+      align-items: end;
+      margin-bottom: 10px;
+    }
+
+    .monthVenues {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    &:first-child {
+      .monthTitle {
+        padding-left: 20px;
+      }
+
+      .monthVenues {
+        padding-left: 20px;
+      }
+    }
+
+    
+  }
+}
