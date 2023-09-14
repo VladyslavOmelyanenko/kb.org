@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
+  padding-right: 20px;
 
   .projectDetails {
     width: 65%;
@@ -23,20 +24,19 @@
     }
   }
 
-  .VenueTag {
+  .venueTag {
     width: 23vw;
     margin-left: 20px;
   }
 };
 
 .projectImages {
-  height: 450px;
   overflow-x: scroll;
   display: flex;
   flex-wrap: nowrap;
 
   img {
-    height: 100%;
+    height: 450px;
     width: auto;
     margin-right: 5px;
   }
@@ -45,4 +45,33 @@
 .imageSource {
   font-size: 10px;
   margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .descriptionAndVenue {
+    .projectDetails {
+        width: 100%;
+
+        .projectParameters {
+          margin-top: 10px;
+        }
+
+        .projectDescription {
+          font-size: 14px;
+          margin-top: 10px;
+        }
+      }
+  }
+
+  .projectImages {
+    img {
+      height: 60vw;
+      width: auto;
+    }
+  }
+
+  .venueTag {
+    max-width: 370px;
+    margin-top: 20px;
+  }
 }

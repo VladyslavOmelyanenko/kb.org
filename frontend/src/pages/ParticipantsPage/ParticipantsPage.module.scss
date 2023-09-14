@@ -1,7 +1,8 @@
 .participantsSection {
   position: absolute;
   top: 85px;
-  width: 100%;
+  padding: 0 20px;
+  width: calc(100% - 40px);
   height: calc(100% - 85px); 
   
   .participantsContent {
@@ -12,7 +13,6 @@
       text-transform: uppercase;
       font-weight: bold;
       font-size: 14px;
-      margin-left: 20px;
     }
     
     .participantsNames {
@@ -57,6 +57,9 @@
   .participantsSection {
     top: 40px;
     height: auto;
+    width: calc(100% - 30px);
+    padding: 0 15px;
+
     .participantsContent {
         flex-direction: column;
         height: 100%;
@@ -71,6 +74,7 @@
 
         .participantsNames {
           flex-wrap: nowrap;
+          margin-left: 0;
           font-size: 20px;
           margin-top: 15px;
           width: calc(100% - 20px);

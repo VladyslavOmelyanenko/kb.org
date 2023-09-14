@@ -1,3 +1,7 @@
+:root {
+  --doc-height: 100%;
+}
+
 .programSection {
   position: absolute;
   top: 34px;
@@ -81,6 +85,12 @@
         padding-left: 20px;
       }
     }
+
+    &:last-child {
+      .monthVenues {
+        padding-right: 20px;
+      }
+    }
   }
 }
 
@@ -94,15 +104,17 @@
   }
 }
 
-
 @media (max-width: 768px) {
   .programSection {
+    width: calc(100% - 15px);
     padding-left: 15px;
 
       .citiesList {
         flex-wrap: wrap;
         gap: 0 10px;
         font-size: 16px;
+        padding-right: 15px;
+        width: calc(100vw - 30px);
 
         .city {
           width: calc((100vw - 50px) / 3);
@@ -133,7 +145,8 @@
       }
 
       .monthVenues {
-        height: calc(100vh - 134px);
+        // height: calc(100vh - 134px);
+        height: calc(var(--doc-height) - 134px);
       }
 
       &:first-child {
@@ -154,6 +167,7 @@
     .month {
       .monthVenues {
         height: calc(100vh - 153px) !important;
+        height: calc(var(--doc-height) - 153px) !important;
       }
     }
   }

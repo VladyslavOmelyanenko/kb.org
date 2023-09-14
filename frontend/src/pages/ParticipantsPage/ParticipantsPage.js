@@ -42,38 +42,7 @@ const ParticipantsPage = () => {
 
   
   const categorizedParticipants = participants && categorizeParticipants(participants);
-  // categorizedParticipants && console.log(Object.entries(categorizedParticipants));
-
-  // test data
-
-
-  // const categorizeParticipants = (participants) => {
-  //   const categorizedNames = {};
-
-  //   participants.forEach((participant) => {
-  //     const firstLetter = participant.charAt(0).toUpperCase();
-      
-  //     if (categorizedNames.hasOwnProperty(firstLetter)) {
-  //       categorizedNames[firstLetter].push(participant);
-  //     } else {
-  //       categorizedNames[firstLetter] = [participant];
-  //     }
-  //   });
-
-  //   return categorizedNames;
-  // }
-
-  // let participantsTestData = "Alina Kleytman ,Aliona Tokovenko ,Alisa Sizykh ,Anna Zilahy,Anton Shebetko ,Ashley Hans Scheirl ,Bohdan Bunchak,Bohdan Moroz ,Clemens Wedemeyer / eeefffff ,Dan Perjovschi ,Dana Kavelina ,Daniel Otero Torres ,Daria Chernyshova ,Daryia Tsymbalyuk ,DeNeDe Collective ,Franz Kapfer ,Georgia Sagri,Hamlet Lavastida ,Hans Ostapenko ,Hito Steyerl ,Ivan Melnychuk ,Július Koller,Kateryna Aliynyk ,Ksenia Hnylytska ,Lisovenko Kateryna ,Livyj Bereh and Roman Himey,Lisovenko Kateryna ,Livyj Bereh and Roman Himey ,Livyj Bereh and Roman Himey ,Lisovenko Kateryna,Majd Abdul Hamid ,Mangelos ,Mark Verlan ,Mary Lydon ,Miriam Stoney ,Mona Vatamanu & Florin Tudor,Mountaincutters artist,Nikita Kadan ,Nikolai Karabinovich ,Peace Delegation ,Selma Doborac ,Superflex,The Laundry Collective ,Tomas Kajanek ,Toni Schmale ,Toni Schmale,Vladislav Plisetsky ,Wolfgang Tillmans ,Yarema Himey ,Yves Netzhammer ,Zofia Kulik";
-  // participantsTestData = participantsTestData.split(',');
-
-  // const categorizedParticipants = participantsTestData && categorizeParticipants(participantsTestData);
-  // categorizedParticipants && console.log(Object.entries(categorizedParticipants));
-
-
-  
-    
-
-  // REPLACE PARTICIPANTSTESTDATA WITH PARITICPANTSNAMES
+  categorizedParticipants && console.log(categorizedParticipants)
 
   return (
     <>
@@ -82,7 +51,8 @@ const ParticipantsPage = () => {
         <div className={styles.participantsContent}>
           <h2 className={styles.participantsTitle}>{t("participants")}</h2>
           <div className={styles.participantsNames}>
-            {categorizedParticipants && Object.entries(categorizedParticipants).map(category => {
+            {categorizedParticipants && Object.entries(categorizedParticipants).sort((a, b) => a[0].localeCompare(b[0])).map(category => {
+              console.log(category);
               const letter = category[0];
               const participants = category[1];
               return (

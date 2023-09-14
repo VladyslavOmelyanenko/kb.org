@@ -19,6 +19,13 @@
 
 @media (max-width: 768px) {
   .footer {
+    width: calc(100% - 30px);
     justify-content: center;
+    gap: 20px;
+    li {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 }

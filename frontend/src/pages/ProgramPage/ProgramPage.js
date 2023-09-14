@@ -43,6 +43,18 @@ const ProgramPage = () => {
       return result;
     }, {}));
 
+    const documentHeight = () => {
+      const doc = document.documentElement;
+      doc.style.setProperty('--doc-height', `${window.innerHeight}px`);
+    };
+
+    window.addEventListener('resize', documentHeight);
+    documentHeight();
+
+    return () => {
+      window.removeEventListener('resize', documentHeight);
+    };
+
   }, [data]);
   
 
@@ -94,23 +106,23 @@ const ProgramPage = () => {
     <>
       <Navbar />
       <section className={styles.programSection}>
-      <ul className={styles.citiesList}>
-        { venuesByCities && Object.keys(venuesByCities).map(city =>( 
-          <li key={city} className={styles.city}>
-            <button className={(city === activeCity) ? `${styles.cityButton} ${styles.activeCityButton}` : `${styles.cityButton}`} onClick={() => handleCityButton(city)}>{city}</button>
-          </li>
-        ))}
-      </ul>
-      <div className={styles.venuesByMonths}>
-          {!!activeVenues.length && months.map((month) => (
-            <div className={styles.month} key={month}>
-              <h5 className={styles.monthTitle}>{t(month)}</h5>
-              <div className={styles.monthVenues}>
-                {getDistributedVenuesByMonth(activeVenues)[month].map((venue) => <VenueTag venue={venue} key={venue.title}/>)}
-            </div>
-            </div>
+        <ul className={styles.citiesList}>
+          { venuesByCities && Object.keys(venuesByCities).map(city =>( 
+            <li key={city} className={styles.city}>
+              <button className={(city === activeCity) ? `${styles.cityButton} ${styles.activeCityButton}` : `${styles.cityButton}`} onClick={() => handleCityButton(city)}>{city}</button>
+            </li>
           ))}
-      </div>
+        </ul>
+        <div className={styles.venuesByMonths}>
+            {!!activeVenues.length && months.map((month) => (
+              <div className={styles.month} key={month}>
+                <h5 className={styles.monthTitle}>{t(month)}</h5>
+                <div className={styles.monthVenues}>
+                  {getDistributedVenuesByMonth(activeVenues)[month].map((venue) => <VenueTag venue={venue} key={venue.title}/>)}
+              </div>
+              </div>
+            ))}
+        </div>
       </section>
     </>
   );
