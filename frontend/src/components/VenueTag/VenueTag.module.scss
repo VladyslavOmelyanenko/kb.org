@@ -2,8 +2,20 @@
   font-size: 11px;
 
   .venueTags {
+
     font-weight: bold;
-    list-style: none;
+    display: flex;
+    flex-shrink: 1;
+    gap: 0px 10px;
+    height: 3.3vw;
+    max-height: 35px;
+
+    div {
+      flex-shrink: 1;
+      img {
+        height: 100%;
+      }
+    }
   }
 
   .venuePlaceAndTime {
@@ -14,4 +26,14 @@
     font-size: 17px;
     margin-bottom: 8px;
   }
+}
+
+@media (max-width: 768px) {
+  .venue {
+  
+      .venueTags {
+  
+        height: 35px;
+      }
+    }
 }

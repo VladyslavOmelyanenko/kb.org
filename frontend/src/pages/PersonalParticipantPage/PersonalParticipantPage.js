@@ -5,11 +5,10 @@ import Language from "../../hooks/Language";
 import { useParams } from "react-router-dom";
 
 
-
-import styles from './PersonalParticipantPage.module.scss'
-
 import Navbar from "../../components/Navbar/Navbar";
 import Project from "../../components/Project/Project";
+
+import styles from './PersonalParticipantPage.module.scss'
 
 
 const PersonalParticipantPage = () => {

@@ -47,14 +47,14 @@
     "venueType": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "type": "enumeration",
       "enum": [
         "exhibition",
         "lecture",
-        "performance ",
+        "performance",
         "film program"
       ]
     },
@@ -110,6 +110,15 @@
         }
       },
       "type": "string"
+    },
+    "slug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "string",
+      "unique": false
     }
   }
 }

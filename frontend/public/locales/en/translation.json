@@ -14,5 +14,9 @@
       "october": "october",
       "november": "november",
       "december": "december",
-      "january": "january"
+      "january": "january",
+      "exhibition": "exhibition",
+      "performance": "performance",
+      "film program": "film program",
+      "lecture": "lecture"
    }

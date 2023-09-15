@@ -1,0 +1,131 @@
+.venuePage {
+  position: absolute;
+  top: 85px;
+  padding-bottom: 75px;
+
+  .headerInfo {
+    display: flex;
+    padding: 0 20px;
+    gap: 20px;
+    padding-bottom: 20px;
+
+    .headerSideInfo, .headerMainInfo {
+      width: 50%;
+    }
+
+    .headerSideInfo {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      font-size: 11px;
+
+      p {
+        white-space: pre-wrap;
+      }
+
+      .locationAddress {
+        margin-bottom: 10px;
+      }
+    }
+
+    .headerMainInfo {
+      font-size: 16px;
+
+      .location {
+        font-weight: bold;
+        text-transform: capitalize;
+      }
+      
+      .venueTitle {
+        font-size: 36px;
+        line-height: 34px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  .images {
+    .imageContainer {
+      width: 100vw;
+      height: 38vw;
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: scroll;
+      gap: 5px;
+      margin-bottom: 25px;
+
+      img {
+        height: 100%;
+        width: auto;
+      }
+    }
+
+    p {
+      font-size: 11px;
+      margin-left: 20px;
+    }
+  }
+
+  .venueDetails {
+    margin-top: 30px;
+    display: flex;
+    padding: 0 20px;
+    gap: 20px;
+
+    .sideDetails, .venueDescription {
+      width: 50%;
+    }
+
+    .sideDetails {
+      display: flex;
+      gap: 25px;
+
+      .program {
+        h2 {
+          text-transform: uppercase;
+          font-size: 14px;
+          margin-bottom: 25px;
+        }
+
+        .programList {
+          display: flex;
+          flex-direction: column;
+          gap: 25px;
+          width: 350px;
+
+          .event {
+            p {
+              font-size: 11px;
+              margin-bottom: 5px;
+            }
+            .eventTitle {
+              font-size: 17px;
+            }
+          }
+        }
+      }
+
+      .participants {
+        h2 {
+          text-transform: uppercase;
+          font-size: 14px;
+          margin-bottom: 25px;
+        }
+        .participantsList {
+          list-style: none;
+          li {
+            line-height: 20px;
+          }
+          li:hover {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .venueDescription {
+      white-space: pre-wrap;
+    }
+  }
+}

@@ -1,7 +1,5 @@
 import { Routes, Route} from 'react-router-dom';
 
-   
-
 import 'normalize.css';
 import './App.css'
 
@@ -12,6 +10,7 @@ import ParticipantsPage from "./pages/ParticipantsPage/ParticipantsPage"
 import LocationsPage from "./pages/LocationsPage/LocationsPage"
 import ProgramPage from "./pages/ProgramPage/ProgramPage"
 import PersonalParticipantPage from './pages/PersonalParticipantPage/PersonalParticipantPage';
+import VenuePage from './pages/VenuePage/VenuePage';
 
 
 import RedirectToEn from './components/RedirectToEn';
@@ -30,6 +29,7 @@ const App = () => {
         <Route path="/:language/about" element={<AboutPage />} />
         <Route path="/:language/locations" element={<LocationsPage />} />
         <Route path="/:language/program" element={<ProgramPage />} />
+        <Route path="/:language/program/:venueTitle" element={<VenuePage />} />
         <Route path="/:language/participants" element={<ParticipantsPage />} />
         <Route path="/:language/participants/:name" element={<PersonalParticipantPage />} />
       </Routes>

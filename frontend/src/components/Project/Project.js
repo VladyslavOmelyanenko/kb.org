@@ -11,6 +11,7 @@ const Project = (props) => {
 
   const project = props.projectObject;
   const projectMedia = project.projectMedia.data && project.projectMedia.data.map((projectMedia) => projectMedia.attributes);
+  const projectVenue = project.venue.data && project.venue.data.attributes;
   
   useEffect(() => {
     const handleResize = () => {
@@ -52,10 +53,10 @@ const Project = (props) => {
               <img key={i} src={media.url} alt={media.alternativeText}></img>
             ))}
           </div>
-          {!!project.imageSource.length && <p className={styles.imageSource}>{project.imageSource}</p>}
+          {project.imageSource && !!project.imageSource.length && <p className={styles.imageSource}>{project.imageSource}</p>}
           {(isMobile) && (
             <div className={styles.venueTag} >
-              <VenueTag venue={project.venue.data.attributes}/>
+              {projectVenue && <VenueTag venue={projectVenue}/>}
             </div>
           )}
         </div>

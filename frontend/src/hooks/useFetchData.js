@@ -20,12 +20,20 @@ function useFetchData(url, language, filter="", populations) {
       locationImage: true,
       cityLogo: true,
       venues: true,
-      location: true,
+      venueImages: true,
+      location: {
+        populate: '*'
+      },
       projects: {
         populate: {
           projectMedia: true,
+          participant: true,
           venue: {
-            populate: '*'
+            populate: {
+              location: {
+                populate: '*'
+              }
+            }
           }
         }
       },
