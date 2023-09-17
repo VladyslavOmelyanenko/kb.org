@@ -1,22 +1,37 @@
 .location {
-  width: calc((100vw - 140px) / 6);
-  transition: all 0.5s linear;
+  width: 100%;
+  // transition: all 0.5s linear;
 }
 
-.locationInfo {
-  width: 70%;
-}
+
 
 .expandedLocation {
   width: 56vw;
   display: flex;
   gap: 20px;
+  .locationInfo {
+    width: 100%;
+  }
+
+  .locationSideInfo {
+    width: 23vw;
+    min-width: 10vw;
+    max-width: 250px;
+    flex-shrink: 0;
+    .locationVenues {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
 }
 .locationName {
   font-size: 20px;
   font-weight: normal;
   text-transform: capitalize;
   margin-bottom: 10px;
+  max-width: 170px;
 }
 
 .locationHoursTitle {
@@ -29,12 +44,16 @@
   white-space: pre-wrap;
 }
 
+
+
 .locationImage {
   width: 100%;
   height: auto;
   margin-top: 25px;
 }
 
-.locationSideInfo {
-  width: 30%;
+.locationDescription {
+  white-space: pre-wrap;
+  margin-top: 25px;
 }
+

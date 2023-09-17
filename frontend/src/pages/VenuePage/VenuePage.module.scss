@@ -23,9 +23,6 @@
         white-space: pre-wrap;
       }
 
-      .locationAddress {
-        margin-bottom: 10px;
-      }
     }
 
     .headerMainInfo {
@@ -33,6 +30,10 @@
 
       .location {
         font-weight: bold;
+        text-transform: capitalize;
+      }
+
+      .dates {
         text-transform: capitalize;
       }
       
@@ -79,7 +80,8 @@
 
     .sideDetails {
       display: flex;
-      gap: 25px;
+      gap: 50px 25px;
+      align-self: flex-start;
 
       .program {
         h2 {
@@ -92,7 +94,7 @@
           display: flex;
           flex-direction: column;
           gap: 25px;
-          width: 350px;
+          max-width: 350px;
 
           .event {
             p {
@@ -107,6 +109,7 @@
       }
 
       .participants {
+        flex-shrink: 0;
         h2 {
           text-transform: uppercase;
           font-size: 14px;
@@ -128,4 +131,95 @@
       white-space: pre-wrap;
     }
   }
+}
+
+@media (max-width: 768px) {
+  .venuePage {
+    top: 50px;
+
+    .headerInfo {
+        flex-direction: column-reverse;
+        padding: 0 15px;
+        gap: 15px;
+        margin-bottom: 15px;
+    
+        .headerMainInfo, 
+        .headerSideInfo {
+          width: 100%;
+        }
+
+        .headerMainInfo {
+          font-size: 16px;
+
+          .venueTitle {
+            font-size: 32px;
+            // line-height: 24.5px;
+            margin-bottom: 10px;
+          }
+        }
+
+        .headerSideInfo {
+          font-size: 12px;
+        }
+
+      }
+
+    .images {
+      .imageContainer {
+        height: 70vw;
+        margin-bottom: 20px;
+      }
+    }
+
+    .venueDetails {
+      flex-direction: column-reverse;
+      margin-top: 20px;
+      padding: 0 15px;
+      gap: 30px;
+
+      .sideDetails,
+      .venueDescription {
+        width: 100%;
+      }
+
+      .sideDetails {
+        flex-direction: column-reverse;
+        gap: 30px;
+
+        .participants {
+          font-size: 16px;
+
+          h2 {
+            margin-bottom: 20px;
+            font-size: 16px;
+          }
+        }
+
+        .program {
+          h2 {
+            margin-bottom: 20px;
+            font-size: 16px;
+          }
+          .programList {
+            gap: 30px;
+            .event {
+              p {
+                font-size: 12px;
+              }
+              .eventTitle {
+                font-size: 18px;
+              }
+            }
+
+          }
+        }
+      }
+
+      .venueDescription {
+        font-size: 16px;
+        line-height: 21px;
+      }
+    }
+  }
+  
 }

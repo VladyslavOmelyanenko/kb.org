@@ -29,6 +29,9 @@
     margin-left: 20px;
   }
 };
+.imageContainer {
+  position: relative;
+}
 
 .projectImages {
   overflow-x: scroll;
@@ -52,12 +55,18 @@
     .projectDetails {
         width: 100%;
 
+        .projectTitle {
+          font-size: 22px;
+        }
+
         .projectParameters {
           margin-top: 10px;
+          font-size: 12px;
         }
 
         .projectDescription {
-          font-size: 14px;
+          font-size: 16px;
+          line-height: 21px;
           margin-top: 10px;
         }
       }

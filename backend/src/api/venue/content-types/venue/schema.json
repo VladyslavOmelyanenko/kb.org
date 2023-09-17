@@ -119,6 +119,14 @@
       },
       "type": "string",
       "unique": false
+    },
+    "venueOpeningTime": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "time"
     }
   }
 }

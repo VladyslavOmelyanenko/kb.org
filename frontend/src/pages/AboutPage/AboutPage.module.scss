@@ -106,11 +106,28 @@
     padding: 0 15px;
     width: calc(100% - 30px);
 
+    h2, h3 {
+      font-size: 16px;
+    }
+
     .descriptions {
       flex-direction: column;
 
       .description {
         width: 100%;
+
+        .descriptionText {
+           font-size: 16px;
+           line-height: 22px;
+          }
+      }
+    }
+
+    .pressSection {
+      .pressList {
+        .pressSource {
+          font-size: 16px;
+        }
       }
     }
 
@@ -121,6 +138,7 @@
 
         .contactsText, .organisersText {
           width: 100%;
+          font-size: 16px;
 
           p {
             width: 100%;

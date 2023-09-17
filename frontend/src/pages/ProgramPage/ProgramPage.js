@@ -22,6 +22,7 @@ const ProgramPage = () => {
   const data = useFetchData(`${API_URL}/venues`, language);
 
   const months = ["october", "november", "december", "january"];
+  const orderOfCities = ['kyiv', 'ivano-frankivsk', 'uzhhorod', 'vienna', 'warsaw', 'lublin'];
 
   useEffect(() => {
     const venues = data && data.data.map((venue) => venue.attributes);
@@ -107,7 +108,7 @@ const ProgramPage = () => {
       <Navbar />
       <section className={styles.programSection}>
         <ul className={styles.citiesList}>
-          { venuesByCities && Object.keys(venuesByCities).map(city =>( 
+          { venuesByCities && Object.keys(venuesByCities).sort((a, b) => orderOfCities.indexOf(a.toLowerCase()) - orderOfCities.indexOf(b.toLowerCase())).map(city =>( 
             <li key={city} className={styles.city}>
               <button className={(city === activeCity) ? `${styles.cityButton} ${styles.activeCityButton}` : `${styles.cityButton}`} onClick={() => handleCityButton(city)}>{city}</button>
             </li>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import VenueTag from '../VenueTag/VenueTag';
+import Wires from '../Wires/Wires';
 
 import styles from './Project.module.scss'
 
@@ -48,10 +49,13 @@ const Project = (props) => {
               </div>
             )}
           </div>
-          <div className={styles.projectImages}>
-            {projectMedia && projectMedia.map((media, i) => (
-              <img key={i} src={media.url} alt={media.alternativeText}></img>
-            ))}
+          <div className={styles.imageContainer}>
+            <Wires />
+            <div className={styles.projectImages}>
+              {projectMedia && projectMedia.map((media, i) => (
+                <img key={i} src={media.url} alt={media.alternativeText}></img>
+              ))}
+            </div>
           </div>
           {project.imageSource && !!project.imageSource.length && <p className={styles.imageSource}>{project.imageSource}</p>}
           {(isMobile) && (

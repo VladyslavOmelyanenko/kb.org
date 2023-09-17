@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import {API_URL} from "../../config";
+import { useTranslation } from 'react-i18next';
 import useFetchData from "../../hooks/useFetchData";
 import Language from "../../hooks/Language";
 import { useParams } from "react-router-dom";
@@ -15,13 +16,14 @@ import styles from './VenuePage.module.scss'
 const VenuePage = () => {
   const language = Language();
   const params = useParams();
+  const { t } = useTranslation();
+
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const slug = params.venueTitle;
 
   const data = useFetchData(`${API_URL}/venues`, language, slug);
 
   const venue = data?.data[0]?.attributes;
-  venue && console.log(venue);
 
   const { startDate, finishDate } = venue || {};
 
@@ -29,14 +31,11 @@ const VenuePage = () => {
   const finishDateObj = finishDate && new Date(venue.finishDate);
 
   const location = venue?.location.data?.attributes;
-  location && console.log(location);
 
   const venueImages = venue?.venueImages.data;
   const program = venue?.program;
   const participants = venue?.projects.data.map((project) => project.attributes.participant.data.attributes).filter((value, index, self) => self.findIndex((t) => (t.fullName === value.fullName)) === index);
-;
-  participants && console.log(participants);
-  console.log(language);
+
 
 
   return (
@@ -48,13 +47,12 @@ const VenuePage = () => {
 
             <div className={styles.headerSideInfo}>
               <p className={styles.locationAddress}>{location.locationAddress}</p>
-              <h3>Opening hours</h3>
               <p>{location.openingHours}</p>
             </div>
 
             <div className={styles.headerMainInfo}>
               <p className={styles.location}>{location.locationName + ', ' + location.city}</p>
-              <p>{`${monthNames[startDateObj.getMonth()]} ${startDateObj.getDate()}–${monthNames[finishDateObj.getMonth()]} ${finishDateObj.getDate()}`}</p>
+              <p className={styles.dates}>{`${t(monthNames[startDateObj.getMonth()].toLowerCase())} ${startDateObj.getDate()}–${t(monthNames[finishDateObj.getMonth()].toLowerCase())} ${finishDateObj.getDate()}`}</p>
               <h1 className={styles.venueTitle}>{venue.title}</h1>
               <p>{venue.curators}</p>
             </div>
@@ -77,9 +75,9 @@ const VenuePage = () => {
             <div className={styles.sideDetails}>
 
               <div className={styles.program}>
-                <h2>Program</h2>
+                <h2>{t("Program")}</h2>
                 <div className={styles.programList}>
-                  {program.map((event, i) => (
+                  {program && program.map((event, i) => (
                     <div className={styles.event} key={i}>
                       <p>
                         {event.date}<br></br>
@@ -92,7 +90,7 @@ const VenuePage = () => {
               </div>
 
               <div className={styles.participants}>
-                <h2>Participants</h2>
+                <h2>{t("Participants")}</h2>
                 <ul className={styles.participantsList}>
                   {participants.map((participant, i) => <li><Link to={`/${language}/participants/${participant.slug}`} key={i}>{participant.fullName}</Link></li>)}
                 </ul>
@@ -103,8 +101,8 @@ const VenuePage = () => {
             <p className={styles.venueDescription}>
                 {venue.venueDescription}
             </p>
-          </section>
           <Footer />
+          </section>
         </main>
       )}
     </>

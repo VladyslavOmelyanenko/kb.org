@@ -1,4 +1,6 @@
-import Navbar from "../../components/Navbar/Navbar"
+import Navbar from "../../components/Navbar/Navbar";
+import LublinWire from "../../components/LandingWires/LublinWire";
+import ViennaWire from "../../components/LandingWires/ViennaWire";
 
 const LandingPage = () => {
 
@@ -6,6 +8,8 @@ const LandingPage = () => {
     <>
       <Navbar />
       <h1>Landing Page</h1>
+      <LublinWire />
+      <ViennaWire />
     </>
   )
 }

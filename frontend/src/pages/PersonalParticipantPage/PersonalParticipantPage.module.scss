@@ -56,9 +56,15 @@
       height: auto;
       padding-bottom: 0;
       margin-bottom: 50px;
+      font-size: 16px;
+      line-height: 21px;
 
       .participantName, .participantBio, .participantLinks{
         padding: 0 15px;
+      }
+
+      .participantName {
+        font-size: 20px;
       }
 
       .participantImage {
