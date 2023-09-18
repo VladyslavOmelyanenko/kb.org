@@ -6,7 +6,7 @@
 
   h2, h3 {
     font-size: 14px;
-    text-transform: uppercase;
+    text-transform: capitalize;
   }
 
 
@@ -46,7 +46,6 @@
         border-top: 1px solid black;
         padding: 5px 0;
         font-size: 14px;
-        align-items: center;
         width: 100%;
 
         h4 {
@@ -56,6 +55,9 @@
         a {
           margin-left: 20px;
           width: 50%;
+          &:hover {
+            font-weight: bold;
+          }
         }
 
         &:last-child {

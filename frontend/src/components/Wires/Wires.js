@@ -1,4 +1,4 @@
-import styles from './Wires.module.scss';
+// import styles from './Wires.module.scss';
 
 
 const Wires = () => {

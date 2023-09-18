@@ -85,7 +85,7 @@
 
       .program {
         h2 {
-          text-transform: uppercase;
+          text-transform: capitalize;
           font-size: 14px;
           margin-bottom: 25px;
         }
@@ -111,7 +111,7 @@
       .participants {
         flex-shrink: 0;
         h2 {
-          text-transform: uppercase;
+          text-transform: capitalize;
           font-size: 14px;
           margin-bottom: 25px;
         }
