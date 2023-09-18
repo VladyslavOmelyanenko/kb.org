@@ -28,7 +28,7 @@ const VenueTag = (props) => {
     "фільмова програма": "фільмова програма.png",
     "лекція": "лекція.png"
   }
-  const locationIcon = location.tagIcon.data && location.tagIcon.data.attributes.url;
+  const locationIcon = location.tagIcon?.data?.attributes.url;
   
 
   
