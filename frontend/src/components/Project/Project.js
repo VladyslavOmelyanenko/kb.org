@@ -45,7 +45,7 @@ const Project = (props) => {
             </div>
             {(!isMobile) && (
               <div className={styles.venueTag} >
-                <VenueTag venue={project.venue.data.attributes}/>
+               {projectVenue && <VenueTag venue={project.venue.data.attributes}/>}
               </div>
             )}
           </div>
