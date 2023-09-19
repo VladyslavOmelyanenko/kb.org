@@ -16,11 +16,11 @@ const Navbar = () => {
   const { pathname } = useLocation();
   const appLanguages = [
     {
-      text: t('eng'),
+      text: 'eng',
       link: 'eng',
      }, 
      {
-      text: t('ukr'),
+      text: 'укр',
       link: 'ukr',
      },
     //  {
@@ -76,6 +76,7 @@ const Navbar = () => {
       </div>
       
       <ul className={styles.menu} id='menu'>
+        <li> <Link to={`/${currentLanguage}/`}>{t("home")}</Link> </li>
         <li> <Link to={`/${currentLanguage}/about`}>{t("about")}</Link> </li>
         <li> <Link to={`/${currentLanguage}/participants`}>{t("participants")}</Link></li>
         <li><Link to={`/${currentLanguage}/program`}>{t("program")}</Link></li>

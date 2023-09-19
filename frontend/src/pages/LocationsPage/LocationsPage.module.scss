@@ -1,3 +1,7 @@
+:root {
+  --doc-height: 100%;
+}
+
 .cities {
   display: flex;
   overflow-x: scroll;
@@ -12,7 +16,7 @@
   .city {
     height: calc(100vh - 85px);
     overflow-y: scroll;
-    width: calc((100vw - 140px) / 6);
+    width: calc((100vw - 140px) / 4.5);
     flex-shrink: 0;
 
     .cityName {
@@ -51,4 +55,25 @@
     right: 0;
   }
 
+}
+
+@media (max-width: 768px) {
+  .cities {
+    top: 50px;
+    gap: 15px;
+    padding: 0 15px;
+    width: calc(100% - 30px);
+    .city {
+      // height: calc(100vh - 50px);
+      height: calc(var(--doc-height) - 50px);
+      width: calc((100vw - 120px) / 1.2);
+    }
+    .activeCity {
+      width: calc((100vw - 80px));
+
+      .locations {
+        width: calc(100vw - 80px);
+      }
+    }
+  }
 }

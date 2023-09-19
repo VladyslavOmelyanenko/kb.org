@@ -78,11 +78,17 @@ const AboutPage = () => {
           </section>
 
           <section className={styles.contacts}>
-            <h3 className={styles.contactsTitle}>{t("contactsTitle")}</h3>
             <div className={styles.contactsInfos}>
-            
-              <ReactMarkdown className={styles.contactsText} children={content.contactsText} />
-              <ReactMarkdown className={styles.organisersText} children={content.organisersText} />
+              <div className={styles.contactsText}>
+                <h3 className={styles.contactsTitle}>{t("contactsTitle")}</h3>
+                <ReactMarkdown children={content.contactsText} />
+              </div>
+
+              <div className={styles.organisersText}>
+                <h3 className={styles.contactsTitle}>{t("team")}</h3>
+                <ReactMarkdown  children={content.organisersText} />
+              </div>
+              
             </div>
           </section>
           <Footer />

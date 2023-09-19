@@ -1,5 +1,6 @@
    {
       "menu": "menu",
+      "home": "home",
       "participants": "participants",
       "about": "about",
       "program": "program",
@@ -8,9 +9,10 @@
       "ukr": "ukr",
       "de": "de",
       "kbTitle": "Kyiv biennial",
-      "pressTitle": "Inpress",
+      "pressTitle": "Press",
       "partnersTitle": "partners",
       "contactsTitle": "contacts",
+      "team": "team",
       "october": "october",
       "november": "november",
       "december": "december",

@@ -4,6 +4,7 @@ import VenueTag from '../VenueTag/VenueTag';
 const Location = (props) => {
   const location = props.locationObject;
   const isExpanded = props.isExpanded;
+  const cityLogo = props.cityLogo;
 
   const locationImage = location.locationImage.data?.attributes;
   const locationLogo = location.cityLogo.data?.attributes;
@@ -23,6 +24,7 @@ const Location = (props) => {
       </div>
       {isExpanded && (
         <div className={styles.locationSideInfo}>
+            {cityLogo && <img className={styles.cityLogo} src={cityLogo} alt={cityLogo}></img>}
             {locationLogo && <img src={locationLogo.url} alt={locationLogo.name}></img>}
             <h4>Program</h4>
             <div className={styles.locationVenues}>

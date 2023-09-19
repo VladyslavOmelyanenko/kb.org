@@ -18,11 +18,23 @@
     min-width: 10vw;
     max-width: 250px;
     flex-shrink: 0;
+
+    .cityLogo {
+      width: 30%;
+      height: auto;
+      margin-bottom: 25px;
+    }
+
     .locationVenues {
       margin-top: 20px;
       display: flex;
       flex-direction: column;
       gap: 20px;
+    }
+  }
+  &:not(:first-child) {
+    .cityLogo {
+      display: none;
     }
   }
 }
@@ -57,3 +69,18 @@
   margin-top: 25px;
 }
 
+
+@media (max-width: 768px) {
+  .expandedLocation {
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+
+    .locationSideInfo {
+      width: 100%;
+    }
+  }
+  .locationDescription {
+    margin-top: 20px;
+  }
+}

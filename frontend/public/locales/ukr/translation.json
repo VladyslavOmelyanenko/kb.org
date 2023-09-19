@@ -1,7 +1,8 @@
    {
       "menu": "меню",
       "participants": "учасники",
-      "about": "про",
+      "home": "головна",
+      "about": "про бієнале",
       "program": "програма",
       "locations": "локації",
       "eng": "анг",
@@ -11,6 +12,7 @@
       "pressTitle": "пресса",
       "partnersTitle": "партнери",
       "contactsTitle": "Контакти",
+      "team": "Команда",
       "october": "жовтень",
       "november": "листопад",
       "december": "грудень",
@@ -21,6 +23,5 @@
       "lecture": "лекція",
       "Program": "Програма",
       "Participants": "Учасники"
-
 
    }

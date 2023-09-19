@@ -17,12 +17,15 @@ const LocationsPage = () => {
   const language = Language();
   const [locationsByCity, setLocationsByCity] = useState({});
   const [activeCity, setActiveCity] = useState(null);
-  const orderOfCities = ['kyiv', 'ivano-frankivsk', 'uzhhorod', 'vienna', 'warsaw', 'lublin'];
+  const orderOfCities = ['kyiv', 'ivano-frankivsk', 'uzhhorod', 'vienna', 'warsaw', 'lublin', 'antwerp'];
   const citiesContainer = useRef(null);
   const activeCityBlock = useRef(null);
 
 
   const data = useFetchData(`${API_URL}/locations`, language);
+
+  const [isMobile, setIsMobile] = useState(false);
+
   
 
   useEffect(() => {
@@ -32,6 +35,30 @@ const LocationsPage = () => {
       obj[item.city] = obj[item.city] ? [...obj[item.city], item] : [item];
       return obj;
     }, {}));
+
+  const handleResize = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
+
+  handleResize(); // Set initial value
+
+  window.addEventListener('resize', handleResize);
+
+  const documentHeight = () => {
+    const doc = document.documentElement;
+    doc.style.setProperty('--doc-height', `${window.innerHeight}px`);
+  };
+
+  window.addEventListener('resize', documentHeight);
+  documentHeight();
+
+  return () => {
+    window.removeEventListener('resize', handleResize);
+    window.removeEventListener('resize', documentHeight);
+  }
+
+  
+
 
   
 }, [data]);
@@ -44,8 +71,6 @@ const LocationsPage = () => {
 
   const setClosestCity = (side, city) => {
     const cityIndex = orderOfCities.indexOf(city.toLowerCase());
-    // console.log(citiesContainer.current);
-    // console.log(activeCityBlock.current);
     if (side === 'right') {
       if (cityIndex === orderOfCities.length - 1) ;
       console.log(cityIndex);
@@ -74,16 +99,16 @@ const LocationsPage = () => {
           Object.entries(locationsByCity)
           .sort(([city, locations], [city2, locations2]) => orderOfCities.indexOf(city.toLowerCase()) - orderOfCities.indexOf(city2.toLowerCase()))
           .map(([city, locations], i) => (
-            <div className={activeCity && (city.toLowerCase() === activeCity.toLowerCase() ) ? `${styles.city} ${styles.activeCity}` : `${styles.city}`} ref={activeCity && (city.toLowerCase() === activeCity.toLowerCase()) ? activeCityBlock : null}>
+            <div key={i} className={activeCity && (city.toLowerCase() === activeCity.toLowerCase() ) ? `${styles.city} ${styles.activeCity}` : `${styles.city}`} ref={activeCity && (city.toLowerCase() === activeCity.toLowerCase()) ? activeCityBlock : null}>
               <h2 className={styles.cityName}>{city}</h2>
               <div className={ `${styles.locations}`} key={i} onClick={ () => expandCity(city) }>
                 {locations.map((location, i) => (
-                  <Location locationObject={location} key={i} isExpanded={activeCity && (city.toLowerCase() === activeCity.toLowerCase()) ? true : false}/>
+                  <Location locationObject={location} cityLogo={`/cities/${city.toLowerCase()}.png`} key={i} isExpanded={activeCity && (city.toLowerCase() === activeCity.toLowerCase()) ? true : false}/>
                 ))}
               </div>
             </div>
           ))}
-        {activeCity && (
+        {activeCity && !isMobile && (
           <>
             <button className={styles.wire + ' ' + styles.leftWire} onClick={() => setClosestCity('left', activeCity)}><img src="/left-wire.png" alt='left city'></img></button>
             <button className={styles.wire + ' ' + styles.rightWire} onClick={() => setClosestCity('right', activeCity)}><img src="/right-wire.png" alt='right city'></img></button>
