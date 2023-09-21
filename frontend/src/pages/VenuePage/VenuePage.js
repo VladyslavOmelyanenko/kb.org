@@ -43,31 +43,37 @@ const VenuePage = () => {
   return (
     <>
       <Navbar />
-      {(venue) && (
+      {venue && (
         <main className={styles.venuePage}>
           <header className={styles.headerInfo}>
-
             <div className={styles.headerSideInfo}>
-              <p className={styles.locationAddress}>{location.locationAddress}</p>
+              <p className={styles.locationAddress}>
+                {location.locationAddress}
+              </p>
               <p>{location.openingHours}</p>
             </div>
 
             <div className={styles.headerMainInfo}>
-              <p className={styles.location}>{location.locationName + ', ' + location.city}</p>
-              <p className={styles.dates}>{`${t(monthNames[startDateObj.getMonth()].toLowerCase())} ${startDateObj.getDate()}–${t(monthNames[finishDateObj.getMonth()].toLowerCase())} ${finishDateObj.getDate()}`}</p>
+              <p className={styles.location}>
+                {location.locationName + ", " + location.city}
+              </p>
+              <p className={styles.dates}>{`${t(
+                monthNames[startDateObj.getMonth()].toLowerCase()
+              )} ${startDateObj.getDate()}–${t(
+                monthNames[finishDateObj.getMonth()].toLowerCase()
+              )} ${finishDateObj.getDate()}`}</p>
               <h1 className={styles.venueTitle}>{venue.title}</h1>
               <p>{venue.curators}</p>
             </div>
-
           </header>
 
           {venueImages && (
             <section className={styles.images}>
-              <Wires container={imageContainer.current}/>
+              <Wires container={imageContainer.current} />
               <div className={styles.imageContainer} ref={imageContainer}>
                 {venueImages.map((imageData, i) => {
                   const image = imageData.attributes;
-                  return <img key={i} src={image.url} alt={image.name}></img>
+                  return <img key={i} src={image.url} alt={image.name}></img>;
                 })}
               </div>
               <p>{venue.imageSource}</p>
@@ -76,36 +82,44 @@ const VenuePage = () => {
 
           <section className={styles.venueDetails}>
             <div className={styles.sideDetails}>
-
               <div className={styles.program}>
                 <h2>{t("Program")}</h2>
                 <div className={styles.programList}>
-                  {program && program.map((event, i) => (
-                    <div className={styles.event} key={i}>
-                      <p>
-                        {event.date}<br></br>
-                        {event.time}
-                      </p>
-                      <h3 className={styles.eventTitle}>{event.event}</h3>
-                    </div>
-                  ))}
+                  {program &&
+                    program.map((event, i) => (
+                      <div className={styles.event} key={i}>
+                        <p>
+                          {event.date}
+                          <br></br>
+                          {event.time}
+                        </p>
+                        <h3 className={styles.eventTitle}>{event.event}</h3>
+                      </div>
+                    ))}
                 </div>
               </div>
 
               <div className={styles.participants}>
                 <h2>{t("Participants")}</h2>
                 <ul className={styles.participantsList}>
-                  {participants.map((participant, i) => <li><Link to={`/${language}/participants/${participant.slug}`} key={i}>{participant.fullName}</Link></li>)}
+                  {participants.map((participant, i) => (
+                    <li key={i}>
+                      <Link
+                        to={`/${language}/participants/${participant.slug}`}
+                      >
+                        {participant.fullName}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
-
             </div>
 
-            <p className={styles.venueDescription}>
-                {venue.venueDescription}
-            </p>
+            <p className={styles.venueDescription}>{venue.venueDescription}</p>
           </section>
-          <div className={styles.footer}><Footer /></div>
+          <div className={styles.footer}>
+            <Footer />
+          </div>
         </main>
       )}
     </>

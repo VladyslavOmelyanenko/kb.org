@@ -16,7 +16,8 @@ const ProgramPage = () => {
   const language = Language();
   const [activeVenues, setActiveVenues] = useState([]);
   const [venuesByCities, setVenuesByCities] = useState({});
-  const [activeCity, setActiveCity] = useState("");  // New state variable
+  const [activeCategory, setActiveCategory] = useState(null);
+  const [activeCity, setActiveCity] = useState("");  
 
 
   const data = useFetchData(`${API_URL}/venues`, language);
@@ -123,19 +124,49 @@ const ProgramPage = () => {
       <Navbar />
       <section className={styles.programSection}>
         <ul className={styles.citiesList}>
-          { venuesByCities && Object.keys(venuesByCities).sort((a, b) => orderOfCities.indexOf(a.toLowerCase()) - orderOfCities.indexOf(b.toLowerCase())).map(city =>( 
-            <li key={city} className={styles.city}>
-              <button className={(city === activeCity) ? `${styles.cityButton} ${styles.activeCityButton}` : `${styles.cityButton}`} onClick={() => handleCityButton(city)}>{city}</button>
-            </li>
-          ))}
+          {venuesByCities &&
+            Object.keys(venuesByCities)
+              .sort(
+                (a, b) =>
+                  orderOfCities.indexOf(a.toLowerCase()) -
+                  orderOfCities.indexOf(b.toLowerCase())
+              )
+              .map((city) => (
+                <li key={city} className={styles.city}>
+                  <button
+                    className={
+                      city === activeCity
+                        ? `${styles.cityButton} ${styles.activeCityButton}`
+                        : `${styles.cityButton}`
+                    }
+                    onClick={() => handleCityButton(city)}
+                  >
+                    {city}
+                  </button>
+                </li>
+              ))}
         </ul>
         <div className={styles.venuesByMonths}>
-            {!!activeVenues.length && months.map((month) => (
+          {!!activeVenues.length &&
+            months.map((month) => (
               <div className={styles.month} key={month}>
                 <h5 className={styles.monthTitle}>{t(month)}</h5>
                 <div className={styles.monthVenues}>
-                  {getDistributedVenuesByMonth(activeVenues)[month].map((venue) => <VenueTag venue={venue} key={venue.title}/>)}
-              </div>
+                  {getDistributedVenuesByMonth(activeVenues)[month].map(
+                    (venue) => (
+                      <VenueTag
+                        venue={venue}
+                        key={venue.title}
+                        setActiveCategory={setActiveCategory}
+                        activeCategory={activeCategory}
+                        isHighlighted={
+                          venue.venueType === activeCategory ||
+                          venue?.location.data?.attributes.city.toLowerCase() === activeCategory
+                        }
+                      />
+                    )
+                  )}
+                </div>
               </div>
             ))}
         </div>

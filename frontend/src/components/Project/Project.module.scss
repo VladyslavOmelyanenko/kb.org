@@ -1,3 +1,7 @@
+hr {
+  display: none;
+}
+
 .descriptionAndVenue {
   display: flex;
   flex-direction: row;
@@ -51,6 +55,17 @@
 }
 
 @media (max-width: 768px) {
+  .project {
+    &:not(:first-child) {
+      hr {
+        display: block;
+        border: 0.5px solid black;
+        margin-left: -15px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
   .descriptionAndVenue {
     .projectDetails {
         width: 100%;

@@ -31,9 +31,10 @@ const Project = (props) => {
   return (
     <>
       {project && (
-        <div>
+        <div className={styles.project}>
           <div className={styles.descriptionAndVenue}>
             <div className={styles.projectDetails}>
+              <hr></hr>
               <h2 className={styles.projectTitle}>{project.title}</h2>
               <p className={styles.projectParameters}>
                 {project.year}, {project.dimension} 
@@ -51,12 +52,12 @@ const Project = (props) => {
             )}
           </div>
           <div className={styles.imageContainer}>
-            <Wires container={imageContainer.current}/>
             <div className={styles.projectImages} ref={imageContainer}>
               {projectMedia && projectMedia.map((media, i) => (
                 <img key={i} src={media.url} alt={media.alternativeText}></img>
               ))}
             </div>
+            <Wires container={imageContainer.current}/>
           </div>
           {project.imageSource && !!project.imageSource.length && <p className={styles.imageSource}>{project.imageSource}</p>}
           {(isMobile) && (

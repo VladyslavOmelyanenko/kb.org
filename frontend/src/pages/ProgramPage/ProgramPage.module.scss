@@ -65,14 +65,14 @@
       padding-bottom: 4px;
       display: flex;
       align-items: flex-end;
-      margin-bottom: 10px;
     }
 
     .monthVenues {
+      padding-top: 10px;
       display: flex;
       flex-direction: column;
       gap: 30px;
-      height: calc(100vh - 115px);
+      height: calc(100vh - 125px);
       overflow-y: scroll;
     }
 
@@ -98,7 +98,7 @@
   .venuesByMonths {
     .month {
       .monthVenues {
-        height: calc(100vh - 140px);
+        height: calc(100vh - 150px);
       }
     }
   }
@@ -152,8 +152,9 @@
       }
 
       .monthVenues {
+        padding-top: 10px;
         // height: calc(100vh - 134px);
-        height: calc(var(--doc-height) - 134px);
+        height: calc(var(--doc-height) - 144px);
       }
 
       &:first-child {
