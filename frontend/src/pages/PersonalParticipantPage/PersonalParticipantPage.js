@@ -21,8 +21,6 @@ const PersonalParticipantPage = () => {
 
   const currentParticipant = data && data.data[0].attributes;
   const currentParticipantProjects = currentParticipant && currentParticipant.projects.data;
-  currentParticipant && console.log(currentParticipant);
-
 
   const participantImage = currentParticipant && currentParticipant.participantImage.data && currentParticipant.participantImage.data.attributes;
   

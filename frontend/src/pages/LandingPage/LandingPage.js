@@ -71,7 +71,7 @@ const LandingPage = () => {
     <>
       <div className={styles.desktop}>
         <div className={styles.nav}>
-          <Navbar isActive={false} />
+          <Navbar isTransparent={true}/>
         </div>
         <main className={styles.landing}>
           <div

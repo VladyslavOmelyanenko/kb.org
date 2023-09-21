@@ -30,11 +30,11 @@ const Location = (props) => {
         <p className={styles.locationHours}>{location.openingHours}</p>
         {isExpanded && (
           <>
-            <img
+            {locationImage && <img
               src={locationImage.url}
               alt={locationImage.name}
               className={styles.locationImage}
-            ></img>
+            ></img>}
             <p className={styles.locationDescription}>
               {location.locationDescription}
             </p>

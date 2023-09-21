@@ -1,12 +1,13 @@
-import { Link } from 'react-router-dom';
+import { useRef } from "react";
+import { Link, useParams } from "react-router-dom";
 
 import {API_URL} from "../../config";
 import { useTranslation } from 'react-i18next';
 import useFetchData from "../../hooks/useFetchData";
 import Language from "../../hooks/Language";
-import { useParams } from "react-router-dom";
 
 import Navbar from "../../components/Navbar/Navbar";
+import Wires from '../../components/Wires/Wires';
 import Footer from "../../components/Footer/Footer";
 
 import styles from './VenuePage.module.scss'
@@ -20,6 +21,7 @@ const VenuePage = () => {
 
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const slug = params.venueTitle;
+  const imageContainer = useRef(null);
 
   const data = useFetchData(`${API_URL}/venues`, language, slug);
 
@@ -61,7 +63,8 @@ const VenuePage = () => {
 
           {venueImages && (
             <section className={styles.images}>
-              <div className={styles.imageContainer}>
+              <Wires container={imageContainer.current}/>
+              <div className={styles.imageContainer} ref={imageContainer}>
                 {venueImages.map((imageData, i) => {
                   const image = imageData.attributes;
                   return <img key={i} src={image.url} alt={image.name}></img>

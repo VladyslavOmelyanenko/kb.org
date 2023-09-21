@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import VenueTag from '../VenueTag/VenueTag';
 import Wires from '../Wires/Wires';
@@ -13,6 +13,7 @@ const Project = (props) => {
   const project = props.projectObject;
   const projectMedia = project.projectMedia.data && project.projectMedia.data.map((projectMedia) => projectMedia.attributes);
   const projectVenue = project.venue.data && project.venue.data.attributes;
+  const imageContainer = useRef(null);
   
   useEffect(() => {
     const handleResize = () => {
@@ -50,8 +51,8 @@ const Project = (props) => {
             )}
           </div>
           <div className={styles.imageContainer}>
-            <Wires />
-            <div className={styles.projectImages}>
+            <Wires container={imageContainer.current}/>
+            <div className={styles.projectImages} ref={imageContainer}>
               {projectMedia && projectMedia.map((media, i) => (
                 <img key={i} src={media.url} alt={media.alternativeText}></img>
               ))}

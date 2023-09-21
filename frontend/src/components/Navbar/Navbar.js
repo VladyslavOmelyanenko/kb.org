@@ -14,8 +14,8 @@ const Navbar = (props) => {
   const [isMenuActive, setIsMenuActive] = useState(false);
   const { t } = useTranslation();
   const { pathname } = useLocation();
-  const isActive = (props.isActive === undefined) ? true : props.isActive;
   const menu = useRef();
+  const isTransparent = props.isTransparent;
   const appLanguages = [
     {
       text: 'eng',
@@ -59,35 +59,44 @@ const Navbar = (props) => {
 
   return (
     <nav className={styles.navbar}>
-
       <div className={styles.navbarRow}>
-      {isActive && (
-        <div className={styles.menuButton}>
-          <button onClick={clickTheMenu}>{t("menu")}</button>
-        </div>
-      )}
+        {
+          <div className={styles.menuButton}>
+            <button onClick={clickTheMenu}>{t("menu")}</button>
+          </div>
+        }
 
         <ul className={styles.languagesButtons}>
-          {appLanguages.map(lang => (
+          {appLanguages.map((lang) => (
             <li key={lang.text}>
-              <NavLink
-                to={getMatchingRoute(lang.link)}
-                >
-                {lang.text}
-              </NavLink>
+              <NavLink to={getMatchingRoute(lang.link)}>{lang.text}</NavLink>
             </li>
           ))}
         </ul>
       </div>
-      
-      <ul className={styles.menu} ref={menu}>
-        <li> <Link to={`/${currentLanguage}/`}>{t("home")}</Link> </li>
-        <li> <Link to={`/${currentLanguage}/about`}>{t("about")}</Link> </li>
-        <li> <Link to={`/${currentLanguage}/participants`}>{t("participants")}</Link></li>
-        <li><Link to={`/${currentLanguage}/program`}>{t("program")}</Link></li>
-        <li><Link to={`/${currentLanguage}/locations`}>{t("locations")}</Link></li>
-      </ul>
 
+      <ul className={styles.menu} ref={menu} style={ isTransparent && { background: "none" }}>
+        <li style={{ background: "none" }}>
+          {" "}
+          <Link to={`/${currentLanguage}/`}>{t("home")}</Link>{" "}
+        </li>
+        <li style={{ background: "none" }}>
+          {" "}
+          <Link to={`/${currentLanguage}/about`}>{t("about")}</Link>{" "}
+        </li>
+        <li style={{ background: "none" }}>
+          {" "}
+          <Link to={`/${currentLanguage}/participants`}>
+            {t("participants")}
+          </Link>
+        </li>
+        <li style={{ background: "none" }}>
+          <Link to={`/${currentLanguage}/program`}>{t("program")}</Link>
+        </li>
+        <li style={{ background: "none" }}>
+          <Link to={`/${currentLanguage}/locations`}>{t("locations")}</Link>
+        </li>
+      </ul>
     </nav>
   );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -16,6 +16,7 @@ const ParticipantsPage = () => {
   
   const { t } = useTranslation();
   const language = Language();
+  const containerToScroll = useRef(null);
 
   const data = useFetchData(`${API_URL}/participants`, language);
 
@@ -42,7 +43,6 @@ const ParticipantsPage = () => {
 
   
   const categorizedParticipants = participants && categorizeParticipants(participants);
-  categorizedParticipants && console.log(categorizedParticipants)
 
   return (
     <>
@@ -50,23 +50,41 @@ const ParticipantsPage = () => {
       <section className={styles.participantsSection}>
         <div className={styles.participantsContent}>
           <h2 className={styles.participantsTitle}>{t("participants")}</h2>
-          <div className={styles.participantsNames}>
-            {categorizedParticipants && Object.entries(categorizedParticipants).sort((a, b) => a[0].localeCompare(b[0])).map(category => {
-              console.log(category);
-              const letter = category[0];
-              const participants = category[1];
-              return (
-                <div key={letter} className={styles.namesCategory}>
-                  <h3>{letter}</h3>
-                  <div className={styles.namesInCategory}>{participants.map((participant, i) => (
-                    <Link to={participant.slug} key={i}>{participant.name}</Link>
-                  ))}</div>
-                </div>
-              )
-            })}
+          <div
+            className={styles.participantsNames}
+            ref={containerToScroll}
+            onWheel={(event) => {
+              if (!event.deltaY) {
+                return;
+              }
+              containerToScroll.current.scrollLeft += event.deltaY + event.deltaX;
+              event.preventDefault();
+              }}
+            
+          >
+            {categorizedParticipants &&
+              Object.entries(categorizedParticipants)
+                .sort((a, b) => a[0].localeCompare(b[0]))
+                .map((category) => {
+                  console.log(category);
+                  const letter = category[0];
+                  const participants = category[1];
+                  return (
+                    <div key={letter} className={styles.namesCategory}>
+                      <h3>{letter}</h3>
+                      <div className={styles.namesInCategory}>
+                        {participants.map((participant, i) => (
+                          <Link to={participant.slug} key={i}>
+                            {participant.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
           </div>
-        </div> 
-      <Footer />
+        </div>
+        <Footer />
       </section>
     </>
   );

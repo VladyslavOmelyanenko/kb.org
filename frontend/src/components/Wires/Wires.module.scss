@@ -1,10 +1,15 @@
-.wires {
+.leftWire, .rightWire{
   position: absolute;
-  display: flex;  
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  margin: auto 0;
-  // top: 0;
-  // bottom: 0;
+  height: 100px;
+  width: auto;
+  top: calc(50% - 50px);
+  cursor: pointer;
+}
+
+.leftWire {
+  left: 0;
+}
+
+.rightWire {
+  right: 0;
 }
