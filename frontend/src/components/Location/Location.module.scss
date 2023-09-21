@@ -1,14 +1,22 @@
 .location {
   width: 100%;
-  // transition: all 0.5s linear;
+  padding-bottom: 10px;
+  .locationInfo {
+    // padding-top: 10px;
+    border-top: 1px solid black;
+  }
+
+  &:last-child {
+    border-bottom: 1px solid black;
+  }
 }
-
-
 
 .expandedLocation {
   width: 56vw;
   display: flex;
   gap: 20px;
+  padding-bottom: 120px;
+
   .locationInfo {
     width: 100%;
   }
@@ -19,17 +27,15 @@
     max-width: 250px;
     flex-shrink: 0;
 
-    .cityLogo {
-      width: 30%;
-      height: auto;
-      margin-bottom: 25px;
+    h4 {
+      text-transform: capitalize;
     }
 
     .locationVenues {
-      margin-top: 20px;
+      margin-top: 190px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 25px;
     }
   }
   &:not(:first-child) {
@@ -39,11 +45,11 @@
   }
 }
 .locationName {
-  font-size: 20px;
+  font-size: 32px;
+  height: 150px;
   font-weight: normal;
   text-transform: capitalize;
   margin-bottom: 10px;
-  max-width: 170px;
 }
 
 .locationHoursTitle {
@@ -54,6 +60,7 @@
 .locationAddress, .locationHours {
   font-size: 11px;
   white-space: pre-wrap;
+  height: 13px;
 }
 
 
@@ -78,6 +85,9 @@
 
     .locationSideInfo {
       width: 100%;
+      .locationVenues {
+        margin-top: 25px;
+      }
     }
   }
   .locationDescription {

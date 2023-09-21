@@ -13,7 +13,7 @@ import styles from './ParticipantsPage.module.scss'
 
 
 const ParticipantsPage = () => {
-
+  
   const { t } = useTranslation();
   const language = Language();
 

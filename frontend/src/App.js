@@ -28,6 +28,7 @@ const App = () => {
         <Route path="/:language" element={<LandingPage />} />
         <Route path="/:language/about" element={<AboutPage />} />
         <Route path="/:language/locations" element={<LocationsPage />} />
+        <Route path="/:language/locations/:cityParam" element={<LocationsPage />} />
         <Route path="/:language/program" element={<ProgramPage />} />
         <Route path="/:language/program/:venueTitle" element={<VenuePage />} />
         <Route path="/:language/participants" element={<ParticipantsPage />} />

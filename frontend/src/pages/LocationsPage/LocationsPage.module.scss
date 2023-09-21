@@ -17,18 +17,36 @@
     height: calc(100vh - 85px);
     overflow-y: scroll;
     width: calc((100vw - 140px) / 4.5);
+    min-width: 227px;
     flex-shrink: 0;
+    cursor: default;
+
+    .cityNameLogo {
+      display: flex;
+    }
 
     .cityName {
-      font-size: 20px;
+      font-size: 32px;
       text-transform: capitalize;
+      height: 74px;
+      padding-bottom: 15px;
+      width: 100%;
+    }
+    .cityLogoContainer {
+      width: 23vw;
+      min-width: 10vw;
+      max-width: 250px;
+      flex-shrink: 0;
+      padding-bottom: 15px;
+    }
+    .cityLogo {
+      height: 59px;
     }
     
   }
 
   .activeCity {
     width: 56vw;
-    // flex-shrink: 0;
 
     .locations {
       width: 56vw;
@@ -39,7 +57,6 @@
   .locations {
     display: flex;
     flex-direction: column;
-    gap: 29px;
     width: 100%;
     padding-bottom: 50px;
   }
@@ -67,6 +84,9 @@
       // height: calc(100vh - 50px);
       height: calc(var(--doc-height) - 50px);
       width: calc((100vw - 120px) / 1.2);
+      .cityLogo {
+        display: none;
+      }
     }
     .activeCity {
       width: calc((100vw - 80px));

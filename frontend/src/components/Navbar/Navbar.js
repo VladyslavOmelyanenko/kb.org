@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { useTranslation } from "react-i18next";
 
@@ -9,11 +9,13 @@ import Language from '../../hooks/Language';
 
    
 
-const Navbar = () => {
+const Navbar = (props) => {
 
   const [isMenuActive, setIsMenuActive] = useState(false);
   const { t } = useTranslation();
   const { pathname } = useLocation();
+  const isActive = (props.isActive === undefined) ? true : props.isActive;
+  const menu = useRef();
   const appLanguages = [
     {
       text: 'eng',
@@ -31,14 +33,15 @@ const Navbar = () => {
 
 
   const clickTheMenu = () => {
-    const menu = document.getElementById('menu');
+    const menuList = menu.current;
     if (isMenuActive === false) {
-      menu.style.display = 'flex';
+      menuList.style.display = 'flex';
       setIsMenuActive(true);
     } else {
-      menu.style.display = 'none';
+      menuList.style.display = 'none';
       setIsMenuActive(false);
     }
+
   }
 
   const getMatchingRoute = (language) => {
@@ -58,9 +61,11 @@ const Navbar = () => {
     <nav className={styles.navbar}>
 
       <div className={styles.navbarRow}>
+      {isActive && (
         <div className={styles.menuButton}>
           <button onClick={clickTheMenu}>{t("menu")}</button>
         </div>
+      )}
 
         <ul className={styles.languagesButtons}>
           {appLanguages.map(lang => (
@@ -75,7 +80,7 @@ const Navbar = () => {
         </ul>
       </div>
       
-      <ul className={styles.menu} id='menu'>
+      <ul className={styles.menu} ref={menu}>
         <li> <Link to={`/${currentLanguage}/`}>{t("home")}</Link> </li>
         <li> <Link to={`/${currentLanguage}/about`}>{t("about")}</Link> </li>
         <li> <Link to={`/${currentLanguage}/participants`}>{t("participants")}</Link></li>

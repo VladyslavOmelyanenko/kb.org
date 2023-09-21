@@ -15,7 +15,6 @@ const VenueTag = (props) => {
 
   
   const venue = props.venue;
-  console.log(venue);
   const location = venue?.location.data?.attributes;
 
   const venueTagImages = {
@@ -36,7 +35,10 @@ const VenueTag = (props) => {
     <div className={styles.venue}>
       <div className={styles.venueTags}>
         <div>
-          <img src={'/venueTypeTags/' + venueTagImages[t(venue.venueType)]} alt={venue.venueType}></img>
+          <img
+            src={"/venueTypeTags/" + venueTagImages[t(venue.venueType)]}
+            alt={venue.venueType}
+          ></img>
         </div>
         <div>
           {locationIcon && <img src={locationIcon} alt={location.title}></img>}
@@ -44,14 +46,19 @@ const VenueTag = (props) => {
       </div>
       <p className={styles.venuePlaceAndTime}>
         <b>{location.city}</b> <br></br>
-        {venue.startDate.split('-')[2]}, {venue.venueOpeningTime.slice(0, venue.venueOpeningTime.indexOf(':', 3))}
+        {venue.startDate.split("-")[2] + ", "}
+        {
+          venue.venueOpeningTime && venue.venueOpeningTime.slice(
+            0,
+            venue.venueOpeningTime.indexOf(":", 3)
+          )}
       </p>
       <h3 className={styles.venueTitle}>
         <Link to={`/${language}/program/${venue.slug}`}>{venue.title}</Link>
       </h3>
       <p>{venue.curators}</p>
     </div>
-  )
+  );
 };
 
 export default VenueTag;

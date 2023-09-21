@@ -1,17 +1,275 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
+
+
 import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../../components/Footer/Footer"
+
+import AboutWire from "../../components/LandingWires/AboutWire";
+import ParticipantsWire from "../../components/LandingWires/ParticipantsWire";
+import LocationsWire from "../../components/LandingWires/LocationsWire";
+import ProgramWire from "../../components/LandingWires/ProgramWire";
+
 import LublinWire from "../../components/LandingWires/LublinWire";
 import ViennaWire from "../../components/LandingWires/ViennaWire";
+import AntwerpWire from "../../components/LandingWires/AntwerpWire";
+import IvanoFrankivskWire from "../../components/LandingWires/IvanoFrankivskWire";
+import KyivWire from "../../components/LandingWires/KyivWire";
+import WarsawWire from "../../components/LandingWires/WarsawWire";
+import UzhhorodWire from "../../components/LandingWires/UzhhorodWire";
+
+
+import BeforeRightWire from "../../components/LandingWires/BeforeRightWire";
+import FarRightWire from "../../components/LandingWires/FarRightWire";
+
+import styles from "./LandingPage.module.scss";
+
+
 
 const LandingPage = () => {
 
+  const [containerWidth, setContainerWidth] = useState(window.innerWidth);
+  const [containerHeight, setContainerHeight] = useState(window.innerHeight);
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [hoveredWire, setHoveredWire] = useState("kbTitle");
+
+
+
+
+   useEffect(() => {
+     const handleResize = () => {
+      if (window.innerHeight < window.innerWidth * 0.56) {
+        setContainerHeight(window.innerHeight);
+        setContainerWidth(window.innerHeight / 0.56)
+      } else {
+        setContainerWidth(window.innerWidth);
+        setContainerHeight(window.innerWidth * 0.56);
+      }
+     };
+     handleResize();
+     
+     const documentHeight = () => {
+       const doc = document.documentElement;
+       doc.style.setProperty("--doc-height", `${window.innerHeight}px`);
+     };
+
+     documentHeight();
+
+     window.addEventListener("resize", handleResize);
+     window.addEventListener("resize", documentHeight);
+    
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", documentHeight);
+     };
+   }, []); 
+
   return (
     <>
-      <Navbar />
-      <h1>Landing Page</h1>
-      <LublinWire />
-      <ViennaWire />
+      <div className={styles.desktop}>
+        <div className={styles.nav}>
+          <Navbar isActive={false} />
+        </div>
+        <main className={styles.landing}>
+          <div
+            className={styles.wires}
+            style={{
+              width: `${containerWidth}px`,
+              height: `${containerHeight}px`,
+            }}
+          >
+            <div className={styles.wireAddress}>{t(hoveredWire)}</div>
+            <svg
+              className={styles.aboutWire}
+              viewBox="0 0 675.89 334"
+              onClick={() => navigate("about")}
+              onMouseEnter={() => setHoveredWire(t("about"))}
+              onMouseLeave={() => setHoveredWire("")}
+            >
+              <AboutWire />
+            </svg>
+            <p className={styles.aboutText}>{t("about")}</p>
+
+            <svg
+              onClick={() => navigate("participants")}
+              onMouseEnter={() => setHoveredWire(t("participants"))}
+              onMouseLeave={() => setHoveredWire("")}
+              className={styles.participantsWire}
+              version="1.1"
+              id="Layer_2_00000000205732888792889190000005512364893094653837_"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              x="0px"
+              y="0px"
+              viewBox="0 0 374.3 332.2"
+              enable-background="new 0 0 374.3 332.2"
+              xmlSpace="preserve"
+            >
+              <ParticipantsWire />
+            </svg>
+            <p className={styles.participantsText}>{t("participants")}</p>
+
+            <svg
+              onClick={() => navigate("locations")}
+              onMouseEnter={() => setHoveredWire(t("locations"))}
+              onMouseLeave={() => setHoveredWire("")}
+              className={styles.locationsWire}
+              version="1.1"
+              id="Layer_2_00000059304645361358911120000009970337663788556219_"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              x="0px"
+              y="0px"
+              viewBox="0 0 622.8 465.8"
+              enable-background="new 0 0 622.8 465.8"
+              xmlSpace="preserve"
+            >
+              <LocationsWire />
+            </svg>
+            <p className={styles.locationsText}>{t("locations")}</p>
+
+            <svg
+              onClick={() => navigate("program")}
+              onMouseEnter={() => setHoveredWire(t("program"))}
+              onMouseLeave={() => setHoveredWire("")}
+              className={styles.programWire}
+              viewBox="0 0 90.16 144.24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <ProgramWire />
+            </svg>
+            <p className={styles.programText}>{t("program")}</p>
+
+            <svg
+              onClick={() => navigate("locations/lublin")}
+              onMouseEnter={() => setHoveredWire(t("lublin"))}
+              onMouseLeave={() => setHoveredWire("")}
+              className={styles.lublinWire}
+              viewBox="0 0 336.11 428.65"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <LublinWire />
+            </svg>
+            <p className={styles.lublinText}>{t("lublin")}</p>
+
+            <svg
+              onClick={() => navigate("locations/vienna")}
+              onMouseEnter={() => setHoveredWire(t("vienna"))}
+              onMouseLeave={() => setHoveredWire("")}
+              className={styles.viennaWire}
+              enableBackground="new 0 0 292.9 335.8"
+              viewBox="0 0 292.9 335.8"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <ViennaWire />
+            </svg>
+            <p className={styles.viennaText}>{t("vienna")}</p>
+
+            <svg
+              onClick={() => navigate("locations/antwerp")}
+              onMouseEnter={() => setHoveredWire(t("antwerp"))}
+              onMouseLeave={() => setHoveredWire("")}
+              className={styles.antwerpWire}
+              viewBox="0 0 349 245"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <AntwerpWire />
+            </svg>
+            <p className={styles.antwerpText}>{t("antwerp")}</p>
+
+            <svg
+              onClick={() => navigate("locations/ivano-frankivsk")}
+              onMouseEnter={() => setHoveredWire(t("ivanoFrankivsk"))}
+              onMouseLeave={() => setHoveredWire("")}
+              className={styles.ivanoFrankivskWire}
+              viewBox="0 0 651.2 613.44"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <IvanoFrankivskWire />
+            </svg>
+            <p className={styles.ivanoFrankivskText}>{t("ivanoFrankivsk")}</p>
+
+            <svg
+              onClick={() => navigate("locations/kyiv")}
+              onMouseEnter={() => setHoveredWire(t("kyiv"))}
+              onMouseLeave={() => setHoveredWire("")}
+              className={styles.kyivWire}
+              viewBox="0 0 425.81 379.79"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <KyivWire />
+            </svg>
+            <p className={styles.kyivText}>{t("kyiv")}</p>
+
+            <svg
+              onClick={() => navigate("locations/warsaw")}
+              onMouseEnter={() => setHoveredWire(t("warsaw"))}
+              onMouseLeave={() => setHoveredWire("")}
+              className={styles.warsawWire}
+              viewBox="0 0 144.21 227.77"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <WarsawWire />
+            </svg>
+            <p className={styles.warsawText}>{t("warsaw")}</p>
+
+            <svg
+              className={styles.uzhhorodWire}
+              id="Layer_2"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 569.29 204.16"
+            >
+              <UzhhorodWire />
+            </svg>
+            <p className={styles.uzhhorodText}>{t("uzhhorod")}</p>
+
+            <svg
+              onClick={() => navigate("locations/uzhhorod")}
+              onMouseEnter={() => setHoveredWire(t("uzhhorod"))}
+              onMouseLeave={() => setHoveredWire("")}
+              className={styles.beforeRightWire}
+              version="1.1"
+              baseProfile="tiny"
+              id="Layer_2_00000161618956946631819560000003508565006015759746_"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              x="0px"
+              y="0px"
+              viewBox="0 0 469.8 468.7"
+              overflow="visible"
+              xmlSpace="preserve"
+            >
+              <BeforeRightWire />
+            </svg>
+
+            <svg
+              className={styles.farRightWire}
+              viewBox="0 0 323 411"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <FarRightWire />
+            </svg>
+          </div>
+          <Footer />
+        </main>
+      </div>
+      <div className={styles.container}>
+        <Navbar />
+        <div className={styles.mobile}>
+          <video className={styles.video} autoPlay muted playsInline loop>
+            <source src="/mobileGif.mp4"></source>
+          </video>
+        </div>
+        <Footer />
+      </div>
     </>
-  )
+  );
 }
+
 
 export default LandingPage;
