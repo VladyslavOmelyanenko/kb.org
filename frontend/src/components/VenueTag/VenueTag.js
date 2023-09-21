@@ -41,7 +41,7 @@ const VenueTag = (props) => {
           ></img>
         </div>
         <div>
-          {locationIcon && <img src={locationIcon} alt={location.title}></img>}
+          {<img src={locationIcon} alt={location.title}></img>}
         </div>
       </div>
       <p className={styles.venuePlaceAndTime}>

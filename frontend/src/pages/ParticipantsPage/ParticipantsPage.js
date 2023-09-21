@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -41,32 +41,41 @@ const ParticipantsPage = () => {
     return categorizedNames;
   }
 
+
+  useEffect(() => {
+
+      if (window.innerWidth > 768) {
+        document.body.style.overscrollBehavior = "none";
+
+      }
+
+    return () => {
+        document.body.style.overscrollBehavior = "auto";
+
+    };
+  }, );
   
   const categorizedParticipants = participants && categorizeParticipants(participants);
 
   return (
     <>
       <Navbar />
-      <section className={styles.participantsSection}>
+      <section
+        className={styles.participantsSection}
+        onWheel={(event) => {
+          if (!event.deltaY) {
+            return;
+          }
+          containerToScroll.current.scrollLeft += event.deltaY + event.deltaX;
+        }}
+      >
         <div className={styles.participantsContent}>
           <h2 className={styles.participantsTitle}>{t("participants")}</h2>
-          <div
-            className={styles.participantsNames}
-            ref={containerToScroll}
-            onWheel={(event) => {
-              if (!event.deltaY) {
-                return;
-              }
-              containerToScroll.current.scrollLeft += event.deltaY + event.deltaX;
-              event.preventDefault();
-              }}
-            
-          >
+          <div className={styles.participantsNames} ref={containerToScroll}>
             {categorizedParticipants &&
               Object.entries(categorizedParticipants)
                 .sort((a, b) => a[0].localeCompare(b[0]))
                 .map((category) => {
-                  console.log(category);
                   const letter = category[0];
                   const participants = category[1];
                   return (

@@ -34,7 +34,7 @@ const LocationsPage = () => {
     "відень",
     "варшава",
     "люблін",
-    "антверп",
+    "антверпен",
   ];
   const numberOfCities = 7;
   const citiesContainer = useRef(null);
@@ -90,19 +90,27 @@ const LocationsPage = () => {
     window.addEventListener("resize", handleResize);
     window.addEventListener("resize", documentHeight);
 
+    if (window.innerWidth > 768) {
+      document.body.style.overscrollBehavior = "none";
+    } 
+    if (cityParam) document.body.style.overscrollBehavior = "auto";
+
     return () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("resize", documentHeight);
+      document.body.style.overscrollBehavior = "auto";
      resizeObserver.disconnect();
 
     };
+
+
   }, [data, cityParam]);
 
   const getEnglishCity = (city) => {
-    if (orderOfCities.indexOf(city) > (numberOfCities - 1)) {
-      return orderOfCities[orderOfCities.indexOf(city) - numberOfCities];
+    if (orderOfCities.indexOf(city.toLowerCase()) > (numberOfCities - 1)) {
+      return orderOfCities[orderOfCities.indexOf(city.toLowerCase()) - numberOfCities];
     } else {
-      return city;
+      return city.toLowerCase();
     }
   }
 
@@ -110,6 +118,7 @@ const LocationsPage = () => {
   const expandCity = (city) => {
     const engCity = getEnglishCity(city.toLowerCase());
     navigate(`/${language}/locations/${engCity}`)
+    document.body.style.overscrollBehavior = "auto";
   }
 
   const setClosestCity = (side, city) => {
@@ -137,7 +146,16 @@ const LocationsPage = () => {
   return (
     <>
       <Navbar />
-      <div className={styles.cities} ref={citiesContainer}>
+      <div
+        className={styles.cities}
+        ref={citiesContainer}
+        onWheel={(event) => {
+          if (!event.deltaY) {
+            return;
+          }
+          citiesContainer.current.scrollLeft += !activeCity && event.deltaY + event.deltaX;
+        }}
+      >
         {locationsByCity &&
           Object.entries(locationsByCity)
             .sort(

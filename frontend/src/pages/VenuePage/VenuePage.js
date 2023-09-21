@@ -104,8 +104,8 @@ const VenuePage = () => {
             <p className={styles.venueDescription}>
                 {venue.venueDescription}
             </p>
-          <Footer />
           </section>
+          <div className={styles.footer}><Footer /></div>
         </main>
       )}
     </>

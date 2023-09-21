@@ -13,3 +13,9 @@
 .rightWire {
   right: 0;
 }
+
+@media (max-width: 768px) {
+  .leftWire, .rightWire {
+    display: none;
+  }
+}

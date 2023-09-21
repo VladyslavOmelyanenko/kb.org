@@ -63,19 +63,22 @@ const Wires = (props) => {
   }
 
   return (
-    <>
-      <img
-        onClick={(e) => moveImageToCenter("left")}
-        className={`${styles.leftWire}`}
-        src={process.env.PUBLIC_URL + "/left-wire.png"}
-        alt="left wire"
-      ></img>
-      <img
-        onClick={(e) => moveImageToCenter("right")}
-        className={`${styles.rightWire}`}
-        src={process.env.PUBLIC_URL + "/right-wire.png"}
-        alt="right wire"
-      ></img>
+    <>{ (container?.scrollWidth > container?.clientWidth) && 
+      <>
+        <img
+          onClick={(e) => moveImageToCenter("left")}
+          className={`${styles.leftWire}`}
+          src={process.env.PUBLIC_URL + "/left-wire.png"}
+          alt="left wire"
+        ></img>
+        <img
+          onClick={(e) => moveImageToCenter("right")}
+          className={`${styles.rightWire}`}
+          src={process.env.PUBLIC_URL + "/right-wire.png"}
+          alt="right wire"
+        ></img>
+      </>
+    }
     </>
   );
 };

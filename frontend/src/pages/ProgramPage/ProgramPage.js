@@ -22,7 +22,22 @@ const ProgramPage = () => {
   const data = useFetchData(`${API_URL}/venues`, language);
 
   const months = ["october", "november", "december", "january"];
-  const orderOfCities = ['kyiv', 'ivano-frankivsk', 'uzhhorod', 'vienna', 'warsaw', 'lublin', 'antwerp'];
+    const orderOfCities = [
+      "kyiv",
+      "ivano-frankivsk",
+      "uzhhorod",
+      "vienna",
+      "warsaw",
+      "lublin",
+      "antwerp",
+      "київ",
+      "івано-франківськ",
+      "ужгород",
+      "відень",
+      "варшава",
+      "люблін",
+      "антверп",
+    ];
 
   useEffect(() => {
     const venues = data && data.data.map((venue) => venue.attributes);
