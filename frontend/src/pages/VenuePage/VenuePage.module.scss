@@ -139,6 +139,8 @@
 @media (max-width: 768px) {
   .venuePage {
     top: 50px;
+    width: 100%;
+    overflow-x: hidden;
 
     .headerInfo {
         flex-direction: column-reverse;

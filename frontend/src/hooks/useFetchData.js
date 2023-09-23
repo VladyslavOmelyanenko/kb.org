@@ -19,6 +19,7 @@ function useFetchData(url, language, filter="", populations) {
       partnersLogosMobile: true,
       locationImage: true,
       cityLogo: true,
+      participants: true,
       venues: {
         populate: {
           location: {

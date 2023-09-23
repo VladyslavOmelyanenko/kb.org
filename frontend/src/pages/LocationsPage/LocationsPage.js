@@ -116,9 +116,19 @@ const LocationsPage = () => {
 
 
   const expandCity = (city) => {
-    const engCity = getEnglishCity(city.toLowerCase());
-    navigate(`/${language}/locations/${engCity}`)
-    document.body.style.overscrollBehavior = "auto";
+    if (activeCity === undefined) {
+      const engCity = getEnglishCity(city.toLowerCase());
+      navigate(`/${language}/locations/${engCity}`)
+      document.body.style.overscrollBehavior = "auto";
+    } else {
+      if (activeCity !== getEnglishCity(city)) {
+        const engCity = getEnglishCity(city.toLowerCase());
+        navigate(`/${language}/locations/${engCity}`);
+        document.body.style.overscrollBehavior = "auto";
+      } else {
+
+      }
+    }
   }
 
   const setClosestCity = (side, city) => {
@@ -135,7 +145,6 @@ const LocationsPage = () => {
       if (cityIndex === 0) return;
       const closestCity = orderOfCities[cityIndex - 1];
       expandCity(closestCity.toLowerCase());
-      console.log(closestCity.toLowerCase());
       const posLeft = activeCityBlock.current.getBoundingClientRect().left;
       citiesContainer.current.scrollLeft -= posLeft;
 
@@ -180,7 +189,7 @@ const LocationsPage = () => {
                     ? activeCityBlock
                     : null
                 }
-                onClick={() => expandCity(city)}
+                onClick={(e) => expandCity(city)}
               >
                 <div className={styles.cityNameLogo}>
                   <h2 className={styles.cityName}>{city}</h2>

@@ -36,7 +36,8 @@ const VenuePage = () => {
 
   const venueImages = venue?.venueImages.data;
   const program = venue?.program;
-  const participants = venue?.projects.data.map((project) => project.attributes.participant.data.attributes).filter((value, index, self) => self.findIndex((t) => (t.fullName === value.fullName)) === index);
+  const participants = venue?.participants?.data?.map((participantData) => participantData.attributes);
+
 
 
 

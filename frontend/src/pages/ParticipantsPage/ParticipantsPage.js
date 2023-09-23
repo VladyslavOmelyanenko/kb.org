@@ -67,6 +67,7 @@ const ParticipantsPage = () => {
             return;
           }
           containerToScroll.current.scrollLeft += event.deltaY + event.deltaX;
+          document.body.style.overscrollBehavior = "none";
         }}
       >
         <div className={styles.participantsContent}>

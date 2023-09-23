@@ -15,10 +15,11 @@ const VenueTag = (props) => {
 
   
   const venue = props.venue;
-  const activeCategory = props.activeCategory;
-  console.log(activeCategory);
-  const setActiveCategory = props.setActiveCategory;
-  const isHighlighted = props.isHighlighted;
+  const highlightEnabled = false;
+
+  const activeCategory = "jafkjfa";
+  const setActiveCategory = "props.setActiveCategory";
+  const isHighlighted = "props.isHighlighted";
 
   const location = venue?.location.data?.attributes;
 
@@ -39,25 +40,33 @@ const VenueTag = (props) => {
 
   
   return (
-    <div className={styles.venue} style={
-    (activeCategory) 
-    ? 
-      (isHighlighted)  
-      ? {opacity: 1} : {opacity: 0.5} 
-    : null}>
+    <div
+      className={styles.venue}
+      style={
+        highlightEnabled && activeCategory
+          ? highlightEnabled && isHighlighted
+            ? { opacity: 1 }
+            : { opacity: 0.5 }
+          : null
+      }
+    >
       <div className={styles.venueTags}>
         <div>
           <img
-            onMouseEnter={() => setActiveCategory(venue.venueType)}
-            onMouseLeave={() => setActiveCategory(null)}
+            onMouseEnter={() =>
+              highlightEnabled && setActiveCategory(venue.venueType)
+            }
+            onMouseLeave={() => highlightEnabled && setActiveCategory(null)}
             src={"/venueTypeTags/" + venueTagImages[t(venue.venueType)]}
             alt={venue.venueType}
           ></img>
         </div>
         <div>
           <img
-            onMouseEnter={() => setActiveCategory(locationCity)}
-            onMouseLeave={() => setActiveCategory(null)}
+            onMouseEnter={() =>
+              highlightEnabled && setActiveCategory(locationCity)
+            }
+            onMouseLeave={() => highlightEnabled && setActiveCategory(null)}
             src={`/cityTags/${locationCity}.png`}
             alt={location.title}
           ></img>
@@ -73,7 +82,11 @@ const VenueTag = (props) => {
           )}
       </p>
       <h3 className={styles.venueTitle}>
-        <Link to={`/${language}/program/${venue.slug}`}>{venue.title}</Link>
+        <Link
+          to={`/${language}/program/${venue.slug}`}
+        >
+          {venue.title}
+        </Link>
       </h3>
       <p>{venue.curators}</p>
     </div>
