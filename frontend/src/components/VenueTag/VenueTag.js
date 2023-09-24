@@ -15,11 +15,11 @@ const VenueTag = (props) => {
 
   
   const venue = props.venue;
-  const highlightEnabled = false;
+  const highlightEnabled = props.enabled;
 
-  const activeCategory = "jafkjfa";
-  const setActiveCategory = "props.setActiveCategory";
-  const isHighlighted = "props.isHighlighted";
+  const activeCategory = props.activeCategory;
+  const setActiveCategory = props.setActiveCategory;
+  const isHighlighted = props.isHighlighted;
 
   const location = venue?.location.data?.attributes;
 

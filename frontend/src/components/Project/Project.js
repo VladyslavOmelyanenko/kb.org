@@ -62,7 +62,7 @@ const Project = (props) => {
           {project.imageSource && !!project.imageSource.length && <p className={styles.imageSource}>{project.imageSource}</p>}
           {(isMobile) && (
             <div className={styles.venueTag} >
-              {projectVenue && <VenueTag venue={projectVenue}/>}
+              {projectVenue && <VenueTag enabled={false} venue={projectVenue}/>}
             </div>
           )}
         </div>

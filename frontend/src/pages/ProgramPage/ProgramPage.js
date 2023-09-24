@@ -37,7 +37,7 @@ const ProgramPage = () => {
       "відень",
       "варшава",
       "люблін",
-      "антверп",
+      "антверпен",
     ];
 
   useEffect(() => {
@@ -159,6 +159,7 @@ const ProgramPage = () => {
                         key={venue.title}
                         setActiveCategory={setActiveCategory}
                         activeCategory={activeCategory}
+                        enabled={true}
                         isHighlighted={
                           venue.venueType === activeCategory ||
                           venue?.location.data?.attributes.city.toLowerCase() === activeCategory

@@ -49,7 +49,7 @@ const Location = (props) => {
           <h4>{t("program")}</h4>
           <div className={styles.locationVenues}>
             {locationVenues.map((venue, i) => (
-              <VenueTag venue={venue} key={i}/>
+              <VenueTag enabled={false} venue={venue} key={i}/>
             ))}
           </div>
         </div>
