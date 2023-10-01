@@ -68,7 +68,7 @@ const LandingPage = () => {
     Array.from(titles).forEach((ele, index) => {
       ele.style.opacity = "0";
       setTimeout(() => triggerOpacity(ele), index * 1000);
-      const animationLoop = setInterval(() => {
+      setInterval(() => {
         ele.style.opacity = "0";
         setTimeout(() => triggerOpacity(ele), index * 1000);
       }, 10000)
@@ -106,7 +106,7 @@ const LandingPage = () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("resize", documentHeight);
      };
-   }, []); 
+   }, [animate]); 
 
 
   return (
@@ -287,7 +287,7 @@ const LandingPage = () => {
             >
               {t("lublin")}
             </Link>
-            
+
             <Link
               to="locations/warsaw"
               className={`${styles.warsawText} locationText`}
