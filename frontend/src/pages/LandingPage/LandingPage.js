@@ -63,23 +63,25 @@ const LandingPage = () => {
     appear()
   }
 
-  const animate = () => {
-    const titles = document.getElementsByClassName('locationText');
-    Array.from(titles).forEach((ele, index) => {
-      ele.style.opacity = "0";
-      setTimeout(() => triggerOpacity(ele), index * 1000);
-      setInterval(() => {
-        ele.style.opacity = "0";
-        setTimeout(() => triggerOpacity(ele), index * 1000);
-      }, 10000)
-    })
-  }
-
+  
   
   
   
   useEffect(() => {
-     animate();
+
+    const animate = () => {
+      const titles = document.getElementsByClassName('locationText');
+      Array.from(titles).forEach((ele, index) => {
+        ele.style.opacity = "0";
+        setTimeout(() => triggerOpacity(ele), index * 1000);
+        setInterval(() => {
+          ele.style.opacity = "0";
+          setTimeout(() => triggerOpacity(ele), index * 1000);
+        }, 10000)
+      })
+    }
+    
+    animate();
 
      const handleResize = () => {
       if (window.innerHeight < window.innerWidth * 0.56) {
@@ -106,7 +108,7 @@ const LandingPage = () => {
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("resize", documentHeight);
      };
-   }, [animate]); 
+   }, []); 
 
 
   return (
