@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 
@@ -30,16 +30,57 @@ import styles from "./LandingPage.module.scss";
 
 const LandingPage = () => {
 
-  const [containerWidth, setContainerWidth] = useState(window.innerWidth);
-  const [containerHeight, setContainerHeight] = useState(window.innerHeight);
+  const [containerWidth, setContainerWidth] = useState(
+    window.innerHeight < window.innerWidth * 0.56
+      ? window.innerHeight / 0.56
+      : window.innerWidth
+  );
+  const [containerHeight, setContainerHeight] = useState(
+    window.innerHeight < window.innerWidth * 0.56
+      ? window.innerHeight
+      : window.innerWidth * 0.56
+  );
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [hoveredWire, setHoveredWire] = useState("kbTitle");
+  const [hoveredWire, setHoveredWire] = useState("");
 
+  const triggerOpacity = (element) => {
+    const appear = () => {
+      let opacity = 0;
+      let appearing = true;
+      const interval = setInterval(() => {
+        if (appearing) {
+          opacity += 0.01;
+        } else {
+          opacity -= 0.01;
+          if (opacity <= 0) clearInterval(interval);
+        }
+        element.style.opacity = opacity;
+        if (opacity >= 1) appearing = false;
+      }, 14);
+    }
 
+    appear()
+  }
 
+  const animate = () => {
+    const titles = document.getElementsByClassName('locationText');
+    Array.from(titles).forEach((ele, index) => {
+      ele.style.opacity = "0";
+      setTimeout(() => triggerOpacity(ele), index * 1000);
+      const animationLoop = setInterval(() => {
+        ele.style.opacity = "0";
+        setTimeout(() => triggerOpacity(ele), index * 1000);
+      }, 10000)
+    })
+  }
 
-   useEffect(() => {
+  
+  
+  
+  useEffect(() => {
+     animate();
+
      const handleResize = () => {
       if (window.innerHeight < window.innerWidth * 0.56) {
         setContainerHeight(window.innerHeight);
@@ -67,12 +108,14 @@ const LandingPage = () => {
      };
    }, []); 
 
+
   return (
     <>
       <div className={styles.desktop}>
         <div className={styles.nav}>
-          <Navbar isTransparent={true}/>
+          <Navbar isTransparent={true} />
         </div>
+        <div className={styles.wireAddress}>{t(hoveredWire)}</div>
         <main className={styles.landing}>
           <div
             className={styles.wires}
@@ -81,7 +124,6 @@ const LandingPage = () => {
               height: `${containerHeight}px`,
             }}
           >
-            <div className={styles.wireAddress}>{t(hoveredWire)}</div>
             <svg
               className={styles.aboutWire}
               viewBox="0 0 675.89 334"
@@ -91,7 +133,9 @@ const LandingPage = () => {
             >
               <AboutWire />
             </svg>
-            <p className={styles.aboutText}>{t("about")}</p>
+            <Link to="about" className={styles.aboutText}>
+              {t("about")}
+            </Link>
 
             <svg
               onClick={() => navigate("participants")}
@@ -110,7 +154,9 @@ const LandingPage = () => {
             >
               <ParticipantsWire />
             </svg>
-            <p className={styles.participantsText}>{t("participants")}</p>
+            <Link to="participants" className={styles.participantsText}>
+              {t("participants")}
+            </Link>
 
             <svg
               onClick={() => navigate("locations")}
@@ -129,7 +175,9 @@ const LandingPage = () => {
             >
               <LocationsWire />
             </svg>
-            <p className={styles.locationsText}>{t("locations")}</p>
+            <Link to="locations" className={styles.locationsText}>
+              {t("locations")}
+            </Link>
 
             <svg
               onClick={() => navigate("program")}
@@ -141,7 +189,9 @@ const LandingPage = () => {
             >
               <ProgramWire />
             </svg>
-            <p className={styles.programText}>{t("program")}</p>
+            <Link to="program" className={styles.programText}>
+              {t("program")}
+            </Link>
 
             <svg
               onClick={() => navigate("locations/lublin")}
@@ -153,7 +203,6 @@ const LandingPage = () => {
             >
               <LublinWire />
             </svg>
-            <p className={styles.lublinText}>{t("lublin")}</p>
 
             <svg
               onClick={() => navigate("locations/vienna")}
@@ -166,7 +215,6 @@ const LandingPage = () => {
             >
               <ViennaWire />
             </svg>
-            <p className={styles.viennaText}>{t("vienna")}</p>
 
             <svg
               onClick={() => navigate("locations/antwerp")}
@@ -179,7 +227,6 @@ const LandingPage = () => {
             >
               <AntwerpWire />
             </svg>
-            <p className={styles.antwerpText}>{t("antwerp")}</p>
 
             <svg
               onClick={() => navigate("locations/ivano-frankivsk")}
@@ -191,7 +238,6 @@ const LandingPage = () => {
             >
               <IvanoFrankivskWire />
             </svg>
-            <p className={styles.ivanoFrankivskText}>{t("ivanoFrankivsk")}</p>
 
             <svg
               onClick={() => navigate("locations/kyiv")}
@@ -203,7 +249,59 @@ const LandingPage = () => {
             >
               <KyivWire />
             </svg>
-            <p className={styles.kyivText}>{t("kyiv")}</p>
+
+
+
+
+            <Link
+              to="locations/kyiv"
+              className={`${styles.kyivText} locationText`}
+            >
+              {t("kyiv")}
+            </Link>
+
+            <Link
+              to="locations/ivano-frankivsk"
+              className={`${styles.ivanoFrankivskText} locationText`}
+            >
+              {t("ivanoFrankivsk")}
+            </Link>
+
+            <Link
+              to="locations/uzhhorod"
+              className={`${styles.uzhhorodText} locationText`}
+            >
+              {t("uzhhorod")}
+            </Link>
+
+            <Link
+              to="locations/vienna"
+              className={`${styles.viennaText} locationText`}
+            >
+              {t("vienna")}
+            </Link>
+
+            <Link
+              to="locations/lublin"
+              className={`${styles.lublinText} locationText`}
+            >
+              {t("lublin")}
+            </Link>
+            
+            <Link
+              to="locations/warsaw"
+              className={`${styles.warsawText} locationText`}
+            >
+              {t("warsaw")}
+            </Link>
+
+
+            <Link
+              to="locations/antwerp"
+              className={`${styles.antwerpText} locationText`}
+            >
+              {t("antwerp")}
+            </Link>
 
             <svg
               onClick={() => navigate("locations/warsaw")}
@@ -215,7 +313,6 @@ const LandingPage = () => {
             >
               <WarsawWire />
             </svg>
-            <p className={styles.warsawText}>{t("warsaw")}</p>
 
             <svg
               className={styles.uzhhorodWire}
@@ -225,7 +322,6 @@ const LandingPage = () => {
             >
               <UzhhorodWire />
             </svg>
-            <p className={styles.uzhhorodText}>{t("uzhhorod")}</p>
 
             <svg
               onClick={() => navigate("locations/uzhhorod")}

@@ -43,6 +43,9 @@
 
     .activeCityButton {
       font-weight: bold;
+      &:hover {
+        font-weight: normal;
+      }
     }
   }
 }
@@ -72,7 +75,7 @@
       display: flex;
       flex-direction: column;
       gap: 30px;
-      height: calc(100vh - 125px);
+      height: calc(100vh - 115px);
       overflow-y: scroll;
     }
 
@@ -98,7 +101,7 @@
   .venuesByMonths {
     .month {
       .monthVenues {
-        height: calc(100vh - 150px);
+        height: calc(100vh - 140px);
       }
     }
   }
@@ -154,7 +157,7 @@
       .monthVenues {
         padding-top: 10px;
         // height: calc(100vh - 134px);
-        height: calc(var(--doc-height) - 144px);
+        height: calc(var(--doc-height) - 134px);
       }
 
       &:first-child {
@@ -174,8 +177,8 @@
   .venuesByMonths {
     .month {
       .monthVenues {
-        height: calc(100vh - 153px) !important;
-        height: calc(var(--doc-height) - 153px) !important;
+        height: calc(100vh - 163px) !important;
+        height: calc(var(--doc-height) - 163px) !important;
       }
     }
   }

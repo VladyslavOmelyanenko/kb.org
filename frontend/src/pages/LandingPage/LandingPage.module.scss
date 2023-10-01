@@ -28,7 +28,7 @@
     }
   }
 
-  p {
+  a {
     position: absolute;
     z-index: 20;
   }
@@ -42,14 +42,23 @@
 
 .wireAddress {
   position: absolute;
-  font-size: 15vw;
-  line-height: 12vw;
+  font-size: 13vw;
+  height: calc(10vw - 7px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: bold;
   z-index: 5;
   pointer-events: none;
-  text-align: center;
   width: 100%;
-  top: 55px;
+  text-transform: capitalize;
+  top: 69px;
+}
+
+@media (max-width: 1000px) {
+  .wireAddress {
+    height: calc(10vw - 6px);
+  }
 }
 
 .locationsWire {
