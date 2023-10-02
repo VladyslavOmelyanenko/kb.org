@@ -43,10 +43,20 @@
 
     .activeCityButton {
       font-weight: bold;
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
       &:hover {
         font-weight: normal;
       }
+
+      .closeCity {
+        height: 23px;
+        width: auto;
+        margin-left: 5px;
+      }
     }
+
   }
 }
 

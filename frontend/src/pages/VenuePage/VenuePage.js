@@ -36,7 +36,9 @@ const VenuePage = () => {
 
   const venueImages = venue?.venueImages.data;
   const program = venue?.program;
-  const participants = venue?.participants?.data?.map((participantData) => participantData.attributes);
+  const participantsDatas = venue?.participants?.data?.map((participantData) => participantData.attributes);
+  const participants = participantsDatas && participantsDatas.sort((paricipant1, participant2) => paricipant1.fullName.localeCompare(participant2.fullName));
+
 
 
 
@@ -83,6 +85,7 @@ const VenuePage = () => {
 
           <section className={styles.venueDetails}>
             <div className={styles.sideDetails}>
+              { program &&
               <div className={styles.program}>
                 <h2>{t("Program")}</h2>
                 <div className={styles.programList}>
@@ -98,7 +101,7 @@ const VenuePage = () => {
                       </div>
                     ))}
                 </div>
-              </div>
+              </div>}
 
               <div className={styles.participants}>
                 <h2>{t("Participants")}</h2>

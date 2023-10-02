@@ -16,6 +16,7 @@ const Navbar = (props) => {
   const { pathname } = useLocation();
   const menu = useRef();
   const isTransparent = props.isTransparent;
+  const triggerRerender = props.triggerRerender && props.triggerRerender;
   const appLanguages = [
     {
       text: 'eng',
@@ -90,7 +91,7 @@ const Navbar = (props) => {
             {t("participants")}
           </Link>
         </li>
-        <li style={{ background: "none" }}>
+        <li style={{ background: "none" }} onClick={triggerRerender && triggerRerender}>
           <Link to={`/${currentLanguage}/program`}>{t("program")}</Link>
         </li>
         <li style={{ background: "none" }}>

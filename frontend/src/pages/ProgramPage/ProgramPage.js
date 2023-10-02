@@ -12,6 +12,12 @@ import styles from "./ProgramPage.module.scss";
 
 const ProgramPage = () => {
 
+  const [rerender, setRerender] = useState(false);
+
+  const triggerRerender = () => {
+    setRerender((prevState) => !prevState);
+  };
+
   const { t } = useTranslation();
   const language = Language();
   const [activeVenues, setActiveVenues] = useState([]);
@@ -72,7 +78,7 @@ const ProgramPage = () => {
       window.removeEventListener('resize', documentHeight);
     };
 
-  }, [data]);
+  }, [data, rerender]);
   
 
 
@@ -121,7 +127,7 @@ const ProgramPage = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar triggerRerender={triggerRerender} />
       <section className={styles.programSection}>
         <ul className={styles.citiesList}>
           {venuesByCities &&
@@ -142,6 +148,13 @@ const ProgramPage = () => {
                     onClick={() => handleCityButton(city)}
                   >
                     {city}
+                    {city === activeCity ? (
+                      <img
+                        className={styles.closeCity}
+                        src="/closeCity.png"
+                        alt="x"
+                      ></img>
+                    ) : null}
                   </button>
                 </li>
               ))}
@@ -162,7 +175,8 @@ const ProgramPage = () => {
                         enabled={true}
                         isHighlighted={
                           venue.venueType === activeCategory ||
-                          venue?.location.data?.attributes.city.toLowerCase() === activeCategory
+                          venue?.location.data?.attributes.city.toLowerCase() ===
+                            activeCategory
                         }
                       />
                     )
