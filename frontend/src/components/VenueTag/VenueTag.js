@@ -22,7 +22,7 @@ const VenueTag = (props) => {
   const isHighlighted = props.isHighlighted;
 
   const location = venue?.location.data?.attributes;
-
+  
   const venueTagImages = {
     "exhibition": "exhibition.png",
     "performance": "performance.png",
@@ -35,9 +35,12 @@ const VenueTag = (props) => {
     "лекція": "лекція.png"
   }
   const locationCity = location?.city.toLowerCase();
-
   
-
+  const formatDate = (dateString) => {
+    const options = { month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(language, options);
+  }
+  
   
   return (
     <div
@@ -74,19 +77,10 @@ const VenueTag = (props) => {
       </div>
       <p className={styles.venuePlaceAndTime}>
         <b>{location.locationName}</b> <br></br>
-        {venue.startDate.split("-")[2] + ", "}
-        {venue.venueOpeningTime &&
-          venue.venueOpeningTime.slice(
-            0,
-            venue.venueOpeningTime.indexOf(":", 3)
-          )}
+        {formatDate(venue.startDate)}{venue.finishDate ? "–" + formatDate(venue.finishDate) : " " + venue.venueOpeningTime.slice(0, venue.venueOpeningTime.indexOf(':', 3))}
       </p>
       <h3 className={styles.venueTitle}>
-        <Link
-          to={`/${language}/program/${venue.slug}`}
-        >
-          {venue.title}
-        </Link>
+        <Link to={`/${language}/program/${venue.slug}`}>{venue.title}</Link>
       </h3>
       <p>{venue.curators}</p>
     </div>

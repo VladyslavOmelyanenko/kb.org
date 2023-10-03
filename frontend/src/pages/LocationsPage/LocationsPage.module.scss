@@ -17,7 +17,7 @@
     height: calc(100vh - 85px);
     overflow-y: scroll;
     width: calc((100vw - 140px) / 4.5);
-    min-width: 227px;
+    min-width: 235px;
     flex-shrink: 0;
     cursor: default;
 
@@ -35,7 +35,7 @@
     .cityLogoContainer {
       width: 23vw;
       min-width: 10vw;
-      max-width: 250px;
+      max-width: 350px;
       flex-shrink: 0;
       padding-bottom: 15px;
     }

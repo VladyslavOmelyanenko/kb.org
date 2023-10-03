@@ -60,11 +60,11 @@ const VenuePage = () => {
               <p className={styles.location}>
                 {location.locationName + ", " + location.city}
               </p>
-              <p className={styles.dates}>{`${t(
-                monthNames[startDateObj.getMonth()].toLowerCase()
-              )} ${startDateObj.getDate()}–${t(
-                monthNames[finishDateObj.getMonth()].toLowerCase()
-              )} ${finishDateObj.getDate()}`}</p>
+              <p className={styles.dates}>
+                {`${t(monthNames[startDateObj.getMonth()].toLowerCase())} ${startDateObj.getDate()}`}
+                {finishDateObj ? ('–' +
+                `${t(monthNames[finishDateObj.getMonth()].toLowerCase())} ${finishDateObj?.getDate()}`) : ' ' + venue.venueOpeningTime.slice(0, venue.venueOpeningTime.indexOf(':', 3))}
+              </p>
               <h1 className={styles.venueTitle}>{venue.title}</h1>
               <p>{venue.curators}</p>
             </div>
@@ -103,7 +103,7 @@ const VenuePage = () => {
                 </div>
               </div>}
 
-              <div className={styles.participants}>
+              { !!participants.length && <div className={styles.participants}>
                 <h2>{t("Participants")}</h2>
                 <ul className={styles.participantsList}>
                   {participants.map((participant, i) => (
@@ -116,7 +116,8 @@ const VenuePage = () => {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </div>}
+
             </div>
 
             <p className={styles.venueDescription}>{venue.venueDescription}</p>

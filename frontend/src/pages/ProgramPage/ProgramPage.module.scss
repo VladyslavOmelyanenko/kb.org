@@ -85,7 +85,7 @@
       display: flex;
       flex-direction: column;
       gap: 30px;
-      height: calc(100vh - 115px);
+      max-height: calc(100vh - 115px);
       overflow-y: scroll;
     }
 
@@ -107,17 +107,38 @@
   }
 }
 
-@media (max-width: 978px) {
+@media (max-width: 1307px) {
   .venuesByMonths {
     .month {
       .monthVenues {
-        height: calc(100vh - 140px);
+        height: calc(var(--doc-height) - 140px);
+      }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .citiesList {
+    font-size: 16px;
+  }
+
+  .venuesByMonths .month .monthTitle {
+    font-size: 16px;
+  }
+
+  .venuesByMonths {
+    .month {
+      .monthVenues {
+        max-height: calc(var(--doc-height) - 126px);
       }
     }
   }
 }
 
 @media (max-width: 768px) {
+  .closeCity {
+    display: none;
+  }
   .programSection {
     width: calc(100% - 15px);
     padding-left: 15px;
@@ -167,7 +188,7 @@
       .monthVenues {
         padding-top: 10px;
         // height: calc(100vh - 134px);
-        height: calc(var(--doc-height) - 134px);
+        max-height: calc(var(--doc-height) - 134px);
       }
 
       &:first-child {
@@ -183,12 +204,66 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 457px) {
   .venuesByMonths {
     .month {
       .monthVenues {
-        height: calc(100vh - 163px) !important;
-        height: calc(var(--doc-height) - 163px) !important;
+        height: calc(100vh - 153px) !important;
+        max-height: calc(var(--doc-height) - 153px) !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 394px) {
+  .programSection .citiesList {
+    font-size: 15px;
+  }
+
+  .venuesByMonths .month .monthTitle {
+    font-size: 15px;
+  }
+
+  .venuesByMonths {
+    .month {
+      .monthVenues {
+        max-height: calc(var(--doc-height) - 126px);
+      }
+    }
+  }
+}
+
+@media (max-width: 373px) {
+  .programSection .citiesList {
+    font-size: 14px;
+  }
+
+  .venuesByMonths .month .monthTitle {
+    font-size: 14px;
+  }
+
+  .venuesByMonths {
+    .month {
+      .monthVenues {
+        max-height: calc(var(--doc-height) - 126px);
+      }
+    }
+  }
+}
+
+@media (max-width: 353px) {
+  .programSection .citiesList {
+    font-size: 12px;
+  }
+
+  .venuesByMonths .month .monthTitle {
+    font-size: 12px;
+  }
+
+  .venuesByMonths {
+    .month {
+      .monthVenues {
+        max-height: calc(var(--doc-height) - 126px);
       }
     }
   }

@@ -49,6 +49,7 @@ const ProgramPage = () => {
   useEffect(() => {
     const venues = data && data.data.map((venue) => venue.attributes);
 
+
     if (venues) {
       setActiveVenues(venues);
     }
@@ -81,7 +82,6 @@ const ProgramPage = () => {
   }, [data, rerender]);
   
 
-
   const getDistributedVenuesByMonth = (venues) => {
 
     const numberToTxtMonths = {
@@ -92,14 +92,26 @@ const ProgramPage = () => {
     };
 
     const distributedVenues = venues.reduce((result, venue) => {
-      const { startDate } = venue;
-      const month = numberToTxtMonths[startDate.split('-')[1]]; 
-
-      if (!result[month]) {
-        result[month] = [];
+      const startDate = venue.startDate.split("-")[1];
+      const finishDate = venue.finishDate && venue.finishDate.split("-")[1];
+      const months = [];
+      if (finishDate) {
+        for (let i = startDate; i <= finishDate; i++) {
+          const month = numberToTxtMonths[i];
+          months.push(month);
+        }
+      } else {
+        const month = numberToTxtMonths[startDate];
+        months.push(month)
       }
 
-      result[month].push(venue);
+      months.forEach((month) => {
+        if (!result[month]) {
+          result[month] = [];
+        }
+
+        result[month].push(venue);
+      })
 
       return result;
 
@@ -110,9 +122,18 @@ const ProgramPage = () => {
         distributedVenues[numberToTxtMonths[month]] = [];
       }
     }
-
     return distributedVenues;
-  } 
+  }
+  
+  const sortedVenuesInMonth = (venuesArray) => {
+    const compareStartDate = (a, b) => {
+      const dateA = new Date(a.startDate);
+      const dateB = new Date(b.startDate);
+
+      return dateA - dateB;
+    }
+    return venuesArray.sort(compareStartDate);
+  }
 
   const handleCityButton = (city) => {
     if (activeCity === city) {
@@ -123,7 +144,6 @@ const ProgramPage = () => {
       setActiveCity(city);
     }
   }
-
 
   return (
     <>
@@ -159,28 +179,29 @@ const ProgramPage = () => {
                 </li>
               ))}
         </ul>
+
         <div className={styles.venuesByMonths}>
           {!!activeVenues.length &&
             months.map((month) => (
               <div className={styles.month} key={month}>
                 <h5 className={styles.monthTitle}>{t(month)}</h5>
                 <div className={styles.monthVenues}>
-                  {getDistributedVenuesByMonth(activeVenues)[month].map(
-                    (venue) => (
-                      <VenueTag
-                        venue={venue}
-                        key={venue.title}
-                        setActiveCategory={setActiveCategory}
-                        activeCategory={activeCategory}
-                        enabled={true}
-                        isHighlighted={
-                          venue.venueType === activeCategory ||
-                          venue?.location.data?.attributes.city.toLowerCase() ===
-                            activeCategory
-                        }
-                      />
-                    )
-                  )}
+                  {sortedVenuesInMonth(getDistributedVenuesByMonth(activeVenues)[
+                    month
+                  ]).map((venue) => (
+                    <VenueTag
+                      venue={venue}
+                      key={venue.title}
+                      setActiveCategory={setActiveCategory}
+                      activeCategory={activeCategory}
+                      enabled={true}
+                      isHighlighted={
+                        venue.venueType === activeCategory ||
+                        venue?.location.data?.attributes.city.toLowerCase() ===
+                          activeCategory
+                      }
+                    />
+                  ))}
                 </div>
               </div>
             ))}
