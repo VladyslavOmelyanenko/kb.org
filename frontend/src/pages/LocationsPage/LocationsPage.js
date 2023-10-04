@@ -69,6 +69,9 @@ const LocationsPage = () => {
      }
    };
 
+    handleResizing();
+   
+
    const resizeObserver = new ResizeObserver(handleResizing);
 
    if (activeCityBlock.current) {
