@@ -69,7 +69,7 @@ const LocationsPage = () => {
      }
    };
 
-    handleResizing();
+    // handleResizing();
    
 
    const resizeObserver = new ResizeObserver(handleResizing);
