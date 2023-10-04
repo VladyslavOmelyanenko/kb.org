@@ -18,7 +18,7 @@ const LocationsPage = () => {
   const [locationsByCity, setLocationsByCity] = useState({});
   const navigate = useNavigate();
   const {cityParam} = useParams();
-  const [activeCity, setActiveCity] = useState(cityParam);
+  const [activeCity, setActiveCity] = useState();
 
   const orderOfCities = [
     "kyiv",
@@ -56,8 +56,10 @@ const LocationsPage = () => {
       );
 
     setActiveCity(cityParam);
+    console.log(activeCity);
 
    const handleResizing = () => {
+    console.log('scrolliiing');
      if (activeCityBlock.current && citiesContainer.current) {
        const rect = activeCityBlock.current.getBoundingClientRect();
        const containerRect = citiesContainer.current.getBoundingClientRect();
@@ -69,7 +71,6 @@ const LocationsPage = () => {
      }
    };
 
-    // handleResizing();
    
 
    const resizeObserver = new ResizeObserver(handleResizing);
