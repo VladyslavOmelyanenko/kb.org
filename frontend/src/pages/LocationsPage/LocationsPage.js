@@ -56,7 +56,6 @@ const LocationsPage = () => {
       );
 
     setActiveCity(cityParam);
-    console.log(activeCity);
 
    const handleResizing = () => {
     console.log('scrolliiing');
@@ -108,7 +107,7 @@ const LocationsPage = () => {
     };
 
 
-  }, [data, cityParam]);
+  }, [data, cityParam, activeCityBlock.current]);
 
   const getEnglishCity = (city) => {
     if (orderOfCities.indexOf(city.toLowerCase()) > (numberOfCities - 1)) {
