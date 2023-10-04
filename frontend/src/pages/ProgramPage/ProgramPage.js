@@ -96,9 +96,17 @@ const ProgramPage = () => {
       const finishDate = venue.finishDate && venue.finishDate.split("-")[1];
       const months = [];
       if (finishDate) {
-        for (let i = startDate; i <= finishDate; i++) {
-          const month = numberToTxtMonths[i];
-          months.push(month);
+        if (finishDate === '01') {
+           for (let i = startDate; i <= 12; i++) {
+             const month = numberToTxtMonths[i];
+             months.push(month);
+           }
+           months.push(numberToTxtMonths[finishDate]);
+        } else {
+            for (let i = startDate; i <= finishDate; i++) {
+              const month = numberToTxtMonths[i];
+              months.push(month);
+            }
         }
       } else {
         const month = numberToTxtMonths[startDate];
