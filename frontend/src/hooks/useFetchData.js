@@ -67,6 +67,14 @@ function useFetchData(url, language, filter="", fieldsToPopulate) {
             }
           }
         }}
+      } else if (population === "venues") {
+        queryObject.populate[population] = {
+          populate: {
+            location: {
+              populate: '*',
+            }
+          }
+        }
       } else {
         queryObject.populate[population] = true;
       }

@@ -43,6 +43,7 @@ const LocationsPage = () => {
 
 
   const data = useFetchData(`${API_URL}/locations`, language, "", ["locationImage", "cityLogo", "venues"]);  
+  data && console.log(data);
 
   useEffect(() => {
     const locations = data && data.data.map((location) => location.attributes);
