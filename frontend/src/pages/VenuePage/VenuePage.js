@@ -87,6 +87,9 @@ const VenuePage = () => {
 
           <section className={styles.venueDetails}>
             <div className={styles.sideDetails}>
+
+              {/* PROGRAM */}
+
               { program &&
               <div className={styles.program}>
                 <h2>{t("Program")}</h2>
@@ -94,16 +97,18 @@ const VenuePage = () => {
                   {program &&
                     program.map((event, i) => (
                       <div className={styles.event} key={i}>
+                        <h3 className={styles.eventTitle}>{event.event}</h3>
                         <p>
                           {event.date}
                           <br></br>
                           {event.time}
                         </p>
-                        <h3 className={styles.eventTitle}>{event.event}</h3>
                       </div>
                     ))}
                 </div>
               </div>}
+              
+              {/* PARTICIPANTS */}
 
               { !!participants.length && <div className={styles.participants}>
                 <h2>{t("Participants")}</h2>
@@ -121,6 +126,8 @@ const VenuePage = () => {
               </div>}
 
             </div>
+
+            {/* DESCRIPTION */}
 
             <p className={styles.venueDescription}>{venue.venueDescription}</p>
           </section>
