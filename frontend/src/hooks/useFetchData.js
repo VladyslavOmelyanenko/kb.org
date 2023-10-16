@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import qs from 'qs';
 
-function useFetchData(url, language, filter="", populations) {
+function useFetchData(url, language, filter="", fieldsToPopulate) {
   const [data, setData] = useState(null);
   if (language === 'ukr') {
     language = 'uk'
@@ -13,26 +13,50 @@ function useFetchData(url, language, filter="", populations) {
 
   const queryObject = {
     locale: language,
-    populate: {
-      participantImage: true,
-      partnersLogos: true,
-      partnersLogosMobile: true,
-      locationImage: true,
-      cityLogo: true,
-      participants: true,
-      venues: {
-        populate: {
-          location: {
-            populate: '*',
-          }
-        }
-      },
-      venueImages: true,
-      location: {
-        populate: '*',
-      },
-      projects: {
-        populate: {
+    // populate: {
+    //   participantImage: true,
+    //   partnersLogos: true,
+    //   partnersLogosMobile: true,
+    //   locationImage: true,
+    //   cityLogo: true,
+    //   participants: true,
+    //   venues: {
+    //     populate: {
+    //       location: {
+    //         populate: '*',
+    //       }
+    //     }
+    //   },
+    //   venueImages: true,
+    //   location: {
+    //     populate: '*',
+    //   },
+    //   projects: {
+    //     populate: {
+    //       projectMedia: true,
+    //       participant: true,
+    //       venue: {
+    //         populate: {
+    //           location: {
+    //             populate: '*'
+    //           }
+    //         }
+    //       }
+    //     }
+    //   },
+      
+    // },
+    populate: {},
+    filters: {
+      // slug: {
+      //   $eq: filter,
+      // },
+    },
+  };
+
+  fieldsToPopulate.forEach(population => {
+      if (population === "projects") {
+        queryObject.populate[population] = { populate: {
           projectMedia: true,
           participant: true,
           venue: {
@@ -42,20 +66,11 @@ function useFetchData(url, language, filter="", populations) {
               }
             }
           }
-        }
-      },
-      
-    },
-    filters: {
-      // slug: {
-      //   $eq: filter,
-      // },
-    },
-  };
-
-// populations.forEach(population => {
-//     queryObject.populate[population] = true;
-// });
+        }}
+      } else {
+        queryObject.populate[population] = true;
+      }
+  });
 
   if (filter !== "") {
     queryObject.filters["slug"] = {

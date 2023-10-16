@@ -18,8 +18,9 @@ const ParticipantsPage = () => {
   const language = Language();
   const containerToScroll = useRef(null);
 
-  const data = useFetchData(`${API_URL}/participants`, language);
-
+  const data = useFetchData(`${API_URL}/participants`, language, "", ["fullName"]);
+  data && console.log(data);
+  
   const participants = data && data.data.map((participantData) => ({
     name: participantData.attributes.fullName,
     slug: participantData.attributes.slug

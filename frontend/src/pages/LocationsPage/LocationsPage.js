@@ -18,7 +18,7 @@ const LocationsPage = () => {
   const [locationsByCity, setLocationsByCity] = useState({});
   const navigate = useNavigate();
   const {cityParam} = useParams();
-  const [activeCity, setActiveCity] = useState();
+  const [activeCity, setActiveCity] = useState(cityParam);
 
   const orderOfCities = [
     "kyiv",
@@ -42,7 +42,7 @@ const LocationsPage = () => {
   const [isMobile, setIsMobile] = useState(false);
 
 
-  const data = useFetchData(`${API_URL}/locations`, language);  
+  const data = useFetchData(`${API_URL}/locations`, language, "", ["locationImage", "cityLogo", "venues"]);  
 
   useEffect(() => {
     const locations = data && data.data.map((location) => location.attributes);
@@ -107,7 +107,7 @@ const LocationsPage = () => {
     };
 
 
-  }, [data, cityParam, activeCityBlock.current]);
+  }, [data, cityParam, activeCity]);
 
   const getEnglishCity = (city) => {
     if (orderOfCities.indexOf(city.toLowerCase()) > (numberOfCities - 1)) {

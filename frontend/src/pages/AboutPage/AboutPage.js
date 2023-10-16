@@ -17,7 +17,11 @@ const AboutPage = () => {
   const { t } = useTranslation();
   const language = Language();
 
-  const data = useFetchData(`${API_URL}/about-pages`, language);
+  const data = useFetchData(`${API_URL}/about-pages`, language, "", [
+    "partnersLogos",
+    "partnersLogosMobile",
+  ]);
+  data && console.log(data);
   const content = data && data.data[0].attributes;
   const pressSources = content && content.pressSources;
   const partnersLogos = content && content.partnersLogos.data.attributes;

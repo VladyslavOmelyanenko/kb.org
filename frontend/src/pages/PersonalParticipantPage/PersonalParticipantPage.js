@@ -19,7 +19,8 @@ const PersonalParticipantPage = () => {
   const params = useParams();
   const slug = params.name;
 
-  const data = useFetchData(`${API_URL}/participants`, language, slug);
+  const data = useFetchData(`${API_URL}/participants`, language, slug, ["participantImage", "projects", "venues"]);
+  data && console.log(data);
 
   const currentParticipant = data && data.data[0].attributes;
   const currentParticipantProjects = currentParticipant && currentParticipant.projects.data;

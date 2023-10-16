@@ -23,7 +23,9 @@ const VenuePage = () => {
   const slug = params.venueTitle;
   const imageContainer = useRef(null);
 
-  const data = useFetchData(`${API_URL}/venues`, language, slug);
+  const data = useFetchData(`${API_URL}/venues`, language, slug, ["location", "venueImages", "participants"]);
+  data && console.log(data);
+
 
   const venue = data?.data[0]?.attributes;
 

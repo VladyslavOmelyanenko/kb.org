@@ -26,7 +26,7 @@ const ProgramPage = () => {
   const [activeCity, setActiveCity] = useState("");  
 
 
-  const data = useFetchData(`${API_URL}/venues`, language);
+  const data = useFetchData(`${API_URL}/venues`, language, "", ["location"]);
 
   const months = ["october", "november", "december", "january"];
     const orderOfCities = [
