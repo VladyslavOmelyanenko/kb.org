@@ -59,7 +59,6 @@ const LocationsPage = () => {
     setActiveCity(cityParam);
 
    const handleResizing = () => {
-    console.log('scrolliiing');
      if (activeCityBlock.current && citiesContainer.current) {
        const rect = activeCityBlock.current.getBoundingClientRect();
        const containerRect = citiesContainer.current.getBoundingClientRect();
@@ -163,7 +162,11 @@ const LocationsPage = () => {
         className={styles.cities}
         ref={citiesContainer}
         onWheel={(event) => {
+          const viennaElements = Array.from(document.getElementById('vienna')?.querySelectorAll("*"));
           if (!event.deltaY) {
+            return;
+          }
+          if (viennaElements.includes(event.target)) {
             return;
           }
           citiesContainer.current.scrollLeft += !activeCity && event.deltaY + event.deltaX;
@@ -179,6 +182,7 @@ const LocationsPage = () => {
             .map(([city, locations], i) => (
               <div
                 key={i}
+                id={(getEnglishCity(city).toLowerCase() === "vienna") ? "vienna" : null}
                 className={
                   activeCity &&
                   getEnglishCity(city).toLowerCase() ===
@@ -195,7 +199,7 @@ const LocationsPage = () => {
                 }
                 onClick={(e) => expandCity(city)}
               >
-                <div className={styles.cityNameLogo}>
+                <div className={styles.cityNameLogo} >
                   <h2 className={styles.cityName}>{city}</h2>
                   {activeCity &&
                     getEnglishCity(city).toLowerCase() ===
