@@ -28,6 +28,7 @@ const LocationsPage = () => {
     "warsaw",
     "lublin",
     "antwerp",
+    "berlin",
     "київ",
     "івано-франківськ",
     "ужгород",
@@ -35,8 +36,9 @@ const LocationsPage = () => {
     "варшава",
     "люблін",
     "антверпен",
+    "берлін"
   ];
-  const numberOfCities = 7;
+  const numberOfCities = 8;
   const citiesContainer = useRef(null);
   const activeCityBlock = useRef(null);
   const [isMobile, setIsMobile] = useState(false);

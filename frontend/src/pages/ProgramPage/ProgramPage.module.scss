@@ -153,8 +153,8 @@
         .city {
           border-top: 0;
           
-          &:nth-child(-n+3) {
-            width: calc((100vw - 50px) / 3);
+          &:nth-child(-n+4) {
+            width: calc((100vw - 60px) / 4);
           }
           
           &:nth-last-child(-n+4) {

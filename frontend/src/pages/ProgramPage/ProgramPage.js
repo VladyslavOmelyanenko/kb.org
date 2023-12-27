@@ -28,7 +28,7 @@ const ProgramPage = () => {
 
   const data = useFetchData(`${API_URL}/venues`, language, "", ["location"]);
 
-  const months = ["october", "november", "december", "january"];
+  const months = ["october", "november", "december", "january", "february"].reverse();
     const orderOfCities = [
       "kyiv",
       "ivano-frankivsk",
@@ -37,6 +37,7 @@ const ProgramPage = () => {
       "warsaw",
       "lublin",
       "antwerp",
+      "berlin",
       "київ",
       "івано-франківськ",
       "ужгород",
@@ -44,6 +45,7 @@ const ProgramPage = () => {
       "варшава",
       "люблін",
       "антверпен",
+      "берлін"
     ];
 
   useEffect(() => {
@@ -88,7 +90,8 @@ const ProgramPage = () => {
       '10': 'october',
       '11': 'november',
       '12': 'december',
-      '01': 'january'
+      '01': 'january',
+      '02': 'february'
     };
 
     const distributedVenues = venues.reduce((result, venue) => {
@@ -138,7 +141,7 @@ const ProgramPage = () => {
       const dateA = new Date(a.startDate);
       const dateB = new Date(b.startDate);
 
-      return dateA - dateB;
+      return dateB - dateA;
     }
     return venuesArray.sort(compareStartDate);
   }

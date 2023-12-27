@@ -21,7 +21,7 @@ import WarsawWire from "../../components/LandingWires/WarsawWire";
 import UzhhorodWire from "../../components/LandingWires/UzhhorodWire";
 
 
-import BeforeRightWire from "../../components/LandingWires/BeforeRightWire";
+import BerlinWire from "../../components/LandingWires/BerlinWire";
 import FarRightWire from "../../components/LandingWires/FarRightWire";
 
 import styles from "./LandingPage.module.scss";
@@ -252,9 +252,6 @@ const LandingPage = () => {
               <KyivWire />
             </svg>
 
-
-
-
             <Link
               to="locations/kyiv"
               className={`${styles.kyivText} locationText`}
@@ -297,12 +294,18 @@ const LandingPage = () => {
               {t("warsaw")}
             </Link>
 
-
             <Link
               to="locations/antwerp"
               className={`${styles.antwerpText} locationText`}
             >
               {t("antwerp")}
+            </Link>
+            
+            <Link
+              to="locations/berlin"
+              className={`${styles.berlinText} locationText`}
+            >
+              {t("berlin")}
             </Link>
 
             <svg
@@ -317,6 +320,9 @@ const LandingPage = () => {
             </svg>
 
             <svg
+              onClick={() => navigate("locations/berlin")}
+              onMouseEnter={() => setHoveredWire(t("berlin"))}
+              onMouseLeave={() => setHoveredWire("")}
               className={styles.uzhhorodWire}
               id="Layer_2"
               xmlns="http://www.w3.org/2000/svg"
@@ -341,7 +347,7 @@ const LandingPage = () => {
               overflow="visible"
               xmlSpace="preserve"
             >
-              <BeforeRightWire />
+              <BerlinWire />
             </svg>
 
             <svg

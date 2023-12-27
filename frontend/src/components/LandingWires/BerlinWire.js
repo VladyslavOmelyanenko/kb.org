@@ -1,4 +1,4 @@
-const BeforeRightWire = () => {
+const BerlinWire = () => {
 
   return (
     <>
@@ -8077,4 +8077,4 @@ const BeforeRightWire = () => {
   );
 }
 
-export default BeforeRightWire;
+export default BerlinWire;

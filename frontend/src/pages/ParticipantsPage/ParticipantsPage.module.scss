@@ -6,23 +6,24 @@
 .participantsSection {
 
   position: absolute;
-  top: 85px;
-  padding-left: 20px;
+  top: 40px;
   width: calc(100% - 20px);
-  height: calc(100% - 85px); 
+  height: calc(100% - 40px); 
   
   .participantsContent {
     display: flex;
-    height: 525px;
+    gap: 30px;
+    flex-direction: column;
+    height: 725px;
 
     .participantsTitle {
-      text-transform: uppercase;
+      text-transform: capitalize;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 20px;
+      margin-left: 20px;
     }
     
     .participantsNames {
-      margin-left: 20px;
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -30,6 +31,7 @@
       overflow-x: scroll;
       width: 100%;
       overscroll-behavior-x: auto;
+      padding-left: 20px;
 
       .namesCategory {
         display: flex;
@@ -64,7 +66,7 @@
   .participantsSection {
     top: 40px;
     height: auto;
-    width: calc(100% - 30px);
+    width: calc(100% - 45px);
     padding: 0 15px;
 
     .participantsContent {
