@@ -17,6 +17,7 @@
       "november": "листопад",
       "december": "грудень",
       "january": "січень",
+      "february": "лютий",
       "exhibition": "виставка",
       "performance": "перформанс",
       "film program": "фільмова програма",
@@ -30,5 +31,6 @@
       "antwerp": "антверпен",
       "lublin": "люблін",
       "warsaw": "варшава",
+      "berlin": "берлін",
       "website": "вебсайт"
    }

@@ -13,6 +13,7 @@ const Project = (props) => {
   const project = props.projectObject;
   const projectMedia = project.projectMedia.data && project.projectMedia.data.map((projectMedia) => projectMedia.attributes);
   const projectVenue = project.venue.data && project.venue.data.attributes;
+  projectVenue && console.log(projectVenue);
   const imageContainer = useRef(null);
   
   useEffect(() => {

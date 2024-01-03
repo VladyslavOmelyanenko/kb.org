@@ -61,7 +61,7 @@ function useFetchData(url, language, filter="", fieldsToPopulate) {
           participant: true,
           venue: {
             populate: {
-              location: {
+              locations: {
                 populate: '*'
               }
             }
@@ -70,7 +70,19 @@ function useFetchData(url, language, filter="", fieldsToPopulate) {
       } else if (population === "venues") {
         queryObject.populate[population] = {
           populate: {
+            locations: {
+              populate: '*',
+            }
+          }
+        }
+      } else if (population === 'venue_locations') {
+        queryObject.populate[population] = { 
+          populate: {
+            Name: true,
             location: {
+              populate: '*',
+            },
+            participants: {
               populate: '*',
             }
           }

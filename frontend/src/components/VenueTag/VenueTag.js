@@ -21,7 +21,8 @@ const VenueTag = (props) => {
   const setActiveCategory = props.setActiveCategory;
   const isHighlighted = props.isHighlighted;
 
-  const location = venue?.location.data?.attributes;
+  const locations = venue.locations.data.map(location => location.attributes);
+  console.log(locations);
   
   const venueTagImages = {
     "exhibition": "exhibition.png",
@@ -34,7 +35,7 @@ const VenueTag = (props) => {
     "фільмова програма": "фільмова програма.png",
     "лекція": "лекція.png"
   }
-  const locationCity = location?.city.toLowerCase();
+  const locationCity = locations[0].city.toLowerCase();
   
   const formatDate = (dateString) => {
     const options = { month: 'long', day: 'numeric' };
@@ -71,12 +72,12 @@ const VenueTag = (props) => {
             }
             onMouseLeave={() => highlightEnabled && setActiveCategory(null)}
             src={`/cityTags/${locationCity}.png`}
-            alt={location.title}
+            alt={locationCity}
           ></img>
         </div>
       </div>
       <p className={styles.venuePlaceAndTime}>
-        <b>{location.locationName}</b> <br></br>
+        {locations.map((location, i) => (<b>{location.locationName}{(i === locations.length - 1) ? '' : ', '}</b>))} <br></br>
         {formatDate(venue.startDate)}{venue.finishDate ? "–" + formatDate(venue.finishDate) : " " + venue.venueOpeningTime.slice(0, venue.venueOpeningTime.indexOf(':', 3))}
       </p>
       <h3 className={styles.venueTitle}>

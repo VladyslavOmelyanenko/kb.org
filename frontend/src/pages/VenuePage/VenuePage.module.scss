@@ -10,6 +10,7 @@
     padding: 0 20px;
     gap: 20px;
     padding-bottom: 20px;
+    align-items: flex-end;
 
     .headerSideInfo, .headerMainInfo {
       width: 50%;
@@ -17,9 +18,12 @@
 
     .headerSideInfo {
       display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+      flex-direction: row;
       font-size: 16px;
+
+      .locationAddress {
+        width: calc((100vw - 80px) / 5);
+      }
 
       p {
         white-space: pre-wrap;
@@ -127,6 +131,40 @@
           }
           li:hover {
             font-weight: bold;
+          }
+        }
+      }
+
+      .venueLocations {
+        list-style: none;
+        width: 100%;
+
+        li {
+          padding-bottom: 10px;
+          margin-top: 10px;
+          border-bottom: 1px solid black;
+
+          &:first-child {
+            margin-top: 0;
+          }
+          
+          &:last-child {
+            border: none;
+          }
+
+          a:hover {
+            font-weight: bold;
+          }
+
+          .venueLocationTitle {
+            font-size: 16px;
+          }
+          .addressAndTime {
+            display: flex;
+            margin-bottom: 16px;
+            .address {
+              width: calc((100vw - 80px) / 5);
+            }
           }
         }
       }

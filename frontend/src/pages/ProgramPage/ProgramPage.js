@@ -26,9 +26,9 @@ const ProgramPage = () => {
   const [activeCity, setActiveCity] = useState("");  
 
 
-  const data = useFetchData(`${API_URL}/venues`, language, "", ["location"]);
+  const data = useFetchData(`${API_URL}/venues`, language, "", ["locations"]);
 
-  const months = ["october", "november", "december", "january", "february"].reverse();
+  const months = ["october", "november", "december", "january", "february", "march", "april", "may", "june", "july", "august"].reverse();
     const orderOfCities = [
       "kyiv",
       "ivano-frankivsk",
@@ -50,6 +50,7 @@ const ProgramPage = () => {
 
   useEffect(() => {
     const venues = data && data.data.map((venue) => venue.attributes);
+    venues && console.log(venues);
 
 
     if (venues) {
@@ -57,8 +58,9 @@ const ProgramPage = () => {
     }
 
     venues && setVenuesByCities(venues.reduce((result, venue) => {
-      const { location } = venue; 
-      const city = location.data.attributes.city; 
+      const { locations } = venue; 
+      console.log(locations);
+      const city = locations.data[0].attributes.city; 
 
       if (!result[city]) {
         result[city] = [];
@@ -91,7 +93,14 @@ const ProgramPage = () => {
       '11': 'november',
       '12': 'december',
       '01': 'january',
-      '02': 'february'
+      '02': 'february',
+      '03': 'march',
+      '04': 'april',
+      '05': 'may',
+      '06': 'june',
+      '07': 'july',
+      '08': 'august',
+
     };
 
     const distributedVenues = venues.reduce((result, venue) => {
@@ -193,7 +202,8 @@ const ProgramPage = () => {
 
         <div className={styles.venuesByMonths}>
           {!!activeVenues.length &&
-            months.map((month) => (
+            months.map((month) => 
+              (sortedVenuesInMonth(getDistributedVenuesByMonth(activeVenues)[month]).length !== 0) ? (
               <div className={styles.month} key={month}>
                 <h5 className={styles.monthTitle}>{t(month)}</h5>
                 <div className={styles.monthVenues}>
@@ -208,14 +218,14 @@ const ProgramPage = () => {
                       enabled={true}
                       isHighlighted={
                         venue.venueType === activeCategory ||
-                        venue?.location.data?.attributes.city.toLowerCase() ===
+                        venue?.locations.data[0].attributes.city.toLowerCase() ===
                           activeCategory
                       }
                     />
                   ))}
                 </div>
               </div>
-            ))}
+            ): null)}
         </div>
       </section>
     </>

@@ -17,6 +17,8 @@
       "november": "november",
       "december": "december",
       "january": "january",
+      "february": "february",
+      "march": "march",
       "exhibition": "exhibition",
       "performance": "performance",
       "film program": "film program",
@@ -30,5 +32,6 @@
       "antwerp": "antwerp",
       "lublin": "lublin",
       "warsaw": "warsaw",
+      "berlin": "berlin",
       "website": "website"
    }

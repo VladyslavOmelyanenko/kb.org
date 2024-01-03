@@ -16,6 +16,7 @@ const Navbar = (props) => {
   const menu = useRef();
   const isTransparent = props.isTransparent;
   const triggerRerender = props.triggerRerender && props.triggerRerender;
+  const isGerman = props.isGerman;
   const appLanguages = [
     {
       text: 'eng',
@@ -72,6 +73,9 @@ const Navbar = (props) => {
               <NavLink to={getMatchingRoute(lang.link)}>{lang.text}</NavLink>
             </li>
           ))}
+          {isGerman && <li>
+            <NavLink to={getMatchingRoute('de')}>de</NavLink>
+          </li>}
         </ul>
       </div>
 

@@ -24,13 +24,15 @@ const PersonalParticipantPage = () => {
 
   const currentParticipant = data && data.data[0].attributes;
   const currentParticipantProjects = currentParticipant && currentParticipant.projects.data;
+  const isGerman = currentParticipant && currentParticipant.isGermanLanguage;
+  isGerman && console.log(isGerman);
 
   const participantImage = currentParticipant && currentParticipant.participantImage.data && currentParticipant.participantImage.data.attributes;
   
 
   return (
     <>
-    <Navbar />
+    <Navbar isGerman={isGerman && isGerman}/>
     {currentParticipant && (
       <section className={styles.participantPage}>
         <div className={styles.participantInfo}>
