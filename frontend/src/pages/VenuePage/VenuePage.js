@@ -165,7 +165,8 @@ const VenuePage = () => {
                 <ul className={styles.venueLocations}>
                   {venueLocations.map((venueLocation) => {
                     const location = venueLocation.location.data.attributes;
-                    const participants = venueLocation.participants.data.map(participant => participant.attributes);
+                    const participantsDatas = venueLocation.participants.data.map(participant => participant.attributes);
+                    const participants = participantsDatas && participantsDatas.sort((paricipant1, participant2) => paricipant1.fullName.localeCompare(participant2.fullName));
                     return (
                       <li>
                         <h3 className={styles.venueLocationTitle}>{location.locationName}</h3>

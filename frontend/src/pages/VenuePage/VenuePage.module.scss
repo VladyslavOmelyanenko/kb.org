@@ -161,7 +161,9 @@
           }
           .addressAndTime {
             display: flex;
+            gap: 15px;
             margin-bottom: 16px;
+            word-wrap: break-word;
             .address {
               width: calc((100vw - 80px) / 5);
             }
@@ -206,6 +208,9 @@
 
         .headerSideInfo {
           font-size: 12px;
+          .locationAddress, p {
+            width: 50%;
+          }
         }
 
       }
@@ -257,6 +262,15 @@
                 font-size: 16px;
               }
             }
+
+          }
+        }
+        .venueLocations li .addressAndTime {
+          p {
+            width: 50%;
+          }
+          .address {
+            width: calc(50%);
 
           }
         }
