@@ -16,7 +16,7 @@ const Navbar = (props) => {
   const menu = useRef();
   const isTransparent = props.isTransparent;
   const triggerRerender = props.triggerRerender && props.triggerRerender;
-  const isGerman = props.isGerman;
+  const isGermanLanguage = props.isGermanLanguage;
   const appLanguages = [
     {
       text: 'eng',
@@ -73,7 +73,7 @@ const Navbar = (props) => {
               <NavLink to={getMatchingRoute(lang.link)}>{lang.text}</NavLink>
             </li>
           ))}
-          {isGerman && <li>
+          {isGermanLanguage && <li>
             <NavLink to={getMatchingRoute('de')}>de</NavLink>
           </li>}
         </ul>
@@ -82,23 +82,23 @@ const Navbar = (props) => {
       <ul className={styles.menu} ref={menu} style={ isTransparent && { background: "none" }}>
         <li style={{ background: "none" }}>
           {" "}
-          <Link to={`/${currentLanguage}/`}>{t("home")}</Link>{" "}
+          <Link to={`/${currentLanguage==='de' ? 'eng' : currentLanguage}/`}>{t("home")}</Link>{" "}
         </li>
         <li style={{ background: "none" }}>
           {" "}
-          <Link to={`/${currentLanguage}/about`}>{t("about")}</Link>{" "}
+          <Link to={`/${currentLanguage==='de' ? 'eng' : currentLanguage}/about`}>{t("about")}</Link>{" "}
         </li>
         <li style={{ background: "none" }}>
           {" "}
-          <Link to={`/${currentLanguage}/participants`}>
+          <Link to={`/${currentLanguage==='de' ? 'eng' : currentLanguage}/participants`}>
             {t("participants")}
           </Link>
         </li>
         <li style={{ background: "none" }} onClick={triggerRerender && triggerRerender}>
-          <Link to={`/${currentLanguage}/program`}>{t("program")}</Link>
+          <Link to={`/${currentLanguage==='de' ? 'eng' : currentLanguage}/program`}>{t("program")}</Link>
         </li>
         <li style={{ background: "none" }}>
-          <Link to={`/${currentLanguage}/locations`}>{t("locations")}</Link>
+          <Link to={`/${currentLanguage==='de' ? 'eng' : currentLanguage}/locations`}>{t("locations")}</Link>
         </li>
       </ul>
     </nav>

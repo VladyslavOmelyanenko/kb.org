@@ -27,9 +27,9 @@ const VenuePage = () => {
 
 
   const venue = data?.data[0]?.attributes;
-  venue && console.log(venue);
+  // venue && console.log(venue);
   const venueLocations = venue?.venue_locations.data.map(venueLocation => venueLocation.attributes);
-  venueLocations && console.log(venueLocations);
+  // venueLocations && console.log(venueLocations);
 
   const { startDate, finishDate } = venue || {};
 
@@ -40,13 +40,20 @@ const VenuePage = () => {
 
   const venueImages = venue?.venueImages.data;
   const program = venue?.program;
-  const isGerman = venue?.isGerman;
-  // isGerman && console.log(isGerman);
+  const isGermanLanguage = venue?.isGermanLanguage;
+  isGermanLanguage && console.log(isGermanLanguage);
   const participantsDatas = venue?.participants?.data?.map((participantData) => participantData.attributes);
   const participants = participantsDatas && participantsDatas.sort((paricipant1, participant2) => paricipant1.fullName.localeCompare(participant2.fullName));
 
-  const venueEvents = venue?.venue_events.data.map(eventData => eventData.attributes.smallEvent.data.attributes);
+  const venueEvents = venue?.venue_events.data.map((eventData) => {
+    const smallEventData = eventData.attributes.smallEvent.data.attributes;
+    smallEventData.alternativeLocation = eventData.attributes.alternativeLocation;
+    smallEventData.alternativeDescription = eventData.attributes.alternativeDescription;
+    return smallEventData;
+  });
 
+  // venue && console.log(venue);
+  
   const [isMobile, setIsMobile] = useState(false);
 
   
@@ -78,7 +85,7 @@ const VenuePage = () => {
 
   return (
     <>
-      <Navbar isGerman={isGerman} />
+      <Navbar isGermanLanguage={isGermanLanguage} />
       {venue && (
         <main className={styles.venuePage}>
           <header className={styles.headerInfo}>
@@ -261,7 +268,6 @@ const VenuePage = () => {
             {!!venueEvents.length && venueEvents && (
               <ul className={styles.venueEvents}>
                 {sortedVenues(venueEvents).map((venueEvent, i) => {
-                  console.log(venueEvent);
                   let address =
                     venueEvent.locations.data[0].attributes.locationAddress;
                   let eventStartDateObj = new Date(venueEvent.startDate);
@@ -269,7 +275,6 @@ const VenuePage = () => {
                     venueEvent.venueDescription.length > 600
                       ? venueEvent.venueDescription.slice(0, 300) + " . . ."
                       : venueEvent.venueDescription;
-
                   return (
                     <li key={i}>
                       <div className={styles.venueEventTitle}>
@@ -284,11 +289,11 @@ const VenuePage = () => {
                           ", " +
                           venueEvent.venueOpeningTime.slice(0, 5)}
                         <br></br>
-                        {address}
+                        {(venueEvent.alternativeLocation) ? venueEvent.alternativeLocation : address}
                       </div>
                       <div className={styles.venueEventDescription}>
                         <Link to={`/${language}/program/${venueEvent.slug}`}>
-                          {desciption}
+                        {(venueEvent.alternativeDescription) ? venueEvent.alternativeDescription : desciption}
                         </Link>
                       </div>
                     </li>
