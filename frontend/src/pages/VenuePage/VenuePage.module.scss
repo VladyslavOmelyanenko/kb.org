@@ -82,7 +82,7 @@
     padding: 0 20px;
     gap: 20px;
 
-    .sideDetails, .venueDescription {
+    .sideDetails, .venueDescriptionAndProgramTitle {
       width: 50%;
     }
 
@@ -171,9 +171,58 @@
         }
       }
     }
+    .venueDescriptionAndProgramTitle {
+      display: flex;
+      flex-direction: column;
 
-    .venueDescription {
-      white-space: pre-wrap;
+      .venueDescription {
+        white-space: pre-wrap;
+        padding-bottom: 30px;
+      }
+      
+      .programTitle {
+        border-top: 1px solid black;
+        font-size: 16px;
+        padding-top: 15px;
+      }
+
+    }
+  }
+  .venueEvents {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin-top: 25px;
+    min-height: 81vh;
+    
+    li {
+      border-top: 1px solid black;
+      display: flex;
+      padding: 15px 20px;
+      gap: 20px;
+
+      .venueEventTitle, .venueDateTimeAddress {
+        width: 25%;
+      }
+
+      .venueEventDescription {
+        width: calc(50% - 10px);
+        min-width: calc(50% - 10px);
+        flex-shrink: 0;
+      }
+
+      .venueEventTitle {
+        font-weight: bold;
+        padding-right: 10%;
+      }
+
+      .venueDateTimeAddress {
+        text-transform: capitalize;
+      }
+
+      &:last-child {
+        border-bottom: 1px solid black;
+      }
     }
   }
 }
@@ -275,10 +324,25 @@
           }
         }
       }
+      .venueDescriptionAndProgramTitle {
+        width: 100%;
 
-      .venueDescription {
-        font-size: 16px;
-        line-height: 21px;
+        .venueDescription {
+          font-size: 16px;
+          line-height: 21px;
+        }
+      }
+    }
+    .venueEvents {
+      li {
+        flex-direction: column;
+        padding: 15px 15px;
+
+        .venueEventTitle,
+        .venueDateTimeAddress,
+        .venueEventDescription {
+          width: 100%;
+        }
       }
     }
   }
@@ -288,4 +352,11 @@
     bottom: 0;
     width: 100%;
   }
+  .mobileProgramTitle {
+    font-size: 16px;
+    margin-left: 15px;
+    margin-top: 50px;
+  }
+
+  
 }

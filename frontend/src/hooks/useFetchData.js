@@ -10,7 +10,7 @@ function useFetchData(url, language, filter="", fieldsToPopulate) {
   } else if (language === 'eng') {
     language = 'en';
   }
-
+  
   const queryObject = {
     locale: language,
     // populate: {
@@ -75,18 +75,27 @@ function useFetchData(url, language, filter="", fieldsToPopulate) {
             }
           }
         }
-      } else if (population === 'venue_locations') {
-        queryObject.populate[population] = { 
+      } else if (population === "venue_locations") {
+        queryObject.populate[population] = {
           populate: {
             Name: true,
             location: {
-              populate: '*',
+              populate: "*",
             },
             participants: {
-              populate: '*',
+              populate: "*",
+            },
+          },
+        };
+      } else if (population === "venue_events") {
+        queryObject.populate[population] = {
+          populate: {
+            Name: true,
+            smallEvent: {
+              populate: "*",
             }
-          }
-        }
+          },
+        };
       } else {
         queryObject.populate[population] = true;
       }

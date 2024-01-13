@@ -22,7 +22,7 @@ const VenueTag = (props) => {
   const isHighlighted = props.isHighlighted;
 
   const locations = venue.locations.data.map(location => location.attributes);
-  console.log(locations);
+  // console.log(locations);
   
   const venueTagImages = {
     "exhibition": "exhibition.png",
