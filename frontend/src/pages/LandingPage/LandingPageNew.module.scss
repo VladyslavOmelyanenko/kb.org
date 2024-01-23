@@ -1,0 +1,118 @@
+.landingVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  overflow: hidden;
+  top: 0px;
+  left: 0px;
+}
+
+.nav {
+  position: absolute;
+  width: 100%;
+  z-index: 20000000;
+}
+
+.videoBlock {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.links {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  a {
+    position: absolute; 
+    text-transform: capitalize;
+  }
+}
+
+.locationsText {
+  bottom: 13%;
+  left: 79%;
+}
+
+.programText {
+  bottom: 13%;
+  left: 56%;
+}
+
+.aboutText {
+  bottom: 13%;
+  left: 3%;
+}
+
+.participantsText {
+  left: 24%;
+  bottom: 14%;
+}
+
+.viennaText {
+  top: 46%;
+  left: 3%;
+}
+
+.kyivText {
+  top: 21%;
+  left: 3%;
+}
+
+.ivanoFrankivskText {
+  top: 21%;
+  left: 32%;
+  width: 70px;
+}
+
+.berlinText {
+  top: 60%;
+  left: 60%;
+}
+
+.antwerpText {
+  top: 10%;
+  left: 78%;
+}
+
+.uzhhorodText {
+  top: 52%;
+  left: 67%;
+}
+
+.warsawText {
+  top: 32%;
+  left: 67%;
+}
+
+.lublinText {
+  left: 32%;
+  top: 70%;
+}
+
+@media (max-width: 768px) {
+  .desktop {
+    display: none;
+  }
+
+  .container {
+    display: block;
+    position: absolute;
+    width: 100vw;
+    height: calc(var(--doc-height));
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+
+
+    .video {
+      width: 100%;
+      outline: 0;
+      border: 0;
+    }
+  }
+}

@@ -234,7 +234,7 @@ const VenuePage = () => {
                           </p>
                         </div>
                         <p>
-                          Participants:{" "}
+                          {t("Participants")}:{" "}
                           {participants.map((participant, i) => (
                             <span>
                               <Link

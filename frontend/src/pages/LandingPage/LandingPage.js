@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 
 import Navbar from "../../components/Navbar/Navbar";
-import Footer from "../../components/Footer/Footer"
+import Footer from "../../components/Footer/Footer";
 
 import AboutWire from "../../components/LandingWires/AboutWire";
 import ParticipantsWire from "../../components/LandingWires/ParticipantsWire";

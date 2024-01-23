@@ -4,7 +4,8 @@ import 'normalize.css';
 import './App.css'
 
 
-import LandingPage from './pages/LandingPage/LandingPage';
+// import LandingPage from './pages/LandingPage/LandingPage';
+import LandingPageNew from './pages/LandingPage/LandingPageNew';
 import AboutPage from "./pages/AboutPage/AboutPage"; 
 import ParticipantsPage from "./pages/ParticipantsPage/ParticipantsPage"
 import LocationsPage from "./pages/LocationsPage/LocationsPage"
@@ -25,7 +26,7 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<RedirectToEn />} />
-        <Route path="/:language" element={<LandingPage />} />
+        <Route path="/:language" element={<LandingPageNew />} />
         <Route path="/:language/about" element={<AboutPage />} />
         <Route path="/:language/locations" element={<LocationsPage />} />
         <Route path="/:language/locations/:cityParam" element={<LocationsPage />} />

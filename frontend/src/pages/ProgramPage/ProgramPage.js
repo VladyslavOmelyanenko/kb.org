@@ -48,6 +48,19 @@ const ProgramPage = () => {
     "антверпен",
     "берлін"
   ];
+  const txtToNumberMonth = {
+    october: 10,
+    november: 11,
+    decembuary: 12,
+    january: 1,
+    february: 2,
+    march: 3,
+    april: 4,
+    may: 5,
+    june: 6,
+    july: 7,
+    august: 8,
+  };
 
   useEffect(() => {
     const venues = data && data.data.map((venue) => venue.attributes);
@@ -101,8 +114,9 @@ const ProgramPage = () => {
       '06': 'june',
       '07': 'july',
       '08': 'august',
-
     };
+
+    
 
     const distributedVenues = venues.reduce((result, venue) => {
       const startDate = venue.startDate.split("-")[1];
@@ -203,30 +217,40 @@ const ProgramPage = () => {
 
         <div className={styles.venuesByMonths}>
           {!!activeVenues.length &&
-            months.map((month) => 
-              (sortedVenuesInMonth(getDistributedVenuesByMonth(activeVenues)[month]).length !== 0) ? (
-              <div className={styles.month} key={month}>
-                <h5 className={styles.monthTitle}>{t(month)}</h5>
-                <div className={styles.monthVenues}>
-                  {sortedVenuesInMonth(getDistributedVenuesByMonth(activeVenues)[
-                    month
-                  ]).map((venue) => (
-                    <VenueTag
-                      venue={venue}
-                      key={venue.title}
-                      setActiveCategory={setActiveCategory}
-                      activeCategory={activeCategory}
-                      enabled={true}
-                      isHighlighted={
-                        venue.venueType === activeCategory ||
-                        venue?.locations.data[0].attributes.city.toLowerCase() ===
-                          activeCategory
-                      }
-                    />
-                  ))}
+            months.map((month) => {
+              const twentyFourMonth = Object.entries(getDistributedVenuesByMonth(activeVenues))
+                .filter(([key,value]) => (value.length !== 0) && (txtToNumberMonth[key] < 10))
+                .sort(([key1, value1], [key2, value2]) => key2 - key1)
+                .reverse()[0][0];
+              console.log(twentyFourMonth);
+              return sortedVenuesInMonth(
+                getDistributedVenuesByMonth(activeVenues)[month]
+              ).length !== 0 ? (
+                <div className={styles.month} key={month}>
+                  <h5 className={styles.monthTitle}>
+                    {[month === "december" ? "’23 " : ((month === twentyFourMonth) ? '’24 ' : ""), t(month)].join("")}
+                  </h5>
+                  <div className={styles.monthVenues}>
+                    {sortedVenuesInMonth(
+                      getDistributedVenuesByMonth(activeVenues)[month]
+                    ).map((venue) => (
+                      <VenueTag
+                        venue={venue}
+                        key={venue.title}
+                        setActiveCategory={setActiveCategory}
+                        activeCategory={activeCategory}
+                        enabled={true}
+                        isHighlighted={
+                          venue.venueType === activeCategory ||
+                          venue?.locations.data[0].attributes.city.toLowerCase() ===
+                            activeCategory
+                        }
+                      />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ): null)}
+              ) : null
+          })}
         </div>
       </section>
     </>
