@@ -94,6 +94,10 @@
   top: 70%;
 }
 
+.container {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .desktop {
     display: none;
