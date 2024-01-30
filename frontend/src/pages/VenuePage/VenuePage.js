@@ -44,10 +44,14 @@ const VenuePage = () => {
   const participantsDatas = venue?.participants?.data?.map((participantData) => participantData.attributes);
   const participants = participantsDatas && participantsDatas.sort((paricipant1, participant2) => paricipant1.fullName.localeCompare(participant2.fullName));
 
+  venue && console.log(venue.venue_events);
   const venueEvents = venue?.venue_events.data.map((eventData) => {
-    const smallEventData = eventData.attributes.smallEvent.data.attributes;
+    const smallEventData = (!!eventData.attributes.smallEvent.length) ? eventData.attributes.smallEvent.data.attributes : {};
     smallEventData.alternativeLocation = eventData.attributes.alternativeLocation;
     smallEventData.alternativeDescription = eventData.attributes.alternativeDescription;
+    smallEventData.time = eventData.attributes.time;
+    smallEventData.title = eventData.attributes.title;
+    smallEventData.isLink = eventData.attributes.isLink;
     return smallEventData;
   });
 
@@ -267,8 +271,8 @@ const VenuePage = () => {
             {!!venueEvents.length && venueEvents && (
               <ul className={styles.venueEvents}>
                 {sortedVenues(venueEvents).map((venueEvent, i) => {
-                  let address =
-                    venueEvent.locations.data[0].attributes.locationAddress;
+                  console.log(venueEvent);
+                  let address = (venueEvent.alternativeLocation) ? venueEvent.alternativeLocation : venueEvent.locations.data[0].attributes.locationAddress;
                   let eventStartDateObj = new Date(venueEvent.startDate);
                   let description;
                   if (venueEvent.venueDescription) {
@@ -279,23 +283,26 @@ const VenuePage = () => {
                   return (
                     <li key={i}>
                       <div className={styles.venueEventTitle}>
-                        <Link to={`/${language}/program/${venueEvent.slug}`}>
+                        {(venueEvent.isLink) ? (<Link to={`/${language}/program/${venueEvent.slug}`}>
                           {venueEvent.title}
-                        </Link>
+                        </Link>) : <p>{venueEvent.title}</p>}
                       </div>
                       <div className={styles.venueDateTimeAddress}>
-                        {`${t(
+                        {
+                          (venueEvent.time) ? venueEvent.time :
+                        `${t(
                           monthNames[eventStartDateObj.getMonth()].toLowerCase()
                         )} ${eventStartDateObj.getDate()}` +
                           ", " +
-                          venueEvent.venueOpeningTime.slice(0, 5)}
+                          venueEvent.venueOpeningTime.slice(0, 5)
+                        }
                         <br></br>
                         {(venueEvent.alternativeLocation) ? venueEvent.alternativeLocation : address}
                       </div>
                       <div className={styles.venueEventDescription}>
-                        <Link to={`/${language}/program/${venueEvent.slug}`}>
-                        {(venueEvent.alternativeDescription) ? venueEvent.alternativeDescription : description}
-                        </Link>
+                        {(venueEvent.isLink) ? <Link to={`/${language}/program/${venueEvent.slug}`}>
+                          {(venueEvent.alternativeDescription) ? venueEvent.alternativeDescription : description}
+                        </Link> : <p>{(venueEvent.alternativeDescription) ? venueEvent.alternativeDescription : description}</p>}
                       </div>
                     </li>
                   );

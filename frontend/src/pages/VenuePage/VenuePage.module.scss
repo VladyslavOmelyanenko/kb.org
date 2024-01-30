@@ -208,6 +208,7 @@
         width: calc(50% - 10px);
         min-width: calc(50% - 10px);
         flex-shrink: 0;
+        white-space: pre-wrap;
       }
 
       .venueEventTitle {
