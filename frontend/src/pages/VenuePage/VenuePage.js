@@ -41,7 +41,6 @@ const VenuePage = () => {
   const venueImages = venue?.venueImages.data;
   const program = venue?.program;
   const isGermanLanguage = venue?.isGermanLanguage;
-  isGermanLanguage && console.log(isGermanLanguage);
   const participantsDatas = venue?.participants?.data?.map((participantData) => participantData.attributes);
   const participants = participantsDatas && participantsDatas.sort((paricipant1, participant2) => paricipant1.fullName.localeCompare(participant2.fullName));
 
@@ -271,10 +270,12 @@ const VenuePage = () => {
                   let address =
                     venueEvent.locations.data[0].attributes.locationAddress;
                   let eventStartDateObj = new Date(venueEvent.startDate);
-                  let desciption =
-                    venueEvent.venueDescription.length > 600
-                      ? venueEvent.venueDescription.slice(0, 300) + " . . ."
-                      : venueEvent.venueDescription;
+                  let description;
+                  if (venueEvent.venueDescription) {
+                    description = venueEvent.venueDescription.length > 600
+                        ? venueEvent.venueDescription.slice(0, 300) + " . . ."
+                        : venueEvent.venueDescription;
+                  }
                   return (
                     <li key={i}>
                       <div className={styles.venueEventTitle}>
@@ -293,7 +294,7 @@ const VenuePage = () => {
                       </div>
                       <div className={styles.venueEventDescription}>
                         <Link to={`/${language}/program/${venueEvent.slug}`}>
-                        {(venueEvent.alternativeDescription) ? venueEvent.alternativeDescription : desciption}
+                        {(venueEvent.alternativeDescription) ? venueEvent.alternativeDescription : description}
                         </Link>
                       </div>
                     </li>

@@ -21,6 +21,7 @@ const LocationsPage = () => {
   const [activeCity, setActiveCity] = useState(cityParam);
 
   const orderOfCities = [
+    "berlin",
     "kyiv",
     "ivano-frankivsk",
     "uzhhorod",
@@ -28,15 +29,14 @@ const LocationsPage = () => {
     "warsaw",
     "lublin",
     "antwerp",
-    "berlin",
+    "берлін",
     "київ",
     "івано-франківськ",
     "ужгород",
     "відень",
     "варшава",
     "люблін",
-    "антверпен",
-    "берлін"
+    "антверпен"
   ];
   const numberOfCities = 8;
   const citiesContainer = useRef(null);

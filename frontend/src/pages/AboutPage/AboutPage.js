@@ -46,7 +46,7 @@ const AboutPage = () => {
 
   return ( 
     <>
-      <Navbar />
+      <Navbar isGermanLanguage={true}/>
       {content ? (
         <main className={styles.aboutSection}>
 

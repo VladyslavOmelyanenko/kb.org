@@ -73,7 +73,6 @@ const ProgramPage = () => {
 
     venues && setVenuesByCities(venues.reduce((result, venue) => {
       const { locations } = venue; 
-      console.log(locations);
       const city = locations.data[0].attributes.city; 
 
       if (!result[city]) {
@@ -121,6 +120,7 @@ const ProgramPage = () => {
     const distributedVenues = venues.reduce((result, venue) => {
       const startDate = venue.startDate.split("-")[1];
       const finishDate = venue.finishDate && venue.finishDate.split("-")[1];
+      // console.log(venue, finishDate);
       const months = [];
       if (finishDate) {
         if (finishDate === '01') {
@@ -129,15 +129,17 @@ const ProgramPage = () => {
              months.push(month);
            }
            months.push(numberToTxtMonths[finishDate]);
-        } else {
+          } else {
             for (let i = startDate; i <= finishDate; i++) {
               const month = numberToTxtMonths[i];
+              console.log(venue, month, i);
               months.push(month);
             }
-        }
+          }
+          console.log(months);
       } else {
         const month = numberToTxtMonths[startDate];
-        months.push(month)
+        months.push(month);
       }
 
       months.forEach((month) => {
@@ -222,7 +224,7 @@ const ProgramPage = () => {
                 .filter(([key,value]) => (value.length !== 0) && (txtToNumberMonth[key] < 10))
                 .sort(([key1, value1], [key2, value2]) => key2 - key1)
                 .reverse()[0][0];
-              console.log(twentyFourMonth);
+              console.log(getDistributedVenuesByMonth(activeVenues));
               return sortedVenuesInMonth(
                 getDistributedVenuesByMonth(activeVenues)[month]
               ).length !== 0 ? (
