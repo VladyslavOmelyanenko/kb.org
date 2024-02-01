@@ -165,10 +165,14 @@ const LocationsPage = () => {
         ref={citiesContainer}
         onWheel={(event) => {
           const viennaElements = Array.from(document.getElementById('vienna')?.querySelectorAll("*"));
+          const berlinElements = Array.from(document.getElementById('berlin')?.querySelectorAll("*"));
           if (!event.deltaY) {
             return;
           }
-          if (viennaElements.includes(event.target)) {
+          if (
+            viennaElements.includes(event.target) ||
+            berlinElements.includes(event.target)
+          ) {
             return;
           }
           citiesContainer.current.scrollLeft += !activeCity && event.deltaY + event.deltaX;
@@ -184,7 +188,7 @@ const LocationsPage = () => {
             .map(([city, locations], i) => (
               <div
                 key={i}
-                id={(getEnglishCity(city).toLowerCase() === "vienna") ? "vienna" : null}
+                id={(getEnglishCity(city).toLowerCase() === "vienna") ? "vienna" : (getEnglishCity(city).toLowerCase() === "berlin") ? "berlin" : null}
                 className={
                   activeCity &&
                   getEnglishCity(city).toLowerCase() ===
