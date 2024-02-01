@@ -46,11 +46,12 @@ const VenuePage = () => {
 
   venue && console.log(venue.venue_events);
   const venueEvents = venue?.venue_events.data.map((eventData) => {
-    const smallEventData = (!!eventData.attributes.smallEvent.length) ? eventData.attributes.smallEvent.data.attributes : {};
+    const smallEventData = (!!eventData.attributes.smallEvent.data) ? eventData.attributes.smallEvent.data.attributes : {};
+    console.log(smallEventData);
     smallEventData.alternativeLocation = eventData.attributes.alternativeLocation;
     smallEventData.alternativeDescription = eventData.attributes.alternativeDescription;
     smallEventData.time = eventData.attributes.time;
-    smallEventData.title = eventData.attributes.title;
+    smallEventData.title = (smallEventData.title) ? smallEventData.title : eventData.attributes.title;
     smallEventData.isLink = eventData.attributes.isLink;
     return smallEventData;
   });
@@ -272,7 +273,7 @@ const VenuePage = () => {
               <ul className={styles.venueEvents}>
                 {sortedVenues(venueEvents).map((venueEvent, i) => {
                   console.log(venueEvent);
-                  let address = (venueEvent.alternativeLocation) ? venueEvent.alternativeLocation : venueEvent.locations.data[0].attributes.locationAddress;
+                  let address = (venueEvent.alternativeLocation) ? venueEvent.alternativeLocation : venueEvent.locations?.data[0].attributes.locationAddress;
                   let eventStartDateObj = new Date(venueEvent.startDate);
                   let description;
                   if (venueEvent.venueDescription) {
