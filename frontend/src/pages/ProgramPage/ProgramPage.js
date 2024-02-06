@@ -31,6 +31,7 @@ const ProgramPage = () => {
   const months = ["october", "november", "december", "january", "february", "march", "april", "may", "june", "july", "august"].reverse();
 
   const orderOfCities = [
+    "berlin",
     "kyiv",
     "ivano-frankivsk",
     "uzhhorod",
@@ -38,15 +39,14 @@ const ProgramPage = () => {
     "warsaw",
     "lublin",
     "antwerp",
-    "berlin",
+    "берлін",
     "київ",
     "івано-франківськ",
     "ужгород",
     "відень",
     "варшава",
     "люблін",
-    "антверпен",
-    "берлін"
+    "антверпен"
   ];
   const txtToNumberMonth = {
     october: 10,
@@ -64,7 +64,7 @@ const ProgramPage = () => {
 
   useEffect(() => {
     const venues = data && data.data.map((venue) => venue.attributes);
-    venues && console.log(venues);
+    // venues && console.log(venues);
 
 
     if (venues) {
@@ -120,7 +120,7 @@ const ProgramPage = () => {
     const distributedVenues = venues.reduce((result, venue) => {
       const startDate = venue.startDate.split("-")[1];
       const finishDate = venue.finishDate && venue.finishDate.split("-")[1];
-      // console.log(venue, finishDate);
+      console.log(venue, finishDate);
       const months = [];
       if (finishDate) {
         if (finishDate === '01') {
@@ -132,11 +132,11 @@ const ProgramPage = () => {
           } else {
             for (let i = startDate; i <= finishDate; i++) {
               const month = numberToTxtMonths[i];
-              console.log(venue, month, i);
+              // console.log(venue, month, i);
               months.push(month);
             }
           }
-          console.log(months);
+          // console.log(months);
       } else {
         const month = numberToTxtMonths[startDate];
         months.push(month);
@@ -224,7 +224,7 @@ const ProgramPage = () => {
                 .filter(([key,value]) => (value.length !== 0) && (txtToNumberMonth[key] < 10))
                 .sort(([key1, value1], [key2, value2]) => key2 - key1)
                 .reverse()[0][0];
-              console.log(getDistributedVenuesByMonth(activeVenues));
+              {/* console.log(getDistributedVenuesByMonth(activeVenues)); */}
               return sortedVenuesInMonth(
                 getDistributedVenuesByMonth(activeVenues)[month]
               ).length !== 0 ? (
