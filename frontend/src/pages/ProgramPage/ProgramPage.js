@@ -224,7 +224,6 @@ const ProgramPage = () => {
                 .filter(([key,value]) => (value.length !== 0) && (txtToNumberMonth[key] < 10))
                 .sort(([key1, value1], [key2, value2]) => key2 - key1)
                 .reverse()[0][0];
-              {/* console.log(getDistributedVenuesByMonth(activeVenues)); */}
               return sortedVenuesInMonth(
                 getDistributedVenuesByMonth(activeVenues)[month]
               ).length !== 0 ? (
