@@ -281,7 +281,6 @@ console.log("Original order:", venue?.venue_events.data);
             {!!venueEvents.length && venueEvents && (
               <ul className={styles.venueEvents}>
                 {sortedVenues(venueEvents).map((venueEvent, i) => {
-                  {/* console.log(venueEvent); */}
                   let address = (venueEvent.alternativeLocation) ? venueEvent.alternativeLocation : venueEvent.locations?.data[0].attributes.locationAddress;
                   let eventStartDateObj = new Date(venueEvent.startDate);
                   let description;
