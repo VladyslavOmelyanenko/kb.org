@@ -44,19 +44,28 @@ const VenuePage = () => {
   const participantsDatas = venue?.participants?.data?.map((participantData) => participantData.attributes);
   const participants = participantsDatas && participantsDatas.sort((paricipant1, participant2) => paricipant1.fullName.localeCompare(participant2.fullName));
 
-  venue && console.log(venue.venue_events);
-  const venueEvents = venue?.venue_events.data.map((eventData) => {
-    const smallEventData = (!!eventData.attributes.smallEvent.data) ? eventData.attributes.smallEvent.data.attributes : {};
-    console.log(smallEventData);
+console.log("Original order:", venue?.venue_events.data);
+
+
+  const venueEvents = venue?.venue_events.data.map((eventData, index) => {
+    console.log("Processing element at index", index, ":", eventData);
+
+
+    const smallEventData = !!eventData.attributes.smallEvent.data ? eventData.attributes.smallEvent.data.attributes : {};
     smallEventData.alternativeLocation = eventData.attributes.alternativeLocation;
     smallEventData.alternativeDescription = eventData.attributes.alternativeDescription;
     smallEventData.time = eventData.attributes.time;
-    smallEventData.title = (smallEventData.title) ? smallEventData.title : eventData.attributes.title;
+    smallEventData.title = smallEventData.title || eventData.attributes.title;
     smallEventData.isLink = eventData.attributes.isLink;
+
+    console.log("Processed data:", smallEventData);
+
     return smallEventData;
   });
 
-  // venue && console.log(venue);
+
+
+
   
   const [isMobile, setIsMobile] = useState(false);
 
@@ -66,7 +75,7 @@ const VenuePage = () => {
       const dateA = new Date(a.startDate);
       const dateB = new Date(b.startDate);
 
-      return dateB - dateA;
+      return dateA - dateB;
     };
     return venuesArray.sort(compareStartDate);
   };
@@ -272,7 +281,7 @@ const VenuePage = () => {
             {!!venueEvents.length && venueEvents && (
               <ul className={styles.venueEvents}>
                 {sortedVenues(venueEvents).map((venueEvent, i) => {
-                  console.log(venueEvent);
+                  {/* console.log(venueEvent); */}
                   let address = (venueEvent.alternativeLocation) ? venueEvent.alternativeLocation : venueEvent.locations?.data[0].attributes.locationAddress;
                   let eventStartDateObj = new Date(venueEvent.startDate);
                   let description;
