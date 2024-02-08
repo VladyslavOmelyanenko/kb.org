@@ -130,10 +130,10 @@ const ProgramPage = () => {
            }
            months.push(numberToTxtMonths[finishDate]);
           } else {
-            for (let i = startDate; i <= finishDate; i++) {
+            for (let i = +startDate; i <= finishDate; i++) {
             const index = i < 10 ? `0${i}` : i;
               const month = numberToTxtMonths[index];
-              // console.log(venue, month, i);
+              console.log(venue, month, index);
               months.push(month);
             }
           }
