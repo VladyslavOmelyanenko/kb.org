@@ -109,8 +109,8 @@ const ProgramPage = () => {
       '02': 'february',
       '03': 'march',
       '04': 'april',
-      '05': 'may',
-      '06': 'june',
+      '005': 'may',
+      '006': 'june',
       '07': 'july',
       '08': 'august',
     };
@@ -120,18 +120,19 @@ const ProgramPage = () => {
     const distributedVenues = venues.reduce((result, venue) => {
       const startDate = venue.startDate.split("-")[1];
       const finishDate = venue.finishDate && venue.finishDate.split("-")[1];
-      console.log(venue, finishDate);
+      // console.log(venue, finishDate);
       const months = [];
       if (finishDate) {
         if (finishDate === '01') {
            for (let i = startDate; i <= 12; i++) {
-             const month = numberToTxtMonths[i];
-             months.push(month);
+            const month = numberToTxtMonths[i];
+            months.push(month);
            }
            months.push(numberToTxtMonths[finishDate]);
           } else {
             for (let i = startDate; i <= finishDate; i++) {
-              const month = numberToTxtMonths[i];
+            const index = i < 10 ? `0${i}` : i;
+              const month = numberToTxtMonths[index];
               // console.log(venue, month, i);
               months.push(month);
             }
