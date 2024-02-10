@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import { Link, useParams,  } from "react-router-dom";
+import ReactMarkdown from "react-markdown";
 
 import {API_URL} from "../../config";
 import { useTranslation } from 'react-i18next';
@@ -44,12 +45,9 @@ const VenuePage = () => {
   const participantsDatas = venue?.participants?.data?.map((participantData) => participantData.attributes);
   const participants = participantsDatas && participantsDatas.sort((paricipant1, participant2) => paricipant1.fullName.localeCompare(participant2.fullName));
 
-console.log("Original order:", venue?.venue_events.data);
 
 
   const venueEvents = venue?.venue_events.data.map((eventData, index) => {
-    console.log("Processing element at index", index, ":", eventData);
-
 
     const smallEventData = !!eventData.attributes.smallEvent.data ? eventData.attributes.smallEvent.data.attributes : {};
     smallEventData.alternativeLocation = eventData.attributes.alternativeLocation;
@@ -57,8 +55,6 @@ console.log("Original order:", venue?.venue_events.data);
     smallEventData.time = eventData.attributes.time;
     smallEventData.title = smallEventData.title || eventData.attributes.title;
     smallEventData.isLink = eventData.attributes.isLink;
-
-    console.log("Processed data:", smallEventData);
 
     return smallEventData;
   });
@@ -229,25 +225,35 @@ console.log("Original order:", venue?.venue_events.data);
                           {location.locationName}
                         </h3>
                         <div className={styles.addressAndTime}>
-                          <p className={styles.address}>
-                            {location.locationAddress.slice(
-                              0,
-                              location.locationAddress.lastIndexOf(", ")
-                            )}
-                            <br></br>
-                            {location.locationAddress.slice(
-                              location.locationAddress.lastIndexOf(", ") + 2,
-                              location.locationAddress.length
-                            )}
-                          </p>
+                          {venueLocation.alternativeText ? (
+                            venueLocation.alternativeText
+                          ) : (
+                            <>
+                              <p className={styles.address}>
+                                {location.locationAddress.slice(
+                                  0,
+                                  location.locationAddress.lastIndexOf(", ")
+                                )}
+                                <br></br>
+                                {location.locationAddress.slice(
+                                  location.locationAddress.lastIndexOf(", ") +
+                                    2,
+                                  location.locationAddress.length
+                                )}
+                              </p>
 
-                          <p className={styles.openingTimes}>
-                            Opening Hours:<br></br>
-                            {location.openingHours}
-                          </p>
+                              <p className={styles.openingTimes}>
+                                {venueLocation.date
+                                  ? venueLocation.date
+                                  : t("Opening Hours")}
+                                <br></br>
+                                {location.openingHours}
+                              </p>
+                            </>
+                          )}
                         </div>
                         <p>
-                          {t("Participants")}:{" "}
+                          {!!participants.length && t("Participants") + ":"}{" "}
                           {participants.map((participant, i) => (
                             <span>
                               <Link
@@ -259,6 +265,9 @@ console.log("Original order:", venue?.venue_events.data);
                             </span>
                           ))}
                         </p>
+                        {venueLocation.description && (
+                          <ReactMarkdown children={venueLocation.description} />
+                        )}
                       </li>
                     );
                   })}
