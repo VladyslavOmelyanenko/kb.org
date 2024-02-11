@@ -207,7 +207,10 @@ const VenuePage = () => {
               ) : (
                 <ul className={styles.venueLocations}>
                   {venueLocations.map((venueLocation) => {
-                    const location = venueLocation.location.data.attributes;
+                    console.log(venueLocation);
+                    const location =
+                      venueLocation.location.data && venueLocation.location.data
+                        .attributes;
                     const participantsDatas =
                       venueLocation.participants.data.map(
                         (participant) => participant.attributes
@@ -222,7 +225,7 @@ const VenuePage = () => {
                     return (
                       <li>
                         <h3 className={styles.venueLocationTitle}>
-                          {location.locationName}
+                          {venueLocation.alternativeTitle ? venueLocation.alternativeTitle : location.locationName}
                         </h3>
                         <div className={styles.addressAndTime}>
                           {venueLocation.alternativeText ? (
