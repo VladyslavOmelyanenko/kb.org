@@ -108,10 +108,10 @@ const ProgramPage = () => {
       '02': 'february',
       '03': 'march',
       '04': 'april',
-      '005': 'may',
-      '006': 'june',
-      '007': 'july',
-      '008': 'august',
+      '05': 'may',
+      '06': 'june',
+      '07': 'july',
+      '08': 'august',
     };
 
     
