@@ -77,7 +77,7 @@ const VenueTag = (props) => {
         </div>
       </div>
       <p className={styles.venuePlaceAndTime}>
-        {locations.map((location, i) => (<b>{location.locationName}{(i === locations.length - 1) ? '' : ', '}</b>))} <br></br>
+        {locations.map((location, i) => (<b key={i}>{location.locationName}{(i === locations.length - 1) ? '' : ', '}</b>))} <br></br>
         {formatDate(venue.startDate)}{venue.finishDate ? "–" + formatDate(venue.finishDate) : " " + venue.venueOpeningTime.slice(0, venue.venueOpeningTime.indexOf(':', 3))}
       </p>
       <h3 className={styles.venueTitle}>

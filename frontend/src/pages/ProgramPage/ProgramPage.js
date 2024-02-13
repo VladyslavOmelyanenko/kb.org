@@ -64,7 +64,6 @@ const ProgramPage = () => {
 
   useEffect(() => {
     const venues = data && data.data.map((venue) => venue.attributes);
-    // venues && console.log(venues);
 
 
     if (venues) {
@@ -120,7 +119,6 @@ const ProgramPage = () => {
     const distributedVenues = venues.reduce((result, venue) => {
       const startDate = venue.startDate.split("-")[1];
       const finishDate = venue.finishDate && venue.finishDate.split("-")[1];
-      // console.log(venue, finishDate);
       const months = [];
       if (finishDate) {
         if (finishDate === '01') {
@@ -133,11 +131,9 @@ const ProgramPage = () => {
             for (let i = +startDate; i <= finishDate; i++) {
             const index = i < 10 ? `0${i}` : i;
               const month = numberToTxtMonths[index];
-              console.log(venue, month, index);
               months.push(month);
             }
           }
-          // console.log(months);
       } else {
         const month = numberToTxtMonths[startDate];
         months.push(month);
@@ -174,6 +170,7 @@ const ProgramPage = () => {
   }
 
   const handleCityButton = (city) => {
+    console.log(Object.entries(getDistributedVenuesByMonth(venuesByCities[city])));
     if (activeCity === city) {
       setActiveVenues(Object.values(venuesByCities).flat());
       setActiveCity('');
@@ -195,7 +192,7 @@ const ProgramPage = () => {
                   orderOfCities.indexOf(a.toLowerCase()) -
                   orderOfCities.indexOf(b.toLowerCase())
               )
-              .map((city) => (
+              .map((city, i) => (
                 <li key={city} className={styles.city}>
                   <button
                     className={
@@ -221,7 +218,7 @@ const ProgramPage = () => {
         <div className={styles.venuesByMonths}>
           {!!activeVenues.length &&
             months.map((month) => {
-              const twentyFourMonth = Object.entries(getDistributedVenuesByMonth(activeVenues))
+              const twentyFourMonth = !activeCity && Object.entries(getDistributedVenuesByMonth(activeVenues))
                 .filter(([key,value]) => (value.length !== 0) && (txtToNumberMonth[key] < 10))
                 .sort(([key1, value1], [key2, value2]) => key2 - key1)
                 .reverse()[0][0];
@@ -235,10 +232,10 @@ const ProgramPage = () => {
                   <div className={styles.monthVenues}>
                     {sortedVenuesInMonth(
                       getDistributedVenuesByMonth(activeVenues)[month]
-                    ).map((venue) => (
+                    ).map((venue, i) => (
                       <VenueTag
                         venue={venue}
-                        key={venue.title}
+                        key={venue.title + i}
                         setActiveCategory={setActiveCategory}
                         activeCategory={activeCategory}
                         enabled={true}
