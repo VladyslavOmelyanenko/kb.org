@@ -61,6 +61,7 @@ const LandingPageNew = () => {
               className={styles.landingVideo}
               autoPlay
               muted
+              playsInline
               loop
               src={landingVideo}
             ></video>
