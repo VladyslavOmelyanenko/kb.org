@@ -63,7 +63,11 @@ const ProgramPage = () => {
   };
 
   useEffect(() => {
-    const venues = data && data.data.map((venue) => venue.attributes);
+    // Venues are grouped by the city of their first location, so a venue that
+    // has no location yet is left out of the list instead of breaking the page.
+    const venues = data && data.data
+      .map((venue) => venue.attributes)
+      .filter((venue) => venue.locations.data.length > 0);
 
 
     if (venues) {

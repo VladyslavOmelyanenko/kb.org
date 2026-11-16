@@ -23,7 +23,6 @@ const App = () => {
 
   return (
     <>
-
       <Routes>
         <Route path="/" element={<RedirectToEn />} />
         <Route path="/:language" element={<LandingPageNew />} />
